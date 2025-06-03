@@ -1,0 +1,138 @@
+/* --------------------------------------------------
+   RESET & BASE
+-------------------------------------------------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: #fff;
+  color: #111;
+}
+
+body {
+  text-align: center;          /* keeps headings/content centred */
+  padding-top: 6rem;
+  padding-bottom: 4rem;
+}
+
+/* --------------------------------------------------
+   GLOBAL CONTAINER
+-------------------------------------------------- */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* --------------------------------------------------
+   TYPOGRAPHY
+-------------------------------------------------- */
+.name {
+  font-size: 2.75rem;
+  font-weight: 600;
+  margin-bottom: 0.6rem;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 4.5rem;
+}
+
+/* --------------------------------------------------
+   HOME‑LINK (top‑left)
+-------------------------------------------------- */
+.home-link {
+  position: fixed;             /* stays put, unaffected by body centring */
+  top: 2rem;
+  left: 3rem;                  /* << move this value to nudge further right or left */
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #111;
+  text-decoration: none;
+}
+
+.home-link:hover {
+  text-decoration: none;       /* no underline on hover */
+}
+
+/* --------------------------------------------------
+   CARD GRID (index page)
+-------------------------------------------------- */
+.card-grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2.25rem;
+}
+
+.card {
+  width: 480px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card img {
+  width: 100%;
+  height: 270px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card img:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+}
+
+.label {
+  margin-top: 1rem;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+/* --------------------------------------------------
+   RESPONSIVE (index cards)
+-------------------------------------------------- */
+@media (max-width: 640px) {
+  .card-grid {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .card {
+    width: 90%;
+  }
+}
+
+/* --------------------------------------------------
+   MASONRY GALLERY (photos page)
+-------------------------------------------------- */
+.gallery {
+  column-count: 2;
+  column-gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.gallery img {
+  width: 100%;
+  margin-bottom: 1.5rem;
+  display: block;
+  border-radius: 0;
+  break-inside: avoid;
+}
+
+/* responsive columns */
+@media (max-width: 600px) {
+  .gallery {
+    column-count: 1;
+  }
+}
