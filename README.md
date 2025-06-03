@@ -1,3 +1,0 @@
-# AydenMorganWeb
-Personal Website
-
