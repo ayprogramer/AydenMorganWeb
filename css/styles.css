@@ -10,13 +10,13 @@
 html,
 body {
   height: 100%;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   background-color: #fff;
   color: #111;
 }
 
 body {
-  text-align: center;          /* keeps headings/content centred */
+  text-align: center;
   padding-top: 6rem;
   padding-bottom: 4rem;
 }
@@ -48,9 +48,9 @@ body {
    HOME‑LINK (top‑left)
 -------------------------------------------------- */
 .home-link {
-  position: fixed;             /* stays put, unaffected by body centring */
+  position: fixed;
   top: 2rem;
-  left: 3rem;                  /* << move this value to nudge further right or left */
+  left: 3rem;
   font-size: 1.5rem;
   font-weight: 600;
   color: #111;
@@ -58,7 +58,12 @@ body {
 }
 
 .home-link:hover {
-  text-decoration: none;       /* no underline on hover */
+  text-decoration: none;
+}
+
+/* Hide home-link on index only */
+body.index .home-link {
+  display: none;
 }
 
 /* --------------------------------------------------
@@ -130,7 +135,6 @@ body {
   break-inside: avoid;
 }
 
-/* responsive columns */
 @media (max-width: 600px) {
   .gallery {
     column-count: 1;
