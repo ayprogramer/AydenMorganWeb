@@ -140,3 +140,52 @@ body.index .home-link {
     column-count: 1;
   }
 }
+
+
+/* --------------------------------------------------
+   PROJECTS PAGE
+-------------------------------------------------- */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 3rem;
+  margin-top: 4rem;
+}
+
+.project-card {
+  text-align: left;
+  background-color: #fafafa;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+}
+
+.project-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 1.25rem;
+}
+
+.project-card h2 {
+  margin-bottom: 0.25rem;
+  font-size: 1.4rem;
+}
+
+.project-card .subtitle {
+  font-size: 1rem;
+  color: #777;
+  margin-bottom: 0.8rem;
+}
+
+.project-card p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #333;
+}
