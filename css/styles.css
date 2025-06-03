@@ -154,17 +154,20 @@ body.index .home-link {
 
 .project-card {
   text-align: left;
-  background-color: #fafafa;
+  background-color: #f0f0f0; /* was #fafafa — now slightly darker */
   padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-decoration: none;
+  color: inherit;
 }
 
 .project-card:hover {
   transform: translateY(-6px);
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
 }
+
 
 .project-card img {
   width: 100%;
