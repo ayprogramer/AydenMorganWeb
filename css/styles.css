@@ -127,7 +127,9 @@ body.index .home-link {
   column-count: 2;
   column-gap: 1.5rem;
   margin-top: 3rem;
+  padding-bottom: 4rem;
 }
+
 
 .gallery img {
   width: 100%;
@@ -193,4 +195,12 @@ body.index .home-link {
   font-size: 0.95rem;
   line-height: 1.5;
   color: #333;
+}
+
+.more-coming {
+  margin-top: 5rem; /* was 3rem before */
+  font-size: 1.1rem;
+  color: #666;
+  font-style: italic;
+  text-align: center;
 }
