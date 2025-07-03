@@ -27,6 +27,7 @@ body {
 .container {
   max-width: 1200px;
   margin: 0 auto;
+  padding-bottom: 6rem;
 }
 
 /* --------------------------------------------------
@@ -45,7 +46,7 @@ body {
 }
 
 /* --------------------------------------------------
-   HOME‑LINK (top‑left)
+   HOME-LINK (top-left)
 -------------------------------------------------- */
 .home-link {
   position: fixed;
@@ -61,7 +62,6 @@ body {
   text-decoration: none;
 }
 
-/* Hide home-link on index only */
 body.index .home-link {
   display: none;
 }
@@ -84,15 +84,14 @@ body.index .home-link {
 }
 
 .card img {
-  aspect-ratio: 16 / 9; /* Force same ratio for consistent layout */
-  height: auto;         /* Let height be determined by aspect ratio */
+  aspect-ratio: 16 / 9;
+  height: auto;
   width: 100%;
   object-fit: cover;
   border-radius: 12px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-
 
 .card img:hover {
   transform: translateY(-6px);
@@ -127,9 +126,7 @@ body.index .home-link {
   column-count: 2;
   column-gap: 1.5rem;
   margin-top: 3rem;
-  padding-bottom: 4rem;
 }
-
 
 .gallery img {
   width: 100%;
@@ -145,6 +142,42 @@ body.index .home-link {
   }
 }
 
+/* --------------------------------------------------
+   HELLO CAMPUS GRID GALLERY
+-------------------------------------------------- */
+.hc-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 3rem auto 6rem;
+  padding: 0 1rem;
+}
+
+.hc-gallery img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hc-gallery img:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 900px) {
+  .hc-gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .hc-gallery {
+    grid-template-columns: 1fr;
+  }
+}
 
 /* --------------------------------------------------
    PROJECTS PAGE
@@ -158,7 +191,7 @@ body.index .home-link {
 
 .project-card {
   text-align: left;
-  background-color: #f0f0f0; /* was #fafafa — now slightly darker */
+  background-color: #f0f0f0;
   padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
@@ -171,7 +204,6 @@ body.index .home-link {
   transform: translateY(-6px);
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
 }
-
 
 .project-card img {
   width: 100%;
@@ -198,9 +230,13 @@ body.index .home-link {
 }
 
 .more-coming {
-  margin-top: 5rem; /* was 3rem before */
   font-size: 1.1rem;
   color: #666;
   font-style: italic;
-  text-align: center;
+  align-self: center;
+  justify-self: end;
+  text-align: right;
+  margin-right: 0rem;
+  max-width: 200px;
+  white-space: nowrap;
 }
