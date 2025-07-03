@@ -45,6 +45,15 @@ body {
   margin-bottom: 4.5rem;
 }
 
+.body-text {
+  max-width: 700px;
+  margin: 2rem auto 4rem;
+  line-height: 1.7;
+  font-size: 1.05rem;
+}
+
+
+
 /* --------------------------------------------------
    HOME-LINK (top-left)
 -------------------------------------------------- */
@@ -162,10 +171,8 @@ body.index .home-link {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.hc-gallery img:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-}
+
+
 
 @media (max-width: 900px) {
   .hc-gallery {
