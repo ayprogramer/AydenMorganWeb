@@ -247,3 +247,15 @@ body.index .home-link {
   max-width: 200px;
   white-space: nowrap;
 }
+
+
+/* Disable hover jump and clicks on specific cards */
+.project-card.no-hover:hover {
+  transform: none;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+  cursor: default;
+}
+
+.project-card.no-click {
+  pointer-events: none;
+}
