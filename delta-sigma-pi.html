@@ -25,13 +25,14 @@
       margin: 1.2rem auto 2rem;
     }
 
+    /* ---------- CTA SECTION ---------- */
     .cta {
       margin: 3rem auto 4rem;
       display: flex;
       justify-content: center;
       align-items: center;
       gap: 1.25rem;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
       width: 100%;
       padding: 0 1rem;
     }
@@ -40,6 +41,7 @@
     .cta::after {
       content: "";
       flex: 1 1 120px;
+      min-width: 40px;
       height: 3px;
       background: #e4e4e4;
       border-radius: 2px;
@@ -47,13 +49,12 @@
 
     @media (max-width: 480px) {
       .cta {
-        flex-wrap: nowrap;
-        justify-content: space-around;
+        gap: 0.9rem;
       }
 
       .cta::before,
       .cta::after {
-        display: none;
+        flex-basis: 60px;
       }
     }
 
@@ -103,7 +104,10 @@
     </p>
 
     <div class="cta">
-      <a href="https://calpolydeltasig.com" class="visit-button" target="_blank" rel="noopener noreferrer">
+      <a href="https://calpolydeltasig.com"
+         class="visit-button"
+         target="_blank"
+         rel="noopener noreferrer">
         Visit Site
       </a>
     </div>
