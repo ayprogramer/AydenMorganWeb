@@ -7,6 +7,8 @@
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body class="index">
+  <div id="loader" class="loader" aria-hidden="true"></div>
+
   <a href="index.html" class="home-link">Ayden Morgan</a>
 
   <main class="container">
@@ -16,14 +18,12 @@
     <div class="card-grid">
       <div class="card">
         <a href="photos.html">
-          <!-- Photos card image — NOT lazy-loaded for immediate display -->
           <img src="images/scimage3.png" alt="Photos" />
         </a>
         <p class="label">Photos</p>
       </div>
       <div class="card">
         <a href="projects.html">
-          <!-- Projects card image — NOT lazy-loaded for immediate display -->
           <img src="images/liltrees-preview.png" alt="Projects" />
         </a>
         <p class="label">Projects</p>
@@ -31,7 +31,20 @@
     </div>
   </main>
 
-  <!-- Preload script: runs AFTER full page load -->
+  <script>
+    (() => {
+      const MIN_DELAY = 130;
+      const startTime = performance.now();
+      const loader = document.getElementById('loader');
+
+      window.addEventListener('load', () => {
+        const elapsed = performance.now() - startTime;
+        const remaining = Math.max(MIN_DELAY - elapsed, 0);
+        setTimeout(() => loader.classList.add('done'), remaining);
+      });
+    })();
+  </script>
+
   <script>
     window.addEventListener('load', () => {
       const preloadImages = [
@@ -42,7 +55,6 @@
         "images/hellocampus-preview8.png",
         "images/dsp-preview2.png"
       ];
-
       preloadImages.forEach(src => {
         const img = new Image();
         img.src = src;

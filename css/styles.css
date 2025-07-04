@@ -287,3 +287,16 @@ body.index .home-link {
   }
 }
 
+/* Minimal full-screen white overlay */
+.loader {
+  position: fixed;
+  inset: 0;
+  background: white;
+  z-index: 999;
+  transition: opacity 0.2s ease; /* was 0.35s */
+}
+
+.loader.done {
+  opacity: 0;
+  pointer-events: none;
+}

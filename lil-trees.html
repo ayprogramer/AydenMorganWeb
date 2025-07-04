@@ -4,24 +4,19 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lil Trees – Ayden Morgan</title>
-
-  <!-- main site stylesheet -->
   <link rel="stylesheet" href="css/styles.css" />
 
-  <!-- page-specific tweaks -->
   <style>
-    /* ——— GENERAL PAGE ——— */
     .lt-subtitle { margin-bottom: 1.2rem; }
-    .lt-logo     {
+    .lt-logo {
       width: 7.5rem;
       max-width: 100%;
       height: auto;
       display: block;
       margin: 0.3rem auto 0.8rem;
     }
-    .lt-body     { margin: 1.2rem auto 2rem; }
+    .lt-body { margin: 1.2rem auto 2rem; }
 
-    /* ——— CTA SECTION ——— */
     .cta {
       margin: -1rem auto 6rem;
       display: flex;
@@ -30,16 +25,16 @@
       gap: 1.25rem;
       width: 100%;
     }
+
     .cta::before,
     .cta::after {
       content: "";
       flex: 1 1 120px;
-      height: 3px; /* made thicker */
+      height: 3px;
       background: #e4e4e4;
       border-radius: 2px;
     }
 
-    /*   button   */
     .demo-button {
       padding: 1rem 2.4rem;
       background-color: #1775b7;
@@ -48,26 +43,18 @@
       font-weight: 600;
       border-radius: 12px;
       text-decoration: none;
-      transition: background-color 0.2s ease,
-                  transform 0.15s ease,
-                  box-shadow 0.15s ease;
+      transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.15s ease;
       box-shadow: 0 2px 6px rgba(0,0,0,0.08);
     }
 
-    .demo-button:hover   {
-      background-color: #115788;
-      transform: translateY(-2px);
-    }
-
-    .demo-button:active  {
-      background-color: #0f5f98;
-      transform: translateY(0);
-    }
+    .demo-button:hover   { background-color: #115788; transform: translateY(-2px); }
+    .demo-button:active  { background-color: #0f5f98; transform: translateY(0); }
   </style>
 </head>
 
 <body>
-  <!-- back to projects -->
+  <div id="loader" class="loader" aria-hidden="true"></div>
+
   <a href="projects.html" class="back-link">&lt;</a>
 
   <main class="container">
@@ -77,9 +64,7 @@
       Product Designer • Screen time blocking app (in development)
     </p>
 
-    <img src="images/liltreegrowing.png"
-         alt="Lil Trees branding or preview"
-         class="lt-logo" />
+    <img src="images/liltreegrowing.png" alt="Lil Trees branding or preview" class="lt-logo" />
 
     <p class="body-text lt-body">
       Lil Trees is a mobile app designed to help people stop doomscrolling and take back control of their screen time. The experience centers around collaborative tree planting — users grow a forest with friends while staying off their phones. Built in Xcode, backed by Firebase.
@@ -91,7 +76,6 @@
       <img src="images/liltreepage3.PNG" alt="lil tree 3" loading="lazy" />
     </div>
 
-    <!-- Call-to-action bar -->
     <div class="cta">
       <a href="https://youtube.com/shorts/MWgoXfREjK8"
          class="demo-button"
@@ -101,5 +85,19 @@
       </a>
     </div>
   </main>
+
+  <script>
+    (() => {
+      const MIN_DELAY = 130;
+      const startTime = performance.now();
+      const loader = document.getElementById('loader');
+
+      window.addEventListener('load', () => {
+        const elapsed = performance.now() - startTime;
+        const remaining = Math.max(MIN_DELAY - elapsed, 0);
+        setTimeout(() => loader.classList.add('done'), remaining);
+      });
+    })();
+  </script>
 </body>
 </html>

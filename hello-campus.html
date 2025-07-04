@@ -4,18 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Hello Campus – Ayden Morgan</title>
-
-  <!-- main site stylesheet -->
   <link rel="stylesheet" href="css/styles.css" />
 
-  <!-- page-specific spacing tweaks -->
   <style>
-    /* HELLO CAMPUS PAGE */
-    .hc-subtitle {
-      margin-bottom: 1.2rem;
-    }
-
-
+    .hc-subtitle { margin-bottom: 1.2rem; }
     .hc-logo {
       width: 10rem;
       max-width: 100%;
@@ -23,41 +15,30 @@
       display: block;
       margin: 0.3rem auto 0.8rem;
     }
-
-
-    .hc-body {
-      margin-top: 1.2rem;
-    }
+    .hc-body { margin-top: 1.2rem; }
   </style>
 </head>
 
 <body>
-  <!-- back to projects -->
+  <div id="loader" class="loader" aria-hidden="true"></div>
+
   <a href="projects.html" class="back-link">&lt;</a>
 
   <main class="container">
     <h1 class="name">Hello Campus</h1>
 
-    <!-- subtitle with page-specific class -->
     <p class="subtitle hc-subtitle">
       Product Intern • Student networking app (rebranded to <strong>Talk To Me If</strong>)
     </p>
 
-    <!-- logo between subtitle and body text -->
-    <img
-      src="images/hp_wb.png"
-      alt="Hello Campus branding"
-      class="hc-logo"
-    />
+    <img src="images/hp_wb.png" alt="Hello Campus branding" class="hc-logo" />
 
-    <!-- intro paragraph -->
     <p class="body-text hc-body">
       Hello Campus began as a way for students to create their own interest-based groups and meet like-minded peers.
       During my internship I helped refine onboarding, invite flows, social feed&nbsp;&amp;&nbsp;more.
       Below is a short visual walkthrough of the parts of the product I designed
     </p>
 
-    <!-- demo screenshots -->
     <div class="gallery hc-gallery">
       <img src="images/hc2.png"       alt="Hello Campus splash screen announcing rebrand to TTMI" loading="lazy">
       <img src="images/hc3.png"       alt="Verification code screen"                              loading="lazy">
@@ -67,5 +48,19 @@
       <img src="images/hc1.png"       alt="Signup success – You're in! screen"                    loading="lazy">
     </div>
   </main>
+
+  <script>
+    (() => {
+      const MIN_DELAY = 130;
+      const startTime = performance.now();
+      const loader = document.getElementById('loader');
+
+      window.addEventListener('load', () => {
+        const elapsed = performance.now() - startTime;
+        const remaining = Math.max(MIN_DELAY - elapsed, 0);
+        setTimeout(() => loader.classList.add('done'), remaining);
+      });
+    })();
+  </script>
 </body>
 </html>

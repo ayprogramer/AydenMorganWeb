@@ -7,6 +7,8 @@
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
+  <div id="loader" class="loader" aria-hidden="true"></div>
+
   <a href="index.html" class="home-link">Ayden Morgan</a>
 
   <main class="container">
@@ -14,6 +16,7 @@
     <p class="subtitle">theme: close & far</p>
 
     <div class="gallery">
+      <!-- your images -->
       <img src="images/scimage1.png" alt="Photo 1" loading="lazy">
       <img src="images/scimage2.png" alt="Photo 2" loading="lazy">
       <img src="images/scimage3.png" alt="Photo 3" loading="lazy">
@@ -28,5 +31,19 @@
       <img src="images/scimage12.png" alt="Photo 12" loading="lazy">
     </div>
   </main>
+
+  <script>
+    (() => {
+      const MIN_DELAY = 130;
+      const startTime = performance.now();
+      const loader = document.getElementById('loader');
+
+      window.addEventListener('load', () => {
+        const elapsed = performance.now() - startTime;
+        const remaining = Math.max(MIN_DELAY - elapsed, 0);
+        setTimeout(() => loader.classList.add('done'), remaining);
+      });
+    })();
+  </script>
 </body>
 </html>
