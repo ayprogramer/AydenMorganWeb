@@ -52,8 +52,6 @@ body {
   font-size: 1.05rem;
 }
 
-
-
 /* --------------------------------------------------
    HOME-LINK (top-left)
 -------------------------------------------------- */
@@ -148,6 +146,7 @@ body.index .home-link {
 @media (max-width: 600px) {
   .gallery {
     column-count: 1;
+    padding: 0 1rem; /* ✅ adds horizontal spacing on mobile */
   }
 }
 
@@ -170,9 +169,6 @@ body.index .home-link {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-
-
-
 
 @media (max-width: 900px) {
   .hc-gallery {
@@ -238,17 +234,15 @@ body.index .home-link {
 
 /* "…and more on the way" – always centered */
 .more-coming {
-  grid-column: 1 / -1;      /* take the whole row */
-  justify-self: center;     /* center in the grid */
-  text-align: center;       /* center the text */
+  grid-column: 1 / -1;
+  justify-self: center;
+  text-align: center;
   font-size: 1.1rem;
   color: #666;
   font-style: italic;
-  margin: 2rem 0 0;       /* optional: tighter spacing */
+  margin: 2rem 0 0;
   white-space: nowrap;
 }
-
-
 
 /* Disable hover jump and clicks on specific cards */
 .project-card.no-hover:hover {
@@ -261,12 +255,11 @@ body.index .home-link {
   pointer-events: none;
 }
 
-
 /* ---------- BACK LINK (detail pages) ---------- */
 .back-link {
   position: fixed;
-  top: 1.5rem;   /* up a bit (was 2rem) */
-  left: 4rem;    /* farther right (was 3rem) */
+  top: 1.5rem;
+  left: 4rem;
   font-size: 2.8rem;
   line-height: 1;
   font-weight: 600;
@@ -279,24 +272,38 @@ body.index .home-link {
   opacity: 0.7;
 }
 
-
-@media (max-width: 600px) {
-  .gallery {
-    column-count: 1;
-    padding: 0 1rem; /* ✅ adds horizontal spacing on mobile */
-  }
-}
-
-/* Minimal full-screen white overlay */
+/* --------------------------------------------------
+   LOADER
+-------------------------------------------------- */
 .loader {
   position: fixed;
   inset: 0;
   background: white;
   z-index: 999;
-  transition: opacity 0.2s ease; /* was 0.35s */
+  transition: opacity 0.2s ease;
 }
 
 .loader.done {
   opacity: 0;
   pointer-events: none;
+}
+
+/* --------------------------------------------------
+   NEW: UNIVERSAL MOBILE HORIZONTAL PADDING
+-------------------------------------------------- */
+@media (max-width: 600px) {
+  /* Existing rule kept above for .gallery */
+
+  /* Give Projects grid breathing room on phones */
+  .project-grid {
+    padding: 0 1rem;
+  }
+
+  /* Give every page’s main container gentle side margins
+     (index & photos already look good — this just keeps
+     the Projects landing + each detail page off the very edge) */
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 }
