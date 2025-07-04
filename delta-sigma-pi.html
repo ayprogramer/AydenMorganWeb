@@ -13,14 +13,16 @@
     /* ——— GENERAL PAGE ——— */
     .dsp-subtitle { margin-bottom: 1.2rem; }
     .dsp-logo {
-      max-width: 25%;
-      margin: 3rem auto 3rem;
+      width: 20rem;
+      max-width: 100%;
+      height: auto;
       display: block;
-      border-radius: 12px; /* adds rounded corners */
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05); /* optional: matches your other image style */
+      margin: 3rem auto 3rem;
+      border-radius: 12px;             /* ✅ added rounded corners */
+       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* optional: matches other image styles */
     }
 
-    .dsp-body     { margin: 1.2rem auto 2rem; }
+    .dsp-body { margin: 1.2rem auto 2rem; }
 
     /* ——— CTA SECTION ——— */
     .cta {
@@ -31,6 +33,7 @@
       gap: 1.25rem;
       width: 100%;
     }
+
     .cta::before,
     .cta::after {
       content: "";
@@ -40,10 +43,10 @@
       border-radius: 2px;
     }
 
-    /*   button   */
+    /* ——— BUTTON ——— */
     .visit-button {
       padding: 1rem 2.4rem;
-      background-color: #b94956;       /* same “cool red” you liked */
+      background-color: #b94956;
       color: #fff;
       font-size: 1.1rem;
       font-weight: 600;
@@ -52,10 +55,11 @@
       transition: background-color 0.2s ease,
                   transform 0.15s ease,
                   box-shadow 0.15s ease;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
     }
+
     .visit-button:hover  { background-color: #8e323c; transform: translateY(-2px); }
-    .visit-button:active { background-color: #a73040; transform: translateY(0);   }
+    .visit-button:active { background-color: #a73040; transform: translateY(0); }
   </style>
 </head>
 
