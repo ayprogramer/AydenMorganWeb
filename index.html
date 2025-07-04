@@ -5,19 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ayden Morgan</title>
   <link rel="stylesheet" href="css/styles.css" />
-
-  <!-- Hide body initially -->
-  <style>
-    body {
-      visibility: hidden;
-      opacity: 0;
-      transition: opacity 0.4s ease;
-    }
-    body.loaded {
-      visibility: visible;
-      opacity: 1;
-    }
-  </style>
 </head>
 <body class="index">
   <a href="index.html" class="home-link">Ayden Morgan</a>
@@ -29,12 +16,14 @@
     <div class="card-grid">
       <div class="card">
         <a href="photos.html">
+          <!-- Photos card image — NOT lazy-loaded for immediate display -->
           <img src="images/scimage3.png" alt="Photos" />
         </a>
         <p class="label">Photos</p>
       </div>
       <div class="card">
         <a href="projects.html">
+          <!-- Projects card image — NOT lazy-loaded for immediate display -->
           <img src="images/liltrees-preview.png" alt="Projects" />
         </a>
         <p class="label">Projects</p>
@@ -42,19 +31,14 @@
     </div>
   </main>
 
-  <!-- JavaScript to reveal body after load + preload assets -->
+  <!-- Preload script: runs AFTER full page load -->
   <script>
     window.addEventListener('load', () => {
-      // Reveal the page
-      document.body.classList.add('loaded');
-
-      // Preload these images in the background
       const preloadImages = [
         "images/scimage1.png",
         "images/scimage2.png",
-        "images/scimage7.png",
-        "images/scimage8.png",
-        "images/scimage9.png",
+        "images/scimage3.png",
+        "images/scimage4.png",
         "images/hellocampus-preview8.png",
         "images/dsp-preview2.png"
       ];
