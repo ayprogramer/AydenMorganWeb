@@ -232,17 +232,21 @@ body.index .home-link {
   color: #333;
 }
 
-/* "…and more on the way" – always centered */
+/* “…and more on the way” – centred on Lil Trees and nudged left */
 .more-coming {
-  grid-column: 1 / -1;
-  justify-self: center;
-  text-align: center;
+  /* existing styles… */
   font-size: 1.1rem;
   color: #666;
   font-style: italic;
   margin: 2rem 0 0;
   white-space: nowrap;
+
+  /* new positioning */
+  align-self: center;     /* vertical: middle of the row */
+  justify-self: start;    /* horizontal: left edge of its track */
+  margin-left: 8rem;  /* optional fine-tune into the column gap */
 }
+
 
 /* Disable hover jump and clicks on specific cards */
 .project-card.no-hover:hover {
