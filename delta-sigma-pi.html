@@ -7,7 +7,10 @@
   <link rel="stylesheet" href="css/styles.css" />
 
   <style>
-    .dsp-subtitle { margin-bottom: 1.2rem; }
+    .dsp-subtitle {
+      margin-bottom: 1.2rem;
+    }
+
     .dsp-logo {
       width: 20rem;
       max-width: 100%;
@@ -17,15 +20,22 @@
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     }
-    .dsp-body { margin: 1.2rem auto 2rem; }
+
+    .dsp-body {
+      margin: 1.2rem auto 2rem;
+    }
+
     .cta {
       margin: 3rem auto 4rem;
       display: flex;
       justify-content: center;
       align-items: center;
       gap: 1.25rem;
+      flex-wrap: wrap;
       width: 100%;
+      padding: 0 1rem;
     }
+
     .cta::before,
     .cta::after {
       content: "";
@@ -34,6 +44,19 @@
       background: #e4e4e4;
       border-radius: 2px;
     }
+
+    @media (max-width: 480px) {
+      .cta {
+        flex-wrap: nowrap;
+        justify-content: space-around;
+      }
+
+      .cta::before,
+      .cta::after {
+        display: none;
+      }
+    }
+
     .visit-button {
       padding: 1rem 2.4rem;
       background-color: #b94956;
@@ -45,8 +68,16 @@
       transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.15s ease;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
     }
-    .visit-button:hover  { background-color: #8e323c; transform: translateY(-2px); }
-    .visit-button:active { background-color: #a73040; transform: translateY(0); }
+
+    .visit-button:hover {
+      background-color: #8e323c;
+      transform: translateY(-2px);
+    }
+
+    .visit-button:active {
+      background-color: #a73040;
+      transform: translateY(0);
+    }
   </style>
 </head>
 
@@ -64,8 +95,8 @@
 
     <img src="images/dsp-preview2.png"
          alt="Delta Sigma Pi website preview"
-         class="dsp-logo" 
-         loading="lazy"/>
+         class="dsp-logo"
+         loading="lazy" />
 
     <p class="body-text dsp-body">
       I designed and built a modern, responsive site for the Cal Poly Delta Sigma Pi chapter, featuring recruitment details, an event calendar, and member resources. The site is easy to update and supports both prospective members and internal operations.

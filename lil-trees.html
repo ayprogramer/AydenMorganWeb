@@ -7,7 +7,11 @@
   <link rel="stylesheet" href="css/styles.css" />
 
   <style>
-    .lt-subtitle { margin-bottom: 1.2rem; }
+    /* ---------- PAGE-SPECIFIC STYLES ---------- */
+    .lt-subtitle {
+      margin-bottom: 1.2rem;
+    }
+
     .lt-logo {
       width: 7.5rem;
       max-width: 100%;
@@ -15,24 +19,50 @@
       display: block;
       margin: 0.3rem auto 0.8rem;
     }
-    .lt-body { margin: 1.2rem auto 2rem; }
 
+    .lt-body {
+      margin: 1.2rem auto 2rem;
+    }
+
+    .gallery.hc-gallery {
+      margin-top: 3rem;
+    }
+
+    /* ---------- CTA SECTION ---------- */
     .cta {
       margin: -1rem auto 6rem;
       display: flex;
       justify-content: center;
       align-items: center;
       gap: 1.25rem;
+      flex-wrap: nowrap;
       width: 100%;
+      padding: 0 1rem;
     }
 
     .cta::before,
     .cta::after {
       content: "";
       flex: 1 1 120px;
+      min-width: 40px;
       height: 3px;
       background: #e4e4e4;
       border-radius: 2px;
+    }
+
+    .cta a {
+      white-space: nowrap;
+    }
+
+    @media (max-width: 480px) {
+      .cta {
+        gap: 0.9rem;
+      }
+
+      .cta::before,
+      .cta::after {
+        flex-basis: 60px;
+      }
     }
 
     .demo-button {
@@ -44,11 +74,18 @@
       border-radius: 12px;
       text-decoration: none;
       transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.15s ease;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
     }
 
-    .demo-button:hover   { background-color: #115788; transform: translateY(-2px); }
-    .demo-button:active  { background-color: #0f5f98; transform: translateY(0); }
+    .demo-button:hover {
+      background-color: #115788;
+      transform: translateY(-2px);
+    }
+
+    .demo-button:active {
+      background-color: #0f5f98;
+      transform: translateY(0);
+    }
   </style>
 </head>
 
@@ -61,10 +98,12 @@
     <h1 class="name">Lil Trees</h1>
 
     <p class="subtitle lt-subtitle">
-      Designer & Builder • screen time blocking app (in development)
+      Designer &amp; Builder • screen-time blocking app (in development)
     </p>
 
-    <img src="images/liltreegrowing.png" alt="Lil Trees branding or preview" class="lt-logo" />
+    <img src="images/liltreegrowing.png"
+         alt="Lil Trees branding or preview"
+         class="lt-logo" />
 
     <p class="body-text lt-body">
       Lil Trees is a mobile app designed to help people stop doomscrolling and take back control of their screen time. The experience centers around collaborative tree planting — users grow a forest with friends while staying off their phones. Built in Xcode, backed by Firebase.
@@ -89,13 +128,12 @@
   <script>
     (() => {
       const MIN_DELAY = 130;
-      const startTime = performance.now();
+      const start = performance.now();
       const loader = document.getElementById('loader');
 
       window.addEventListener('load', () => {
-        const elapsed = performance.now() - startTime;
-        const remaining = Math.max(MIN_DELAY - elapsed, 0);
-        setTimeout(() => loader.classList.add('done'), remaining);
+        const remain = Math.max(MIN_DELAY - (performance.now() - start), 0);
+        setTimeout(() => loader.classList.add('done'), remain);
       });
     })();
   </script>

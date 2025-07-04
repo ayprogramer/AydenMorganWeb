@@ -255,22 +255,67 @@ body.index .home-link {
   pointer-events: none;
 }
 
-/* ---------- BACK LINK (detail pages) ---------- */
-.back-link {
+/* ---------- BACK LINK (with iOS-style liquid glass) ---------- */
+.back-link,
+.home-link {
   position: fixed;
-  top: 1.5rem;
-  left: 4rem;
-  font-size: 2.8rem;
-  line-height: 1;
+  z-index: 1000;
+
+  padding: 0.4rem 1rem;
+  font-size: 1.25rem;
   font-weight: 600;
+  border-radius: 12px;
+
   color: #111;
   text-decoration: none;
+
+  /* Liquid Glass Effect */
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(18px) saturate(180%);
+  -webkit-backdrop-filter: blur(18px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow:
+    inset 0 0 0.25rem rgba(255, 255, 255, 0.2),
+    0 6px 20px rgba(0, 0, 0, 0.15);
+
+  transition:
+    background 0.3s ease,
+    transform 0.2s ease,
+    box-shadow 0.3s ease;
 }
 
-.back-link:hover {
-  text-decoration: none;
-  opacity: 0.7;
+.back-link:hover,
+.home-link:hover {
+  background: rgba(255, 255, 255, 0.35);
+  transform: translateY(-2px);
+  box-shadow:
+    inset 0 0 0.25rem rgba(255, 255, 255, 0.25),
+    0 10px 24px rgba(0, 0, 0, 0.2);
 }
+
+.back-link:active,
+.home-link:active {
+  transform: translateY(0);
+}
+
+.back-link {
+  top: 1.7rem;
+  left: 3.3rem;
+  font-size: 2.2rem;
+  padding: 0rem 1.5rem;
+}
+
+
+.home-link {
+  top: 1.7rem;
+  left: 3rem;
+  font-size: 1.35rem;
+}
+
+body.index .home-link {
+  display: none;
+}
+
 
 /* --------------------------------------------------
    LOADER
