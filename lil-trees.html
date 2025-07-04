@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lil Trees – Ayden Morgan</title>
+
+  <!-- main site stylesheet -->
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <!-- page-specific tweaks -->
+  <style>
+    /* ——— GENERAL PAGE ——— */
+    .lt-subtitle { margin-bottom: 1.2rem; }
+    .lt-logo     { max-width: 15%; margin: 0.3rem auto 0.8rem; display: block; }
+    .lt-body     { margin: 1.2rem auto 2rem; }
+
+    /* ——— CTA SECTION ——— */
+    .cta {
+      margin: -1rem auto 6rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1.25rem;
+      width: 100%;
+    }
+    .cta::before,
+    .cta::after {
+      content: "";
+      flex: 1 1 120px;
+      height: 3px; /* made thicker */
+      background: #e4e4e4;
+      border-radius: 2px;
+    }
+
+    /*   button   */
+    .demo-button {
+      padding: 1rem 2.4rem;
+      background-color: #1775b7;
+      color: #fff;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: background-color 0.2s ease,
+                  transform 0.15s ease,
+                  box-shadow 0.15s ease;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    }
+
+    .demo-button:hover   {
+      background-color: #3492d6;
+      transform: translateY(-2px);
+    }
+
+    .demo-button:active  {
+      background-color: #0f5f98;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+
+<body>
+  <!-- persistent home link -->
+  <a href="index.html" class="home-link">Ayden Morgan</a>
+
+  <main class="container">
+    <h1 class="name">Lil Trees</h1>
+
+    <p class="subtitle lt-subtitle">
+      Product Designer • Screen time blocking app (in development)
+    </p>
+
+    <img src="images/liltreegrowing.png"
+         alt="Lil Trees branding or preview"
+         class="lt-logo" />
+
+    <p class="body-text lt-body">
+      Lil Trees is a mobile app designed to help people stop doomscrolling and take back control of their screen time. The experience centers around collaborative tree planting — users grow a forest with friends while staying off their phones. Built in Xcode, backed by Firebase.
+    </p>
+
+    <div class="gallery hc-gallery">
+      <img src="images/lt1.png" alt="Lil Trees splash screen" loading="lazy" />
+      <img src="images/lt2.png" alt="Timer or focus session UI" loading="lazy" />
+      <img src="images/lt3.png" alt="Forest progress screen" loading="lazy" />
+    </div>
+
+    <!-- Call-to-action bar -->
+    <div class="cta">
+      <a href="https://youtube.com/shorts/MWgoXfREjK8"
+         class="demo-button"
+         target="_blank"
+         rel="noopener noreferrer">
+        ▶ Watch Demo
+      </a>
+    </div>
+  </main>
+</body>
+</html>

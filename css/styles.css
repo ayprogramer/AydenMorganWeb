@@ -236,17 +236,18 @@ body.index .home-link {
   color: #333;
 }
 
+/* "…and more on the way" – always centered */
 .more-coming {
+  grid-column: 1 / -1;      /* take the whole row */
+  justify-self: center;     /* center in the grid */
+  text-align: center;       /* center the text */
   font-size: 1.1rem;
   color: #666;
   font-style: italic;
-  align-self: center;
-  justify-self: end;
-  text-align: right;
-  margin-right: 0rem;
-  max-width: 200px;
+  margin: 2rem 0 0;       /* optional: tighter spacing */
   white-space: nowrap;
 }
+
 
 
 /* Disable hover jump and clicks on specific cards */
