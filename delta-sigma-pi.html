@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Delta Sigma Pi – Ayden Morgan</title>
+
+  <!-- main site stylesheet -->
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <!-- page-specific tweaks -->
+  <style>
+    /* ——— GENERAL PAGE ——— */
+    .dsp-subtitle { margin-bottom: 1.2rem; }
+    .dsp-logo {
+      max-width: 25%;
+      margin: 3rem auto 3rem;
+      display: block;
+      border-radius: 12px; /* adds rounded corners */
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05); /* optional: matches your other image style */
+    }
+
+    .dsp-body     { margin: 1.2rem auto 2rem; }
+
+    /* ——— CTA SECTION ——— */
+    .cta {
+      margin: 3rem auto 4rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1.25rem;
+      width: 100%;
+    }
+    .cta::before,
+    .cta::after {
+      content: "";
+      flex: 1 1 120px;
+      height: 3px;
+      background: #e4e4e4;
+      border-radius: 2px;
+    }
+
+    /*   button   */
+    .visit-button {
+      padding: 1rem 2.4rem;
+      background-color: #bb4454;       /* same “cool red” you liked */
+      color: #fff;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: background-color 0.2s ease,
+                  transform 0.15s ease,
+                  box-shadow 0.15s ease;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    }
+    .visit-button:hover  { background-color: #9b303e; transform: translateY(-2px); }
+    .visit-button:active { background-color: #a73040; transform: translateY(0);   }
+  </style>
+</head>
+
+<body>
+  <!-- back to Projects page -->
+  <a href="projects.html" class="back-link">&lt;</a>
+
+  <main class="container">
+    <h1 class="name">Delta&nbsp;Sigma&nbsp;Pi Website</h1>
+
+    <p class="subtitle dsp-subtitle">
+      Designer&nbsp;&amp;&nbsp;Developer • Chapter information portal
+    </p>
+
+    <img src="images/dsp-preview2.png"
+         alt="Delta Sigma Pi website preview"
+         class="dsp-logo" />
+
+    <p class="body-text dsp-body">
+      I designed and built a modern, responsive site for the Cal Poly Delta Sigma&nbsp;Pi chapter,
+      featuring recruitment details, an event calendar, and member resources.
+      The site is easy to update and helps prospective members learn about the
+      organization’s culture and events.
+    </p>
+
+    <!-- Call-to-action bar -->
+    <div class="cta">
+      <a href="https://calpolydeltasig.com"
+         class="visit-button"
+         target="_blank"
+         rel="noopener noreferrer">
+        Visit Site
+      </a>
+    </div>
+  </main>
+</body>
+</html>
