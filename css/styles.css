@@ -461,10 +461,15 @@ body.index .home-link {
 }
 @media (max-width: 600px) {
   .menu-btn, .close-menu {
-    top: 2rem;
+    top: 2.4rem;
     right: 1.5rem;
     width: 28px;
     height: 28px;
+  }
+  /* Shift home/back links inward on mobile to match menu button spacing */
+  .home-link,
+  .back-link {
+    left: 1.5rem;
   }
   .close-menu {
     font-size: 1.7rem;
