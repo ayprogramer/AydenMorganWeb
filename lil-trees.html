@@ -96,6 +96,18 @@
 
   <a href="projects.html" class="back-link">&lt;</a>
 
+  <div id="menu-container"></div>
+  <script>
+    fetch('menu.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('menu-container').innerHTML = html;
+        const script = document.createElement('script');
+        script.src = 'menu.js';
+        document.body.appendChild(script);
+      });
+  </script>
+
   <main class="container">
     <h1 class="name">Lil Trees</h1>
 

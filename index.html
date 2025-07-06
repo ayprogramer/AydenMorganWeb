@@ -14,6 +14,18 @@
 <body class="index">
   <div id="loader" class="loader" aria-hidden="true"></div>
 
+  <div id="menu-container"></div>
+  <script>
+    fetch('menu.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('menu-container').innerHTML = html;
+        const script = document.createElement('script');
+        script.src = 'menu.js';
+        document.body.appendChild(script);
+      });
+  </script>
+
   <a href="index.html" class="home-link">Ayden Morgan</a>
 
   <main class="container">
@@ -21,6 +33,12 @@
     <p class="subtitle">Some Things I've Captured and Created</p>
 
     <div class="card-grid">
+      <div class="card">
+        <a href="about.html">
+          <img src="images/photo1.png" alt="About Me" />
+        </a>
+        <p class="label">About Me</p>
+      </div>
       <div class="card">
         <a href="photos.html">
           <img src="images/scimage3.png" alt="Photos" />

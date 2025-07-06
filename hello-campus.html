@@ -23,6 +23,18 @@
 <body>
   <div id="loader" class="loader" aria-hidden="true"></div>
 
+  <div id="menu-container"></div>
+  <script>
+    fetch('menu.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('menu-container').innerHTML = html;
+        const script = document.createElement('script');
+        script.src = 'menu.js';
+        document.body.appendChild(script);
+      });
+  </script>
+
   <a href="projects.html" class="back-link">&lt;</a>
 
   <main class="container">

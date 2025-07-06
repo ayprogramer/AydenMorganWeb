@@ -82,16 +82,16 @@ body.index .home-link {
 }
 
 .card {
-  width: 480px;
+  width: 350px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .card img {
-  aspect-ratio: 16 / 9;
-  height: auto;
   width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
   border-radius: 12px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
@@ -230,7 +230,7 @@ body.index .home-link {
   color: #333;
 }
 
-/* “…and more on the way” – centred on Lil Trees and nudged left */
+/* "…and more on the way" – centred on Lil Trees and nudged left */
 .more-coming {
   /* existing styles… */
   font-size: 1.1rem;
@@ -302,14 +302,14 @@ body.index .home-link {
 .back-link {
   top: 1.7rem;
   left: 3.3rem;
-  font-size: 2.2rem;
-  padding: 0rem 1.5rem;
+  font-size: 2rem;
+  padding: 0rem 1.1rem;
 }
 
 
 .home-link {
   top: 1.7rem;
-  left: 3rem;
+  left: 3.5rem;
   font-size: 1.35rem;
 }
 
@@ -345,11 +345,156 @@ body.index .home-link {
     padding: 0 1rem;
   }
 
-  /* Give every page’s main container gentle side margins
+  /* Give every page's main container gentle side margins
      (index & photos already look good — this just keeps
      the Projects landing + each detail page off the very edge) */
   .container {
     padding-left: 1rem;
     padding-right: 1rem;
   }
+}
+
+/* --- MENU BAR STYLES --- */
+.menu-btn, .close-menu {
+  top: 2rem;
+}
+.menu-btn {
+  position: fixed;
+  right: 3rem;
+  z-index: 1001;
+  width: 36px;
+  height: 36px;
+  background: none;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+}
+.menu-btn span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background: rgba(34, 34, 34, 0.55); /* semi-transparent dark */
+  border-radius: 2px;
+  transition: all 0.2s;
+  backdrop-filter: blur(2px) saturate(180%);
+  -webkit-backdrop-filter: blur(2px) saturate(180%);
+}
+.menu-overlay {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: #fff;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  opacity: 0;
+  transition: opacity 0.35s cubic-bezier(.4,0,.2,1);
+}
+.menu-overlay.active {
+  display: flex;
+  opacity: 1;
+}
+.close-menu {
+  position: absolute;
+  right: 3rem;
+  font-size: 2.25rem;
+  width: 36px;
+  height: 36px;
+  background: none;
+  border: none;
+  color: rgba(34, 34, 34, 0.55); /* semi-transparent dark */
+  cursor: pointer;
+  z-index: 2001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: font-size 0.2s, width 0.2s, height 0.2s, opacity 0.18s;
+  opacity: 0;
+  backdrop-filter: blur(2px) saturate(180%);
+  -webkit-backdrop-filter: blur(2px) saturate(180%);
+}
+.menu-overlay.active .close-menu {
+  font-size: 2.8rem;
+  width: 48px;
+  height: 48px;
+  opacity: 1;
+  animation: fadeInX 0.18s cubic-bezier(.4,0,.2,1);
+}
+@keyframes fadeInX {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.menu-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  align-items: center;
+}
+.menu-link {
+  font-size: 2rem;
+  color: #222;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s;
+  opacity: 0;
+  transform: translateY(-30px);
+  pointer-events: none;
+}
+.menu-overlay.active .menu-link {
+  animation: menuLinkIn 0.5s cubic-bezier(.4,0,.2,1) forwards;
+  pointer-events: auto;
+}
+.menu-overlay.active .menu-link:nth-child(1) { animation-delay: 0.12s; }
+.menu-overlay.active .menu-link:nth-child(2) { animation-delay: 0.22s; }
+.menu-overlay.active .menu-link:nth-child(3) { animation-delay: 0.32s; }
+.menu-overlay.active .menu-link:nth-child(4) { animation-delay: 0.42s; }
+.menu-overlay.active .menu-link:nth-child(5) { animation-delay: 0.52s; }
+@keyframes menuLinkIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (max-width: 600px) {
+  .menu-btn, .close-menu {
+    top: 2rem;
+    right: 1.5rem;
+    width: 28px;
+    height: 28px;
+  }
+  .close-menu {
+    font-size: 1.7rem;
+    width: 28px;
+    height: 28px;
+  }
+  .menu-overlay.active .close-menu {
+    font-size: 2.2rem;
+    width: 36px;
+    height: 36px;
+  }
+  .menu-link {
+    font-size: 1.3rem;
+  }
+}
+
+/* --- CONTACT BUTTON STYLES --- */
+.contact-btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: #222;
+  color: #fff;
+  border-radius: 8px;
+  font-weight: 500;
+  text-decoration: none;
+  font-size: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  transition: background 0.2s, transform 0.2s;
+}
+.contact-btn:hover {
+  background: #444;
+  transform: translateY(-2px) scale(1.04);
 }

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Me - Ayden Morgan</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="loader" class="loader" aria-hidden="true"></div>
+
+  <!-- Dynamic Menu Placeholder -->
+  <div id="menu-container"></div>
+  <script>
+    fetch('menu.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('menu-container').innerHTML = html;
+        const script = document.createElement('script');
+        script.src = 'menu.js';
+        document.body.appendChild(script);
+      });
+  </script>
+
+  <a href="index.html" class="home-link">Ayden Morgan</a>
+
+  <main class="container">
+    <h1 class="name">About Me</h1>
+    
+    <div class="body-text">
+      <p>
+        Hi, I'm Ayden Morgan, I'm a student at Cal Poly San Luis Obispo, majoring in Economics and minoring in Computer Science. I'm passionate about building products and leveraging technology to solve real-world problems.
+      </p>
+      <div style="height: 2rem;"></div>
+      <p>
+        Outside of academics and product work, you'll find me skiing, rock climbing, or surfing, I'm always seeking new challenges and adventures, both outdoors and in my career.
+      </p>
+      <div style="height: 2rem;"></div>
+      <p>
+        My drive for product and technology comes from a desire to create meaningful experiences that have a positive impact. I love collaborating with others, learning quickly, and bringing ideas to life from concept to launch. I'm excited to break into the world of product and contribute to teams that value innovation, creativity, and user-centered design.
+      </p>
+      <hr style="margin: 3rem auto 2rem; max-width: 320px; border: none; border-top: 2px solid #eee;">
+      <div style="display: flex; justify-content: center; gap: 1.5rem; margin-top: 2rem; flex-wrap: wrap;">
+        <a href="https://linkedin.com/in/aydenmorgan" target="_blank" rel="noopener" class="contact-btn">LinkedIn</a>
+        <a href="tel:5307605756" class="contact-btn">530-760-5756</a>
+        <a href="mailto:aymorgan@calpoly.edu" class="contact-btn">Email</a>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    (() => {
+      const MIN_DELAY = 130;
+      const startTime = performance.now();
+      const loader = document.getElementById('loader');
+
+      window.addEventListener('load', () => {
+        const elapsed = performance.now() - startTime;
+        const remaining = Math.max(MIN_DELAY - elapsed, 0);
+        setTimeout(() => loader.classList.add('done'), remaining);
+      });
+    })();
+  </script>
+</body>
+</html> 

@@ -16,6 +16,18 @@
 
   <a href="index.html" class="home-link">Ayden Morgan</a>
 
+  <div id="menu-container"></div>
+  <script>
+    fetch('menu.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('menu-container').innerHTML = html;
+        const script = document.createElement('script');
+        script.src = 'menu.js';
+        document.body.appendChild(script);
+      });
+  </script>
+
   <main class="container">
     <h1 class="name">Photo Gallery</h1>
     <p class="subtitle">Theme: Looking Close & Far</p>
