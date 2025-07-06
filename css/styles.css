@@ -461,7 +461,7 @@ body.index .home-link {
 }
 @media (max-width: 600px) {
   .menu-btn, .close-menu {
-    top: 2.4rem;
+    top: 2.15rem;
     right: 1.5rem;
     width: 28px;
     height: 28px;
