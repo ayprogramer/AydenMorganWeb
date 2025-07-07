@@ -19,13 +19,28 @@ body {
   padding-bottom: 4rem;
 }
 
+body.about-me {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+body.hello-campus {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
 /* --------------------------------------------------
    GLOBAL CONTAINER
 -------------------------------------------------- */
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding-bottom: 6rem;
+  padding-bottom: 0rem;
+}
+
+body.about-me .container {
+  padding-top: 3rem;
+  padding-bottom: 0;
 }
 
 /* --------------------------------------------------
