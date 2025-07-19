@@ -244,19 +244,18 @@ body.index .home-link {
   color: #333;
 }
 
-/* "…and more on the way" – centred on Lil Trees and nudged left */
 .more-coming {
-  /* existing styles… */
+
   font-size: 1.1rem;
   color: #666;
   font-style: italic;
   margin: 2rem 0 0;
   white-space: nowrap;
 
-  /* new positioning */
-  align-self: center;     /* vertical: middle of the row */
-  justify-self: start;    /* horizontal: left edge of its track */
-  margin-left: 8rem;  /* optional fine-tune into the column gap */
+
+  align-self: center;     
+  justify-self: start;
+  margin-left: 8rem;
 }
 
 
@@ -352,19 +351,23 @@ body.index .home-link {
    NEW: UNIVERSAL MOBILE HORIZONTAL PADDING
 -------------------------------------------------- */
 @media (max-width: 600px) {
-  /* Existing rule kept above for .gallery */
 
-  /* Give Projects grid breathing room on phones */
+
   .project-grid {
     padding: 0 1rem;
   }
 
-  /* Give every page's main container gentle side margins
-     (index & photos already look good — this just keeps
-     the Projects landing + each detail page off the very edge) */
+ 
   .container {
     padding-left: 1rem;
     padding-right: 1rem;
+  }
+
+
+  .more-coming {
+    justify-self: center;
+    margin-left: 0;
+    text-align: center;
   }
 }
 
@@ -480,7 +483,7 @@ body.index .home-link {
     width: 28px;
     height: 28px;
   }
-  /* Shift home/back links inward on mobile to match menu button spacing */
+  
   .home-link,
   .back-link {
     left: 1.5rem;
@@ -518,7 +521,7 @@ body.index .home-link {
   transform: translateY(-2px) scale(1.04);
 }
 
-/* Disable hover effects when button is in copied state */
+
 .contact-btn.copied {
   pointer-events: none;
   transform: none !important;
