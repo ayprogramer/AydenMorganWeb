@@ -665,4 +665,24 @@ body.index .home-link {
   object-fit: cover;
   border-radius: 50%;
   box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+  opacity: 0;
+  transition: opacity 0.3s ease 0.05s;
+}
+
+/* Body text animation only on about page */
+body.about-me .body-text {
+  opacity: 0;
+  transition: opacity 0.3s ease 0.1s;
+}
+
+/* Gallery image staggered animation - only for photos page */
+.gallery:not(.hc-gallery) img {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.gallery:not(.hc-gallery) img.animate {
+  opacity: 1;
+  transform: translateY(0);
 }

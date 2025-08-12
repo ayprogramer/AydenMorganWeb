@@ -28,7 +28,7 @@
       });
   </script>
 
-  <main class="container">
+  <main class="container page-transition">
     <h1 class="name">Photos I've Taken</h1>
     <p class="subtitle">Theme: Looking Close & Far</p>
 
@@ -60,7 +60,20 @@
       window.addEventListener('load', () => {
         const elapsed = performance.now() - startTime;
         const remaining = Math.max(MIN_DELAY - elapsed, 0);
-        setTimeout(() => loader.classList.add('done'), remaining);
+        setTimeout(() => {
+          loader.classList.add('done');
+          // Trigger page transition
+          document.querySelector('.page-transition').classList.add('loaded');
+          // Animate gallery images with staggered delay
+          setTimeout(() => {
+            const images = document.querySelectorAll('.gallery img');
+            images.forEach((img, index) => {
+              setTimeout(() => {
+                img.classList.add('animate');
+              }, index * 50); // 50ms delay between each image
+            });
+          }, 400);
+        }, remaining);
       });
     })();
   </script>

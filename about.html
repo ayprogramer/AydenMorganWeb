@@ -38,7 +38,7 @@
 
   <a href="index.html" class="home-link">Ayden Morgan</a>
 
-  <main class="container">
+  <main class="container page-transition">
     <img src="images/personal-picture4.png" alt="About Me" class="about-photo" />
     <div class="body-text">
       <p>
@@ -70,7 +70,18 @@
       window.addEventListener('load', () => {
         const elapsed = performance.now() - startTime;
         const remaining = Math.max(MIN_DELAY - elapsed, 0);
-        setTimeout(() => loader.classList.add('done'), remaining);
+        setTimeout(() => {
+          loader.classList.add('done');
+          // Trigger page transition
+          document.querySelector('.page-transition').classList.add('loaded');
+          // Animate photo and text content
+          setTimeout(() => {
+            const photo = document.querySelector('.about-photo');
+            const bodyText = document.querySelector('.body-text');
+            if (photo) photo.style.opacity = '1';
+            if (bodyText) bodyText.style.opacity = '1';
+          }, 100);
+        }, remaining);
       });
     })();
   </script>
