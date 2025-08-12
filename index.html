@@ -4,6 +4,19 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ayden Morgan</title>
+  <style>
+    /* Critical above-the-fold CSS */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { font-family: 'Urbanist', sans-serif; }
+    body { text-align: center; padding-top: 6rem; padding-bottom: 4rem; }
+    .container { max-width: 1200px; margin: 0 auto; padding-bottom: 0rem; }
+    .name { font-size: 2.75rem; font-weight: 600; margin-bottom: 0.6rem; }
+    .subtitle { font-size: 1.2rem; color: #666; margin-bottom: 4.5rem; }
+    .card-grid { display: flex; justify-content: center; flex-wrap: wrap; gap: 2.25rem; }
+    .card { width: 350px; display: flex; flex-direction: column; align-items: center; }
+    .loader { position: fixed; inset: 0; background: white; z-index: 999; transition: opacity 0.2s ease; }
+    .loader.done { opacity: 0; pointer-events: none; }
+  </style>
   <link rel="stylesheet" href="css/styles.css" />
   <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600&display=swap" rel="stylesheet">
 
@@ -17,18 +30,31 @@
   <div id="menu-container"></div>
   <script>
     fetch('menu.html')
-      .then(res => res.text())
+      .then(res => {
+        if (!res.ok) throw new Error('Menu failed to load');
+        return res.text();
+      })
       .then(html => {
         document.getElementById('menu-container').innerHTML = html;
         const script = document.createElement('script');
         script.src = 'menu.js';
         document.body.appendChild(script);
+      })
+      .catch(err => {
+        console.warn('Menu fallback:', err);
+        document.getElementById('menu-container').innerHTML = `
+          <div style="position: fixed; top: 2rem; right: 3rem; z-index: 1001;">
+            <a href="about.html" style="margin-right: 1rem; text-decoration: none; color: #111;">About</a>
+            <a href="projects.html" style="margin-right: 1rem; text-decoration: none; color: #111;">Projects</a>
+            <a href="photos.html" style="text-decoration: none; color: #111;">Photos</a>
+          </div>
+        `;
       });
   </script>
 
   <a href="index.html" class="home-link">Ayden Morgan</a>
 
-  <main class="container">
+  <main class="container page-transition">
     <h1 class="name">Ayden Morgan</h1>
     <p class="subtitle">Some Things I've Captured & Created</p>
 
@@ -63,7 +89,15 @@
       window.addEventListener('load', () => {
         const elapsed = performance.now() - startTime;
         const remaining = Math.max(MIN_DELAY - elapsed, 0);
-        setTimeout(() => loader.classList.add('done'), remaining);
+        setTimeout(() => {
+          loader.classList.add('done');
+          // Trigger page transition
+          document.querySelector('.page-transition').classList.add('loaded');
+          // Animate cards
+          setTimeout(() => {
+            document.querySelectorAll('.card').forEach(card => card.classList.add('animate'));
+          }, 200);
+        }, remaining);
       });
     })();
   </script>

@@ -14,12 +14,25 @@
   <div id="menu-container"></div>
   <script>
     fetch('menu.html')
-      .then(res => res.text())
+      .then(res => {
+        if (!res.ok) throw new Error('Menu failed to load');
+        return res.text();
+      })
       .then(html => {
         document.getElementById('menu-container').innerHTML = html;
         const script = document.createElement('script');
         script.src = 'menu.js';
         document.body.appendChild(script);
+      })
+      .catch(err => {
+        console.warn('Menu fallback:', err);
+        document.getElementById('menu-container').innerHTML = `
+          <div style="position: fixed; top: 2rem; right: 3rem; z-index: 1001;">
+            <a href="index.html" style="margin-right: 1rem; text-decoration: none; color: #111;">Home</a>
+            <a href="projects.html" style="margin-right: 1rem; text-decoration: none; color: #111;">Projects</a>
+            <a href="photos.html" style="text-decoration: none; color: #111;">Photos</a>
+          </div>
+        `;
       });
   </script>
 

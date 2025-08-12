@@ -6,9 +6,7 @@
   <title>Projects - Ayden Morgan</title>
   <link rel="stylesheet" href="css/styles.css" />
   <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600&display=swap" rel="stylesheet">
-
-
-
+</head>
 <body>
   <div id="loader" class="loader" aria-hidden="true"></div>
 
@@ -17,16 +15,29 @@
   <div id="menu-container"></div>
   <script>
     fetch('menu.html')
-      .then(res => res.text())
+      .then(res => {
+        if (!res.ok) throw new Error('Menu failed to load');
+        return res.text();
+      })
       .then(html => {
         document.getElementById('menu-container').innerHTML = html;
         const script = document.createElement('script');
         script.src = 'menu.js';
         document.body.appendChild(script);
+      })
+      .catch(err => {
+        console.warn('Menu fallback:', err);
+        document.getElementById('menu-container').innerHTML = `
+          <div style="position: fixed; top: 2rem; right: 3rem; z-index: 1001;">
+            <a href="index.html" style="margin-right: 1rem; text-decoration: none; color: #111;">Home</a>
+            <a href="about.html" style="margin-right: 1rem; text-decoration: none; color: #111;">About</a>
+            <a href="photos.html" style="text-decoration: none; color: #111;">Photos</a>
+          </div>
+        `;
       });
   </script>
 
-  <main class="container">
+  <main class="container page-transition">
     <h1 class="name">Things I've Made</h1>
     <p class="subtitle">Click to Learn More</p>
 
@@ -34,7 +45,7 @@
 
       <!-- 1 — This Website, Keep this here I might want to un comment later -->
       <div class="project-card no-hover no-click">
-        <img src="images/website-photo5.png" alt="This Website preview">
+        <img src="images/website-photo5.png" alt="This Website preview" loading="lazy">
         <h2>This Website</h2>
         <p class="subtitle">Portfolio &amp; Personal Archive</p>
         <p>A custom site I built from scratch using HTML, CSS, and JavaScript to showcase my work, photography, and experiments with design and layout.</p>
@@ -69,6 +80,8 @@
     </div>
   </main>
 
+  <button class="back-to-top" onclick="scrollToTop()" aria-label="Back to top">↑</button>
+
   <script>
     (() => {
       const MIN_DELAY = 130;
@@ -78,9 +91,32 @@
       window.addEventListener('load', () => {
         const elapsed = performance.now() - startTime;
         const remaining = Math.max(MIN_DELAY - elapsed, 0);
-        setTimeout(() => loader.classList.add('done'), remaining);
+        setTimeout(() => {
+          loader.classList.add('done');
+          // Trigger page transition
+          document.querySelector('.page-transition').classList.add('loaded');
+          // Animate project cards
+          setTimeout(() => {
+            document.querySelectorAll('.project-card').forEach(card => card.classList.add('animate'));
+          }, 200);
+        }, remaining);
       });
     })();
+  </script>
+
+  <script>
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    window.addEventListener('scroll', () => {
+      const backToTop = document.querySelector('.back-to-top');
+      if (window.scrollY > 300) {
+        backToTop.classList.add('show');
+      } else {
+        backToTop.classList.remove('show');
+      }
+    });
   </script>
 </body>
 </html>
