@@ -1,0 +1,2521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DormRoom | Internship Search Reimagined</title>
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --orange-primary: #FF6B35;
+      --orange-light: #FF8C61;
+      --orange-dark: #E85A2A;
+      --orange-pale: #FFE5DC;
+      --dark: #1A1A1A;
+      --gray: #666;
+      --light-gray: #F5F5F5;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Urbanist', sans-serif;
+      background: #FAFAFA;
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* Navigation */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 107, 53, 0.1);
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--orange-primary);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .nav-link {
+      color: var(--dark);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      transition: color 0.2s;
+    }
+
+    .nav-link:hover {
+      color: var(--orange-primary);
+    }
+
+    .cta-btn {
+      padding: 0.7rem 1.5rem;
+      background: linear-gradient(135deg, var(--orange-primary), var(--orange-light));
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8rem 2rem 4rem;
+      background: linear-gradient(135deg, #FFFFFF 0%, var(--orange-pale) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(255, 107, 53, 0.15) 0%, transparent 70%);
+      border-radius: 50%;
+      top: -300px;
+      right: -200px;
+      animation: float 20s infinite ease-in-out;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(255, 107, 53, 0.1) 0%, transparent 70%);
+      border-radius: 50%;
+      bottom: -150px;
+      left: -100px;
+      animation: float 15s infinite ease-in-out reverse;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(50px, 50px) scale(1.1); }
+    }
+
+    .hero-content {
+      max-width: 900px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      padding: 0.5rem 1.2rem;
+      background: white;
+      border: 2px solid var(--orange-primary);
+      border-radius: 50px;
+      color: var(--orange-primary);
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 2rem;
+      letter-spacing: 0.5px;
+    }
+
+    .hero h1 {
+      font-size: 4.5rem;
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      letter-spacing: -2px;
+    }
+
+    .hero h1 .highlight {
+      background: linear-gradient(135deg, var(--orange-primary), var(--orange-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      font-size: 1.4rem;
+      color: var(--gray);
+      margin-bottom: 3rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-secondary {
+      padding: 0.7rem 1.5rem;
+      background: white;
+      color: var(--orange-primary);
+      border: 2px solid var(--orange-primary);
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-secondary:hover {
+      background: var(--orange-primary);
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    /* Features Section */
+    .features {
+      padding: 8rem 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 5rem;
+    }
+
+    .section-label {
+      display: inline-block;
+      padding: 0.4rem 1rem;
+      background: var(--orange-pale);
+      color: var(--orange-primary);
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+      letter-spacing: 0.5px;
+    }
+
+    .section-header h2 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      letter-spacing: -1px;
+    }
+
+    .section-header p {
+      font-size: 1.2rem;
+      color: var(--gray);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 3rem;
+      margin-top: 4rem;
+    }
+
+    .feature-card {
+      background: white;
+      border-radius: 20px;
+      padding: 3rem;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255, 107, 53, 0.1);
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--orange-primary), var(--orange-light));
+    }
+
+    .feature-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 50px rgba(255, 107, 53, 0.15);
+    }
+
+    .feature-icon {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, var(--orange-primary), var(--orange-light));
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 8px 20px rgba(255, 107, 53, 0.25);
+    }
+
+    .feature-card h3 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--dark);
+    }
+
+    .feature-card p {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: var(--gray);
+      margin-bottom: 1.5rem;
+    }
+
+    .feature-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .feature-list li {
+      padding: 0.6rem 0;
+      color: var(--gray);
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .feature-list li::before {
+      content: '✓';
+      color: var(--orange-primary);
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    /* Categories Section */
+    .categories {
+      padding: 6rem 2rem;
+      background: linear-gradient(135deg, var(--orange-pale) 0%, #FFFFFF 100%);
+    }
+
+    .categories-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .category-tag {
+      background: white;
+      padding: 1.2rem 1.5rem;
+      border-radius: 12px;
+      text-align: center;
+      font-weight: 600;
+      color: var(--dark);
+      border: 2px solid transparent;
+      transition: all 0.2s;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    }
+
+    .category-tag:hover {
+      border-color: var(--orange-primary);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(255, 107, 53, 0.2);
+    }
+
+    /* How It Works Section */
+    .how-it-works {
+      padding: 8rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 3rem;
+      margin-top: 4rem;
+    }
+
+    .step {
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .step-number {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, var(--orange-primary), var(--orange-light));
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin: 0 auto 1.5rem;
+      box-shadow: 0 8px 20px rgba(255, 107, 53, 0.3);
+    }
+
+    .step h3 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--dark);
+    }
+
+    .step p {
+      color: var(--gray);
+      line-height: 1.6;
+      font-size: 1rem;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      padding: 6rem 2rem;
+      background: linear-gradient(135deg, var(--orange-primary), var(--orange-light));
+      text-align: center;
+      color: white;
+    }
+
+    .cta-section h2 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      letter-spacing: -1px;
+    }
+
+    .cta-section p {
+      font-size: 1.3rem;
+      margin-bottom: 2.5rem;
+      opacity: 0.95;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-section .cta-btn {
+      background: white;
+      color: var(--orange-primary);
+      font-size: 1.1rem;
+      padding: 1rem 2.5rem;
+    }
+
+    .cta-section .cta-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Footer */
+    .footer {
+      padding: 3rem 2rem;
+      background: var(--dark);
+      color: white;
+      text-align: center;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .footer-logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--orange-primary);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-link {
+      color: #999;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-link:hover {
+      color: var(--orange-primary);
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      .nav {
+        padding: 1rem 1.5rem;
+      }
+
+      .nav-links {
+        gap: 1rem;
+      }
+
+      .nav-link {
+        font-size: 0.9rem;
+      }
+
+      .hero h1 {
+        font-size: 2.8rem;
+      }
+
+      .hero p {
+        font-size: 1.1rem;
+      }
+
+      .section-header h2 {
+        font-size: 2.2rem;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .categories-grid {
+        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+        gap: 1rem;
+      }
+
+      .cta-section h2 {
+        font-size: 2.2rem;
+      }
+
+      .footer-content {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in {
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    /* Interactive mockup elements */
+    .mockup-btn {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background: var(--orange-primary);
+      color: white;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+      margin-top: 1rem;
+    }
+
+    .mockup-btn:hover {
+      background: var(--orange-dark);
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="nav">
+    <a href="index.html" class="logo">DormRoom</a>
+    <div class="nav-links">
+      <a href="#features" class="nav-link">Features</a>
+      <a href="#how-it-works" class="nav-link">How It Works</a>
+      <a href="#categories" class="nav-link">Categories</a>
+      <a href="#" class="cta-btn">Get Started</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content fade-in">
+      <div class="hero-badge">🚀 COMING SOON</div>
+      <h1>
+        Find Your Dream<br>
+        <span class="highlight">Internship</span> Easier
+      </h1>
+      <p>
+        Stay connected, stay in the loop. Track openings, collaborate with peers, and rate companies—all in one place.
+      </p>
+      <div class="hero-buttons">
+        <a href="#features" class="cta-btn">Explore Features</a>
+        <a href="#how-it-works" class="btn-secondary">Learn More</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="features">
+    <div class="section-header">
+      <span class="section-label">OUR FEATURES</span>
+      <h2>Three Tools. One Mission.</h2>
+      <p>Everything you need to navigate your internship search with confidence</p>
+    </div>
+
+    <div class="features-grid">
+      <!-- Ping Feature -->
+      <div class="feature-card">
+        <div class="feature-icon">🔔</div>
+        <h3>Ping</h3>
+        <p>Never miss an opportunity. Get instant email alerts when your dream companies open internship applications.</p>
+        <ul class="feature-list">
+          <li>Track unlimited companies</li>
+          <li>Real-time opening notifications</li>
+          <li>Custom alert preferences</li>
+          <li>Application deadline reminders</li>
+        </ul>
+        <a href="#" class="mockup-btn">Try Demo →</a>
+      </div>
+
+      <!-- Threads Feature -->
+      <div class="feature-card">
+        <div class="feature-icon">💬</div>
+        <h3>Threads</h3>
+        <p>Join the conversation. Connect with peers in open discussion channels about any company or role.</p>
+        <ul class="feature-list">
+          <li>Open Slack-style channels</li>
+          <li>Company-specific discussions</li>
+          <li>Share interview experiences</li>
+          <li>Collaborate with peers</li>
+        </ul>
+        <a href="#" class="mockup-btn">Try Demo →</a>
+      </div>
+
+      <!-- Rate Feature -->
+      <div class="feature-card">
+        <div class="feature-icon">⭐</div>
+        <h3>Rate</h3>
+        <p>Make informed decisions. Read and share authentic reviews of internships and companies by students, for students.</p>
+        <ul class="feature-list">
+          <li>Detailed company ratings</li>
+          <li>Anonymous review system</li>
+          <li>Category-specific insights</li>
+          <li>Verified intern experiences</li>
+        </ul>
+        <a href="#" class="mockup-btn">Try Demo →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories Section -->
+  <section id="categories" class="categories">
+    <div class="categories-container">
+      <div class="section-header">
+        <span class="section-label">CATEGORIES</span>
+        <h2>Find Your Path</h2>
+        <p>Explore opportunities across all industries and roles</p>
+      </div>
+
+      <div class="categories-grid">
+        <div class="category-tag" data-sector="finance">💼 Finance</div>
+        <div class="category-tag" data-sector="accounting">📊 Accounting</div>
+        <div class="category-tag" data-sector="product">🎯 Product Management</div>
+        <div class="category-tag" data-sector="engineering">⚙️ Engineering</div>
+        <div class="category-tag" data-sector="software">💻 Software</div>
+        <div class="category-tag" data-sector="sales">📈 Sales</div>
+        <div class="category-tag" data-sector="marketing">🎨 Marketing</div>
+        <div class="category-tag" data-sector="design">📱 Design</div>
+        <div class="category-tag" data-sector="datascience">📊 Data Science</div>
+        <div class="category-tag" data-sector="cybersecurity">🔒 Cybersecurity</div>
+        <div class="category-tag" data-sector="cloud">☁️ Cloud Computing</div>
+        <div class="category-tag" data-sector="aiml">🤖 AI/ML</div>
+        <div class="category-tag" data-sector="healthcare">🏥 Healthcare</div>
+        <div class="category-tag" data-sector="education">🎓 Education</div>
+        <div class="category-tag" data-sector="sustainability">🌱 Sustainability</div>
+        <div class="category-tag" data-sector="more">✨ More...</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section id="how-it-works" class="how-it-works">
+    <div class="section-header">
+      <span class="section-label">HOW IT WORKS</span>
+      <h2>Simple, Powerful, Effective</h2>
+      <p>Get started in minutes and supercharge your internship search</p>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-number">1</div>
+        <h3>Create Your Profile</h3>
+        <p>Sign up in seconds and tell us about your interests, target companies, and career goals.</p>
+      </div>
+
+      <div class="step">
+        <div class="step-number">2</div>
+        <h3>Set Up Alerts</h3>
+        <p>Select companies you're interested in and customize your notification preferences with Ping.</p>
+      </div>
+
+      <div class="step">
+        <div class="step-number">3</div>
+        <h3>Join Discussions</h3>
+        <p>Connect with peers in Threads to share insights, ask questions, and learn from others' experiences.</p>
+      </div>
+
+      <div class="step">
+        <div class="step-number">4</div>
+        <h3>Make Decisions</h3>
+        <p>Use Rate to read authentic reviews and make informed choices about where to apply and intern.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <h2>Ready to Transform Your Search?</h2>
+    <p>Join thousands of students already using DormRoom to land their dream internships.</p>
+    <a href="#" class="cta-btn">Join the Waitlist →</a>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-logo">DormRoom</div>
+      <div class="footer-links">
+        <a href="#" class="footer-link">About</a>
+        <a href="#" class="footer-link">Privacy</a>
+        <a href="#" class="footer-link">Terms</a>
+        <a href="#" class="footer-link">Contact</a>
+      </div>
+      <div style="color: #666; font-size: 0.9rem;">
+        © 2025 DormRoom. A class project.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Smooth scroll for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Intersection Observer for fade-in animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animation = 'fadeInUp 0.8s ease-out forwards';
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    // Observe all feature cards and steps
+    document.querySelectorAll('.feature-card, .step, .category-tag').forEach(el => {
+      el.style.opacity = '0';
+      observer.observe(el);
+    });
+
+    // Demo button interactions - now same as Get Started
+    document.querySelectorAll('.mockup-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        // Reset sector and start onboarding
+        userData.sector = '';
+        openOnboarding();
+      });
+    });
+
+    // Built-out sectors
+    const builtOutSectors = ['accounting', 'finance', 'product', 'engineering', 'software', 'marketing'];
+
+    // Category tag interactions
+    document.querySelectorAll('.category-tag').forEach(tag => {
+      tag.addEventListener('click', () => {
+        const sector = tag.getAttribute('data-sector');
+        
+        if (builtOutSectors.includes(sector)) {
+          // Start onboarding with this sector pre-selected
+          userData.sector = sector;
+          openOnboarding();
+        } else {
+          alert(`${tag.textContent.trim()} is not built out yet. Try Accounting, Finance, Product Management, Engineering, Software, or Marketing! 🚀`);
+        }
+      });
+    });
+
+    // CTA button interactions - REMOVED, handled by new onboarding flow
+  </script>
+
+  <!-- Onboarding Modal -->
+  <div id="onboarding-modal" class="modal">
+    <div class="modal-content onboarding-content">
+      <button class="modal-close" onclick="closeOnboarding()">&times;</button>
+      
+      <!-- Step 1: Grade -->
+      <div class="onboarding-step" id="step-1">
+        <h2>What year are you?</h2>
+        <p class="step-subtitle">Help us personalize your experience</p>
+        <div class="option-grid">
+          <button class="option-btn" onclick="selectGrade('Freshman')">Freshman</button>
+          <button class="option-btn" onclick="selectGrade('Sophomore')">Sophomore</button>
+          <button class="option-btn" onclick="selectGrade('Junior')">Junior</button>
+          <button class="option-btn" onclick="selectGrade('Senior')">Senior</button>
+          <button class="option-btn" onclick="selectGrade('Graduate')">Graduate</button>
+        </div>
+      </div>
+
+      <!-- Step 2: Summer -->
+      <div class="onboarding-step hidden" id="step-2">
+        <h2>Which summer(s) are you targeting?</h2>
+        <p class="step-subtitle">Select all that apply</p>
+        <div class="option-grid">
+          <button class="option-btn multi-select" onclick="toggleSummer('2026')">Summer 2026</button>
+          <button class="option-btn multi-select" onclick="toggleSummer('2027')">Summer 2027</button>
+          <button class="option-btn multi-select" onclick="toggleSummer('2028')">Summer 2028</button>
+          <button class="option-btn multi-select" onclick="toggleSummer('2029')">Summer 2029</button>
+        </div>
+        <button class="next-btn" onclick="goToStep3()" style="margin-top: 2rem;">Continue</button>
+      </div>
+
+      <!-- Step 3: Sector -->
+      <div class="onboarding-step hidden" id="step-3">
+        <h2>Which sector interests you most?</h2>
+        <p class="step-subtitle">We'll show you relevant companies</p>
+        <div class="option-grid">
+          <button class="option-btn" onclick="selectSector('accounting')">💼 Accounting</button>
+          <button class="option-btn" onclick="selectSector('finance')">📊 Finance</button>
+          <button class="option-btn" onclick="selectSector('product')">🎯 Product Management</button>
+          <button class="option-btn" onclick="selectSector('engineering')">⚙️ Engineering</button>
+          <button class="option-btn" onclick="selectSector('software')">💻 Software</button>
+          <button class="option-btn" onclick="selectSector('marketing')">📈 Marketing</button>
+        </div>
+        <button class="back-step-btn" onclick="goToStep(2)" style="margin-top: 1.5rem;">← Back</button>
+      </div>
+
+      <!-- Step 4: Companies -->
+      <div class="onboarding-step hidden" id="step-4">
+        <h2>Select companies to track</h2>
+        <p class="step-subtitle" id="sector-subtitle">Get notified when they post internships</p>
+        <div class="companies-grid" id="companies-list">
+          <!-- Dynamically populated -->
+        </div>
+        <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+          <button class="back-step-btn" onclick="goBackFromCompanies()" style="flex: 1;">← Back</button>
+          <button class="next-btn" onclick="finishOnboarding()" style="flex: 2;">Finish Setup</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dashboard View -->
+  <div id="dashboard" class="dashboard hidden">
+    <div class="dashboard-nav">
+      <div class="dashboard-logo" onclick="goToOverview()" style="cursor: pointer;">DormRoom</div>
+      <div class="dashboard-menu">
+        <button class="dash-tab active" onclick="showDashTab('overview')">Overview</button>
+        <button class="dash-tab" onclick="showDashTab('threads')">Threads</button>
+        <button class="dash-tab" onclick="showDashTab('ratings')">Ratings</button>
+      </div>
+      <button class="logout-btn" onclick="logout()">← Back to Home</button>
+    </div>
+
+    <!-- Overview Tab -->
+    <div class="dash-content" id="overview-tab">
+      <div class="dash-header">
+        <h1>Welcome back! 👋</h1>
+        <p>Here's what's happening with your tracked companies</p>
+      </div>
+
+      <div class="tracked-companies" id="tracked-companies">
+        <!-- Dynamically populated -->
+      </div>
+    </div>
+
+    <!-- Threads Tab -->
+    <div class="dash-content hidden" id="threads-tab">
+      <div class="dash-header">
+        <h1>Threads 💬</h1>
+        <p>Join the conversation about companies and internships</p>
+      </div>
+
+      <div class="threads-container" id="threads-container">
+        <!-- Dynamically populated -->
+      </div>
+    </div>
+
+    <!-- Ratings Tab -->
+    <div class="dash-content hidden" id="ratings-tab">
+      <div class="dash-header">
+        <h1>Company Ratings ⭐</h1>
+        <p>See what interns are saying</p>
+      </div>
+
+      <div class="ratings-container" id="ratings-container">
+        <!-- Dynamically populated -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Company Database
+    const companyDatabase = {
+      accounting: [
+        { name: 'Deloitte', logo: '🏢', status: 'open', role: 'Accounting Intern' },
+        { name: 'PwC', logo: '🏛️', status: 'open', role: 'Audit Intern' },
+        { name: 'EY', logo: '🏗️', status: 'closed', role: 'Tax Intern' },
+        { name: 'KPMG', logo: '🏦', status: 'soon', role: 'Advisory Intern' }
+      ],
+      finance: [
+        { name: 'Goldman Sachs', logo: '💰', status: 'open', role: 'Investment Banking Analyst' },
+        { name: 'JP Morgan', logo: '🏦', status: 'open', role: 'Finance Intern' },
+        { name: 'Morgan Stanley', logo: '📈', status: 'soon', role: 'Trading Intern' },
+        { name: 'Bank of America', logo: '🏛️', status: 'closed', role: 'Financial Analyst' },
+        { name: 'Citi', logo: '🌐', status: 'open', role: 'Corporate Banking Intern' },
+        { name: 'Wells Fargo', logo: '🐴', status: 'soon', role: 'Finance Intern' },
+        { name: 'Blackstone', logo: '⬛', status: 'closed', role: 'Private Equity Intern' }
+      ],
+      product: [
+        { name: 'Google', logo: '🔍', status: 'open', role: 'APM Intern' },
+        { name: 'Meta', logo: '👥', status: 'open', role: 'Product Manager Intern' },
+        { name: 'Apple', logo: '🍎', status: 'soon', role: 'Product Management Intern' },
+        { name: 'Microsoft', logo: '🪟', status: 'open', role: 'PM Intern' },
+        { name: 'Amazon', logo: '📦', status: 'open', role: 'Product Manager Intern' },
+        { name: 'Netflix', logo: '🎬', status: 'closed', role: 'Product Intern' },
+        { name: 'Adobe', logo: '🅰️', status: 'soon', role: 'Product Management Intern' },
+        { name: 'Salesforce', logo: '☁️', status: 'open', role: 'PM Intern' },
+        { name: 'Uber', logo: '🚗', status: 'soon', role: 'Product Manager Intern' },
+        { name: 'Airbnb', logo: '🏠', status: 'closed', role: 'APM Intern' },
+        { name: 'Spotify', logo: '🎵', status: 'open', role: 'Product Intern' },
+        { name: 'LinkedIn', logo: '💼', status: 'soon', role: 'PM Intern' },
+        { name: 'Twitter', logo: '🐦', status: 'closed', role: 'Product Manager Intern' },
+        { name: 'Dropbox', logo: '📁', status: 'open', role: 'Product Intern' },
+        { name: 'Snap', logo: '👻', status: 'soon', role: 'PM Intern' }
+      ],
+      engineering: [
+        { name: 'Tesla', logo: '⚡', status: 'open', role: 'Engineering Intern' },
+        { name: 'SpaceX', logo: '🚀', status: 'soon', role: 'Mechanical Engineering Intern' },
+        { name: 'Boeing', logo: '✈️', status: 'open', role: 'Aerospace Engineering Intern' },
+        { name: 'Lockheed Martin', logo: '🛰️', status: 'closed', role: 'Systems Engineering Intern' },
+        { name: 'General Electric', logo: '⚙️', status: 'open', role: 'Engineering Intern' },
+        { name: 'Ford', logo: '🚙', status: 'soon', role: 'Automotive Engineering Intern' }
+      ],
+      software: [
+        { name: 'Google', logo: '🔍', status: 'open', role: 'Software Engineering Intern' },
+        { name: 'Meta', logo: '👥', status: 'open', role: 'SWE Intern' },
+        { name: 'Amazon', logo: '📦', status: 'open', role: 'Software Development Engineer Intern' },
+        { name: 'Microsoft', logo: '🪟', status: 'soon', role: 'Software Engineer Intern' },
+        { name: 'Apple', logo: '🍎', status: 'closed', role: 'Software Engineering Intern' },
+        { name: 'Netflix', logo: '🎬', status: 'open', role: 'Software Engineer Intern' },
+        { name: 'Stripe', logo: '💳', status: 'soon', role: 'Software Engineering Intern' },
+        { name: 'Palantir', logo: '🔮', status: 'open', role: 'Forward Deployed Engineer Intern' }
+      ],
+      marketing: [
+        { name: 'Google', logo: '🔍', status: 'open', role: 'Marketing Intern' },
+        { name: 'Meta', logo: '👥', status: 'soon', role: 'Marketing Intern' },
+        { name: 'Nike', logo: '👟', status: 'open', role: 'Brand Marketing Intern' },
+        { name: 'Coca-Cola', logo: '🥤', status: 'closed', role: 'Marketing Intern' },
+        { name: 'Procter & Gamble', logo: '🧴', status: 'open', role: 'Marketing Intern' },
+        { name: 'Unilever', logo: '🌿', status: 'soon', role: 'Marketing Intern' }
+      ]
+    };
+
+    // Threads Database - ALL COMPANIES
+    const threadsDatabase = {
+      'Google': [
+        { user: 'Sarah M.', time: '2h ago', message: 'Just finished my phone screen for APM! They asked a lot about product sense and metrics.' },
+        { user: 'Alex K.', time: '5h ago', message: 'Did anyone else get the HackerRank assessment? How long did it take you?' },
+        { user: 'Jordan P.', time: '1d ago', message: 'I interned at Google last summer - happy to answer any questions!' }
+      ],
+      'Deloitte': [
+        { user: 'Emily R.', time: '1h ago', message: 'Got my offer letter today! So excited to start this summer 🎉' },
+        { user: 'Michael T.', time: '4h ago', message: 'Interview tips: know your accounting fundamentals and be ready for behavioral questions' },
+        { user: 'Lisa W.', time: '1d ago', message: 'Anyone else interviewing for the audit position?' }
+      ],
+      'Goldman Sachs': [
+        { user: 'David L.', time: '30m ago', message: 'Superday next week - any advice from past interns?' },
+        { user: 'Rachel C.', time: '3h ago', message: 'The video interview was intense but fair. Study your technicals!' },
+        { user: 'Chris B.', time: '6h ago', message: 'Just accepted my offer! Feel free to DM me questions about the process' }
+      ],
+      'Meta': [
+        { user: 'Kevin N.', time: '1h ago', message: 'Product design challenge was really fun! Make sure to think out loud' },
+        { user: 'Amanda S.', time: '2h ago', message: 'Anyone know when the next round of interviews goes out?' },
+        { user: 'Tyler J.', time: '8h ago', message: 'Interned at Meta last summer - the culture is amazing and you learn so much!' }
+      ],
+      'PwC': [
+        { user: 'Hannah L.', time: '3h ago', message: 'Second round interview was mostly behavioral. They really want to see if you fit their culture.' },
+        { user: 'Marcus J.', time: '5h ago', message: 'Has anyone heard back from the NYC office yet?' },
+        { user: 'Olivia T.', time: '1d ago', message: 'Pro tip: research their recent deals and be ready to discuss them!' }
+      ],
+      'EY': [
+        { user: 'Ethan R.', time: '1h ago', message: 'Just got my interview scheduled! Any advice on what to expect?' },
+        { user: 'Maya P.', time: '4h ago', message: 'The assessment was pretty standard - know your excel and accounting basics' },
+        { user: 'Lucas W.', time: '2d ago', message: 'Interned in their tax division last year, AMA!' }
+      ],
+      'KPMG': [
+        { user: 'Sophia K.', time: '2h ago', message: 'Applications open soon! Make sure your resume is updated' },
+        { user: 'Noah C.', time: '6h ago', message: 'Does anyone know what the timeline is like after applying?' },
+        { user: 'Ava M.', time: '1d ago', message: 'The advisory team is amazing - highly recommend!' }
+      ],
+      'JP Morgan': [
+        { user: 'Jake S.', time: '1h ago', message: 'Hirevue interview done! Questions were pretty standard banking ones' },
+        { user: 'Mia D.', time: '3h ago', message: 'Anyone else applying to the markets division?' },
+        { user: 'Ryan H.', time: '5h ago', message: 'Got my return offer! The internship was incredible' }
+      ],
+      'Morgan Stanley': [
+        { user: 'Emma B.', time: '2h ago', message: 'Assessment opens next week - good luck everyone!' },
+        { user: 'Liam F.', time: '4h ago', message: 'Previous intern here - know your technicals cold!' },
+        { user: 'Zoe A.', time: '1d ago', message: 'The culture here is really collaborative, loved my experience' }
+      ],
+      'Bank of America': [
+        { user: 'Mason T.', time: '3h ago', message: 'Applications closed but keep an eye out for spring openings!' },
+        { user: 'Chloe R.', time: '6h ago', message: 'Did the program last summer - great mentorship and learning opportunities' },
+        { user: 'Owen L.', time: '2d ago', message: 'Networking events are key for BofA. Attend as many as you can!' }
+      ],
+      'Citi': [
+        { user: 'Aiden P.', time: '1h ago', message: 'Just submitted my application! Fingers crossed 🤞' },
+        { user: 'Harper M.', time: '4h ago', message: 'The interview was very conversational - they want to get to know you' },
+        { user: 'Ella N.', time: '1d ago', message: 'Working here as an intern right now, the team is super supportive!' }
+      ],
+      'Wells Fargo': [
+        { user: 'Jackson K.', time: '2h ago', message: 'Opening soon! Start preparing your stock pitch' },
+        { user: 'Aria W.', time: '5h ago', message: 'The assessment tests both technical and behavioral skills' },
+        { user: 'Grayson V.', time: '1d ago', message: 'Great work-life balance compared to other banks!' }
+      ],
+      'Blackstone': [
+        { user: 'Oliver Z.', time: '3h ago', message: 'Extremely competitive but worth it. Start networking early!' },
+        { user: 'Isabella H.', time: '6h ago', message: 'They really grill you on deals and modeling. Be prepared!' },
+        { user: 'Henry G.', time: '2d ago', message: 'Past intern - best experience of my life. Work hard, learn a ton!' }
+      ],
+      'Apple': [
+        { user: 'Luna S.', time: '1h ago', message: 'Design challenge was creative and fun! Show your problem-solving process' },
+        { user: 'Leo M.', time: '3h ago', message: 'Anyone interviewing for hardware engineering?' },
+        { user: 'Lily Q.', time: '1d ago', message: 'The team I worked with was brilliant. Learned so much!' }
+      ],
+      'Microsoft': [
+        { user: 'Jack R.', time: '2h ago', message: 'Coding interview was LeetCode medium/hard level' },
+        { user: 'Grace T.', time: '4h ago', message: 'Culture is really inclusive and welcoming. Great place to intern!' },
+        { user: 'Evan P.', time: '1d ago', message: 'PM interviews focus on product intuition and technical understanding' }
+      ],
+      'Amazon': [
+        { user: 'Scarlett J.', time: '1h ago', message: 'Leadership principles are HUGE here. Have examples ready for all 16!' },
+        { user: 'Daniel W.', time: '3h ago', message: 'OA was challenging but fair. Practice on LeetCode!' },
+        { user: 'Nora K.', time: '5h ago', message: 'Got my offer for SDE! The bar raiser interview was intense' }
+      ],
+      'Netflix': [
+        { user: 'Victoria L.', time: '2h ago', message: 'Applications closed early this year - they fill up fast!' },
+        { user: 'Wyatt C.', time: '4h ago', message: 'The culture is all about freedom and responsibility. Be ready to own your work!' },
+        { user: 'Hazel M.', time: '1d ago', message: 'Best part was seeing how data drives every decision' }
+      ],
+      'Adobe': [
+        { user: 'Bella F.', time: '1h ago', message: 'Opening soon! Really excited to apply' },
+        { user: 'Luke H.', time: '3h ago', message: 'Portfolio is important for design roles. Make it shine!' },
+        { user: 'Violet N.', time: '1d ago', message: 'The creative freedom you get as an intern is amazing' }
+      ],
+      'Salesforce': [
+        { user: 'Hannah B.', time: '2h ago', message: 'Ohana culture is real! Everyone is so friendly and helpful' },
+        { user: 'Samuel D.', time: '4h ago', message: 'Technical interview was fair - know your data structures' },
+        { user: 'Stella P.', time: '1d ago', message: 'Just accepted my return offer! Can\'t wait to go back' }
+      ],
+      'Uber': [
+        { user: 'Maya R.', time: '1h ago', message: 'Opening soon! Product roles are super competitive' },
+        { user: 'Caleb S.', time: '3h ago', message: 'They love discussing real Uber products and how to improve them' },
+        { user: 'Aurora T.', time: '5h ago', message: 'Fast-paced environment but you learn SO much' }
+      ],
+      'Airbnb': [
+        { user: 'Elijah M.', time: '2h ago', message: 'Applications closed but they might reopen in spring!' },
+        { user: 'Penelope K.', time: '4h ago', message: 'The design culture here is incredible. Very collaborative!' },
+        { user: 'Aaron L.', time: '1d ago', message: 'Core values are important - know them before your interview' }
+      ],
+      'Spotify': [
+        { user: 'Layla W.', time: '1h ago', message: 'Just got my coding challenge! Pretty standard algorithms' },
+        { user: 'Nathan V.', time: '3h ago', message: 'The music recommendation team is hiring - so cool!' },
+        { user: 'Claire H.', time: '1d ago', message: 'Best perk: unlimited spotify premium for you and your family!' }
+      ],
+      'LinkedIn': [
+        { user: 'Brooklyn C.', time: '2h ago', message: 'Opening soon for summer 2026! Get your resume ready' },
+        { user: 'Ezra J.', time: '4h ago', message: 'They care a lot about professional growth - great mentorship program' },
+        { user: 'Paisley M.', time: '1d ago', message: 'Product interviews focus on user empathy and data analysis' }
+      ],
+      'Twitter': [
+        { user: 'Kayden R.', time: '3h ago', message: 'Not sure about summer 2026 yet but keep checking!' },
+        { user: 'Savannah T.', time: '6h ago', message: 'Past intern - the pace is intense but rewarding' },
+        { user: 'Lincoln F.', time: '2d ago', message: 'Work on projects that impact millions of users daily!' }
+      ],
+      'Dropbox': [
+        { user: 'Skylar P.', time: '1h ago', message: 'Applications are open! Submit early' },
+        { user: 'Miles K.', time: '3h ago', message: 'Great work-life balance and hybrid work options' },
+        { user: 'Madelyn S.', time: '1d ago', message: 'Small company feel with big company resources' }
+      ],
+      'Snap': [
+        { user: 'Natalie W.', time: '2h ago', message: 'Opening soon! AR roles are super interesting' },
+        { user: 'Jaxon H.', time: '4h ago', message: 'Creative environment with lots of freedom to experiment' },
+        { user: 'Audrey L.', time: '1d ago', message: 'Venice Beach office is amazing! Great intern events' }
+      ],
+      'Tesla': [
+        { user: 'Hudson M.', time: '1h ago', message: 'Just got my interview! So excited about sustainable energy' },
+        { user: 'Addison K.', time: '3h ago', message: 'The work is intense but you\'re literally changing the world' },
+        { user: 'Ivy R.', time: '5h ago', message: 'Previous intern - best hands-on experience I\'ve ever had' }
+      ],
+      'SpaceX': [
+        { user: 'Bryson T.', time: '2h ago', message: 'Opening soon! Super competitive but absolutely worth applying' },
+        { user: 'Kinsley P.', time: '4h ago', message: 'They want to see passion for space and engineering fundamentals' },
+        { user: 'Easton V.', time: '1d ago', message: 'Working on rockets is as cool as it sounds! 🚀' }
+      ],
+      'Boeing': [
+        { user: 'Everly S.', time: '1h ago', message: 'Applications are open! Lots of different engineering tracks' },
+        { user: 'Carson W.', time: '3h ago', message: 'Security clearance takes time - apply early!' },
+        { user: 'Willow H.', time: '1d ago', message: 'Great training program for aerospace engineering' }
+      ],
+      'Lockheed Martin': [
+        { user: 'Sawyer D.', time: '3h ago', message: 'Applications closed for now. Check back in spring!' },
+        { user: 'Nova M.', time: '6h ago', message: 'Defense work is fascinating. Need US citizenship though' },
+        { user: 'Asher K.', time: '2d ago', message: 'Cutting-edge technology and great mentors' }
+      ],
+      'General Electric': [
+        { user: 'Elena F.', time: '1h ago', message: 'GE has programs in so many industries! Find your fit' },
+        { user: 'Silas J.', time: '4h ago', message: 'Interview was very technical - know your engineering basics' },
+        { user: 'Ruby L.', time: '1d ago', message: 'Rotation programs are perfect for exploring different areas' }
+      ],
+      'Ford': [
+        { user: 'Theo N.', time: '2h ago', message: 'Opening soon! EV division is growing fast' },
+        { user: 'Quinn R.', time: '5h ago', message: 'Detroit area has great housing for interns' },
+        { user: 'Piper S.', time: '1d ago', message: 'Hands-on work with real vehicles. Super cool!' }
+      ],
+      'Stripe': [
+        { user: 'Rowan P.', time: '1h ago', message: 'Coding challenge was tough but well-designed' },
+        { user: 'Josephine M.', time: '3h ago', message: 'Payments infrastructure is more interesting than it sounds!' },
+        { user: 'Felix K.', time: '5h ago', message: 'Amazing engineering culture. Ship code on day one!' }
+      ],
+      'Palantir': [
+        { user: 'Iris H.', time: '2h ago', message: 'FDE role is unique - mix of engineering and consulting' },
+        { user: 'Colton V.', time: '4h ago', message: 'Interviews are intense. Multiple rounds of coding and decomp' },
+        { user: 'Autumn T.', time: '1d ago', message: 'Work with really impactful data. Great learning experience!' }
+      ],
+      'Nike': [
+        { user: 'Emilia W.', time: '1h ago', message: 'Brand marketing roles are super creative and fun!' },
+        { user: 'Declan L.', time: '3h ago', message: 'Campus is amazing - gym, track, everything you need' },
+        { user: 'Aaliyah C.', time: '1d ago', message: 'They really invest in their interns. Felt valued from day one' }
+      ],
+      'Coca-Cola': [
+        { user: 'Jasper M.', time: '3h ago', message: 'Applications closed but spring roles might open!' },
+        { user: 'Eliana R.', time: '6h ago', message: 'Global brand work is fascinating. Learned so much about marketing' },
+        { user: 'Maxwell K.', time: '2d ago', message: 'Atlanta office is great. Amazing company culture' }
+      ],
+      'Procter & Gamble': [
+        { user: 'Alice S.', time: '1h ago', message: 'Just submitted my application! P&G is my dream company' },
+        { user: 'Waylon P.', time: '4h ago', message: 'Brand management program is top-tier. Great career path' },
+        { user: 'Margot H.', time: '1d ago', message: 'They give you real responsibility from the start!' }
+      ],
+      'Unilever': [
+        { user: 'Rhett T.', time: '2h ago', message: 'Opening soon! Sustainability focus is really inspiring' },
+        { user: 'Emery M.', time: '5h ago', message: 'Interview process is thorough but fair' },
+        { user: 'Sloane L.', time: '1d ago', message: 'Work on real brands people use every day. So rewarding!' }
+      ]
+    };
+
+    // Ratings Database - ALL COMPANIES
+    const ratingsDatabase = {
+      'Google': { rating: 4.8, reviews: 342, culture: 4.9, learning: 4.8, compensation: 4.7, workLife: 4.6 },
+      'Deloitte': { rating: 4.5, reviews: 289, culture: 4.4, learning: 4.6, compensation: 4.3, workLife: 4.2 },
+      'Goldman Sachs': { rating: 4.6, reviews: 256, culture: 4.3, learning: 4.8, compensation: 4.9, workLife: 3.8 },
+      'Meta': { rating: 4.7, reviews: 298, culture: 4.8, learning: 4.7, compensation: 4.8, workLife: 4.5 },
+      'Amazon': { rating: 4.4, reviews: 412, culture: 4.2, learning: 4.6, compensation: 4.5, workLife: 4.0 },
+      'Microsoft': { rating: 4.6, reviews: 367, culture: 4.7, learning: 4.6, compensation: 4.5, workLife: 4.6 },
+      'JP Morgan': { rating: 4.5, reviews: 234, culture: 4.4, learning: 4.6, compensation: 4.6, workLife: 4.1 },
+      'PwC': { rating: 4.4, reviews: 278, culture: 4.5, learning: 4.5, compensation: 4.2, workLife: 4.3 },
+      'EY': { rating: 4.4, reviews: 265, culture: 4.3, learning: 4.6, compensation: 4.2, workLife: 4.2 },
+      'KPMG': { rating: 4.3, reviews: 251, culture: 4.4, learning: 4.5, compensation: 4.1, workLife: 4.3 },
+      'Morgan Stanley': { rating: 4.5, reviews: 223, culture: 4.4, learning: 4.7, compensation: 4.8, workLife: 3.9 },
+      'Bank of America': { rating: 4.3, reviews: 298, culture: 4.2, learning: 4.5, compensation: 4.4, workLife: 4.0 },
+      'Citi': { rating: 4.4, reviews: 267, culture: 4.3, learning: 4.6, compensation: 4.5, workLife: 4.1 },
+      'Wells Fargo': { rating: 4.2, reviews: 245, culture: 4.1, learning: 4.4, compensation: 4.3, workLife: 4.3 },
+      'Blackstone': { rating: 4.7, reviews: 189, culture: 4.5, learning: 4.9, compensation: 5.0, workLife: 3.5 },
+      'Apple': { rating: 4.7, reviews: 387, culture: 4.8, learning: 4.7, compensation: 4.7, workLife: 4.5 },
+      'Netflix': { rating: 4.6, reviews: 178, culture: 4.7, learning: 4.6, compensation: 4.8, workLife: 4.3 },
+      'Adobe': { rating: 4.5, reviews: 234, culture: 4.6, learning: 4.5, compensation: 4.4, workLife: 4.6 },
+      'Salesforce': { rating: 4.6, reviews: 312, culture: 4.8, learning: 4.6, compensation: 4.5, workLife: 4.5 },
+      'Uber': { rating: 4.3, reviews: 267, culture: 4.2, learning: 4.5, compensation: 4.4, workLife: 4.0 },
+      'Airbnb': { rating: 4.6, reviews: 198, culture: 4.8, learning: 4.6, compensation: 4.6, workLife: 4.4 },
+      'Spotify': { rating: 4.5, reviews: 156, culture: 4.7, learning: 4.5, compensation: 4.4, workLife: 4.5 },
+      'LinkedIn': { rating: 4.5, reviews: 201, culture: 4.6, learning: 4.6, compensation: 4.5, workLife: 4.5 },
+      'Twitter': { rating: 4.2, reviews: 189, culture: 4.1, learning: 4.4, compensation: 4.3, workLife: 4.0 },
+      'Dropbox': { rating: 4.4, reviews: 167, culture: 4.5, learning: 4.4, compensation: 4.3, workLife: 4.6 },
+      'Snap': { rating: 4.3, reviews: 145, culture: 4.4, learning: 4.4, compensation: 4.3, workLife: 4.2 },
+      'Tesla': { rating: 4.4, reviews: 423, culture: 4.2, learning: 4.7, compensation: 4.3, workLife: 3.7 },
+      'SpaceX': { rating: 4.6, reviews: 278, culture: 4.5, learning: 4.9, compensation: 4.4, workLife: 3.6 },
+      'Boeing': { rating: 4.2, reviews: 356, culture: 4.1, learning: 4.4, compensation: 4.3, workLife: 4.3 },
+      'Lockheed Martin': { rating: 4.3, reviews: 312, culture: 4.2, learning: 4.5, compensation: 4.4, workLife: 4.4 },
+      'General Electric': { rating: 4.1, reviews: 289, culture: 4.0, learning: 4.3, compensation: 4.1, workLife: 4.2 },
+      'Ford': { rating: 4.2, reviews: 267, culture: 4.1, learning: 4.3, compensation: 4.2, workLife: 4.3 },
+      'Stripe': { rating: 4.7, reviews: 198, culture: 4.8, learning: 4.8, compensation: 4.8, workLife: 4.4 },
+      'Palantir': { rating: 4.5, reviews: 234, culture: 4.4, learning: 4.8, compensation: 4.7, workLife: 3.9 },
+      'Nike': { rating: 4.5, reviews: 287, culture: 4.7, learning: 4.5, compensation: 4.3, workLife: 4.5 },
+      'Coca-Cola': { rating: 4.3, reviews: 245, culture: 4.4, learning: 4.3, compensation: 4.2, workLife: 4.4 },
+      'Procter & Gamble': { rating: 4.4, reviews: 312, culture: 4.5, learning: 4.5, compensation: 4.3, workLife: 4.4 },
+      'Unilever': { rating: 4.4, reviews: 278, culture: 4.6, learning: 4.4, compensation: 4.2, workLife: 4.5 }
+    };
+
+    // User state
+    let userData = {
+      grade: '',
+      summers: [],
+      sector: '',
+      trackedCompanies: [],
+      pingEnabled: {} // Track which companies have ping enabled
+    };
+
+    // Modal functions
+    function openOnboarding() {
+      document.getElementById('onboarding-modal').classList.add('show');
+      document.body.style.overflow = 'hidden';
+      
+      // Always start at step 1 (grade selection)
+      // If sector is pre-selected from category click, we'll use it at step 3
+      goToStep(1);
+    }
+
+    function closeOnboarding() {
+      document.getElementById('onboarding-modal').classList.remove('show');
+      document.body.style.overflow = 'auto';
+    }
+
+    function goToStep(stepNum) {
+      document.querySelectorAll('.onboarding-step').forEach(step => step.classList.add('hidden'));
+      document.getElementById(`step-${stepNum}`).classList.remove('hidden');
+    }
+
+    function selectGrade(grade) {
+      userData.grade = grade;
+      goToStep(2);
+    }
+
+    function toggleSummer(summer) {
+      const index = userData.summers.indexOf(summer);
+      if (index > -1) {
+        userData.summers.splice(index, 1);
+      } else {
+        userData.summers.push(summer);
+      }
+      
+      // Visual feedback
+      event.target.classList.toggle('selected');
+    }
+
+    function selectSector(sector) {
+      userData.sector = sector;
+      showCompanies(sector);
+      goToStep(4);
+    }
+    
+    function goToStep3() {
+      // If sector was pre-selected from category click, auto-select it and go to step 4
+      if (userData.sector && userData.sector !== '') {
+        showCompanies(userData.sector);
+        goToStep(4);
+      } else {
+        // Normal flow - show sector selection
+        goToStep(3);
+      }
+    }
+
+    function goBackFromCompanies() {
+      // Go back to sector selection step
+      goToStep(3);
+    }
+
+    function showCompanies(sector) {
+      const companies = companyDatabase[sector] || [];
+      const container = document.getElementById('companies-list');
+      
+      // Update subtitle to show sector
+      const sectorNames = {
+        'accounting': 'Accounting',
+        'finance': 'Finance',
+        'product': 'Product Management',
+        'engineering': 'Engineering',
+        'software': 'Software',
+        'marketing': 'Marketing'
+      };
+      const subtitle = document.getElementById('sector-subtitle');
+      subtitle.textContent = `Select ${sectorNames[sector]} companies to track`;
+      
+      container.innerHTML = companies.map(company => `
+        <div class="company-card" onclick="toggleCompany('${company.name}')">
+          <div class="company-logo">${company.logo}</div>
+          <div class="company-name">${company.name}</div>
+          <div class="check-icon">✓</div>
+        </div>
+      `).join('');
+    }
+
+    function toggleCompany(companyName) {
+      const index = userData.trackedCompanies.indexOf(companyName);
+      if (index > -1) {
+        userData.trackedCompanies.splice(index, 1);
+      } else {
+        userData.trackedCompanies.push(companyName);
+      }
+      event.currentTarget.classList.toggle('selected');
+    }
+
+    function finishOnboarding() {
+      if (userData.trackedCompanies.length === 0) {
+        alert('Please select at least one company to track!');
+        return;
+      }
+      
+      closeOnboarding();
+      showDashboard();
+    }
+
+    function showDashboard() {
+      document.querySelector('.hero').style.display = 'none';
+      document.querySelector('.features').style.display = 'none';
+      document.querySelector('.categories').style.display = 'none';
+      document.querySelector('.how-it-works').style.display = 'none';
+      document.querySelector('.cta-section').style.display = 'none';
+      document.querySelector('.footer').style.display = 'none';
+      document.querySelector('.nav').style.display = 'none';
+      
+      document.getElementById('dashboard').classList.remove('hidden');
+      populateDashboard();
+    }
+
+    function populateDashboard() {
+      const container = document.getElementById('tracked-companies');
+      const allCompanies = Object.values(companyDatabase).flat();
+      const tracked = allCompanies.filter(c => userData.trackedCompanies.includes(c.name));
+      
+      container.innerHTML = tracked.map(company => {
+        const statusColors = {
+          open: '#22C55E',
+          soon: '#F59E0B',
+          closed: '#EF4444'
+        };
+        const statusText = {
+          open: 'Applications Open',
+          soon: 'Opening Soon',
+          closed: 'Applications Closed'
+        };
+        
+        return `
+          <div class="company-tracker-card">
+            <div class="tracker-header">
+              <div class="tracker-logo">${company.logo}</div>
+              <div class="tracker-info">
+                <h3>${company.name}</h3>
+                <p>${company.role}</p>
+              </div>
+              <div class="tracker-status" style="background: ${statusColors[company.status]}20; color: ${statusColors[company.status]}">
+                ${statusText[company.status]}
+              </div>
+            </div>
+            <div class="tracker-actions">
+              <button class="action-btn ping-toggle ${userData.pingEnabled[company.name] ? 'ping-active' : ''}" onclick="togglePing('${company.name}', event)">
+                🔔 ${userData.pingEnabled[company.name] ? 'Ping ON' : 'Ping'}
+              </button>
+              <button class="action-btn" onclick="viewThreads('${company.name}')">💬 Threads</button>
+              <button class="action-btn" onclick="viewRatings('${company.name}')">⭐ Ratings</button>
+              ${company.status === 'open' ? '<button class="action-btn primary" onclick="alert(\'Apply feature coming soon! This is a demo.\')">Apply Now →</button>' : ''}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function showDashTab(tab) {
+      document.querySelectorAll('.dash-tab').forEach(t => t.classList.remove('active'));
+      event.target.classList.add('active');
+      
+      document.querySelectorAll('.dash-content').forEach(c => c.classList.add('hidden'));
+      document.getElementById(`${tab}-tab`).classList.remove('hidden');
+      
+      if (tab === 'threads') populateThreads();
+      if (tab === 'ratings') populateRatings();
+      
+      // Scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function goToOverview() {
+      // Switch to overview tab
+      document.querySelectorAll('.dash-tab').forEach(t => t.classList.remove('active'));
+      document.querySelector('.dash-tab:first-child').classList.add('active');
+      
+      document.querySelectorAll('.dash-content').forEach(c => c.classList.add('hidden'));
+      document.getElementById('overview-tab').classList.remove('hidden');
+      
+      // Scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function populateThreads() {
+      const container = document.getElementById('threads-container');
+      const threads = [];
+      
+      userData.trackedCompanies.forEach(company => {
+        if (threadsDatabase[company]) {
+          threads.push({ company, messages: threadsDatabase[company] });
+        }
+      });
+      
+      container.innerHTML = threads.map(thread => `
+        <div class="thread-card">
+          <div class="thread-header">
+            <h3>${thread.company} Discussion</h3>
+            <span class="thread-count">${thread.messages.length} messages</span>
+          </div>
+          <div class="thread-messages">
+            ${thread.messages.map(msg => `
+              <div class="thread-message">
+                <div class="message-header">
+                  <span class="message-user">${msg.user}</span>
+                  <span class="message-time">${msg.time}</span>
+                </div>
+                <div class="message-text">${msg.message}</div>
+              </div>
+            `).join('')}
+          </div>
+          <div class="thread-input">
+            <input type="text" placeholder="Join the conversation..." />
+            <button class="send-btn">Send</button>
+          </div>
+        </div>
+      `).join('');
+      
+      // Add input handlers - ACTUALLY POST MESSAGES
+      document.querySelectorAll('.thread-card').forEach((card, index) => {
+        const input = card.querySelector('.thread-input input');
+        const sendBtn = card.querySelector('.send-btn');
+        const messagesContainer = card.querySelector('.thread-messages');
+        const companyName = userData.trackedCompanies[index];
+        
+        const addMessage = () => {
+          if (input.value.trim()) {
+            const messageText = input.value.trim();
+            
+            // Add to database
+            if (!threadsDatabase[companyName]) {
+              threadsDatabase[companyName] = [];
+            }
+            threadsDatabase[companyName].unshift({
+              user: 'You',
+              time: 'Just now',
+              message: messageText
+            });
+            
+            // Add to DOM
+            const newMessage = document.createElement('div');
+            newMessage.className = 'thread-message';
+            newMessage.innerHTML = `
+              <div class="message-header">
+                <span class="message-user" style="color: var(--orange-primary); font-weight: 700;">You</span>
+                <span class="message-time">Just now</span>
+              </div>
+              <div class="message-text">${messageText}</div>
+            `;
+            messagesContainer.insertBefore(newMessage, messagesContainer.firstChild);
+            
+            // Update count
+            const countSpan = card.querySelector('.thread-count');
+            const currentCount = parseInt(countSpan.textContent);
+            countSpan.textContent = `${currentCount + 1} messages`;
+            
+            input.value = '';
+          }
+        };
+        
+        input.addEventListener('keypress', (e) => {
+          if (e.key === 'Enter') {
+            addMessage();
+          }
+        });
+        
+        sendBtn.addEventListener('click', addMessage);
+      });
+    }
+
+    function populateRatings() {
+      const container = document.getElementById('ratings-container');
+      const ratings = [];
+      
+      userData.trackedCompanies.forEach(company => {
+        if (ratingsDatabase[company]) {
+          ratings.push({ company, ...ratingsDatabase[company] });
+        }
+      });
+      
+      container.innerHTML = ratings.map(rating => `
+        <div class="rating-card">
+          <div class="rating-header">
+            <h3>${rating.company}</h3>
+            <div class="rating-score">
+              <span class="rating-number">${rating.rating}</span>
+              <span class="rating-stars">${'⭐'.repeat(Math.floor(rating.rating))}</span>
+              <span class="rating-count">${rating.reviews} reviews</span>
+            </div>
+          </div>
+          <div class="rating-breakdown">
+            <div class="rating-row">
+              <span>Culture & Values</span>
+              <div class="rating-bar">
+                <div class="rating-fill" style="width: ${rating.culture * 20}%"></div>
+              </div>
+              <span>${rating.culture}</span>
+            </div>
+            <div class="rating-row">
+              <span>Learning & Growth</span>
+              <div class="rating-bar">
+                <div class="rating-fill" style="width: ${rating.learning * 20}%"></div>
+              </div>
+              <span>${rating.learning}</span>
+            </div>
+            <div class="rating-row">
+              <span>Compensation</span>
+              <div class="rating-bar">
+                <div class="rating-fill" style="width: ${rating.compensation * 20}%"></div>
+              </div>
+              <span>${rating.compensation}</span>
+            </div>
+            <div class="rating-row">
+              <span>Work-Life Balance</span>
+              <div class="rating-bar">
+                <div class="rating-fill" style="width: ${rating.workLife * 20}%"></div>
+              </div>
+              <span>${rating.workLife}</span>
+            </div>
+          </div>
+          <button class="action-btn" onclick="showFullReviews('${rating.company}')">Read Full Reviews</button>
+        </div>
+      `).join('');
+    }
+
+    function viewThreads(companyName) {
+      showDashTab('threads');
+      document.querySelector('.dash-tab:nth-child(2)').click();
+    }
+
+    function viewRatings(companyName) {
+      showDashTab('ratings');
+      document.querySelector('.dash-tab:nth-child(3)').click();
+    }
+
+    // Full Reviews Database
+    const fullReviewsDatabase = {
+      'Google': [
+        { user: 'Sarah Chen', role: 'APM Intern', year: '2024', rating: 5, title: 'Dream internship experience!', review: 'Google exceeded all my expectations. The mentorship was incredible, and I got to work on real products that millions use. The culture is collaborative and innovative. Free food is a huge plus! Would definitely come back.' },
+        { user: 'Michael Torres', role: 'SWE Intern', year: '2024', rating: 5, title: 'Best summer of my life', review: 'Amazing engineering culture. Got to ship code to production within the first 3 weeks. My team was supportive and taught me so much. The intern events were also really fun - we got to meet Larry Page!' },
+        { user: 'Emma Williams', role: 'Product Intern', year: '2023', rating: 4, title: 'Great learning, intense pace', review: 'Learned more in 12 weeks than in 2 years of school. The work is fast-paced and challenging. Sometimes felt overwhelming but the team was always there to help. Great return offer rate too.' }
+      ],
+      'Deloitte': [
+        { user: 'Jessica Park', role: 'Audit Intern', year: '2024', rating: 5, title: 'Excellent professional development', review: 'Deloitte really invests in their interns. Got exposure to major clients and real audit work. The training was comprehensive and the people were friendly. Great for building your resume.' },
+        { user: 'David Kim', role: 'Consulting Intern', year: '2024', rating: 4, title: 'Challenging but rewarding', review: 'The work is demanding but you learn so much. Got to travel to client sites which was cool. The firm culture is professional and there are lots of networking opportunities.' },
+        { user: 'Lauren Smith', role: 'Tax Intern', year: '2023', rating: 4, title: 'Solid internship experience', review: 'Good work-life balance for Big 4. The work can be repetitive but you get real responsibility. Great stepping stone for your career. Got a return offer!' }
+      ],
+      'Goldman Sachs': [
+        { user: 'Andrew Zhang', role: 'IBD Intern', year: '2024', rating: 5, title: 'Prestige and learning combined', review: 'Intense but incredible experience. The learning curve is steep but you\'re surrounded by brilliant people. Long hours but the work is fascinating. Best name on a resume.' },
+        { user: 'Rachel Cohen', role: 'S&T Intern', year: '2024', rating: 4, title: 'Fast-paced and exciting', review: 'Trading floor environment is electric. You need to think fast and be on your toes. Great mentors and the compensation is excellent. Work-life balance is tough though.' },
+        { user: 'James Wilson', role: 'Finance Intern', year: '2023', rating: 5, title: 'Career-defining experience', review: 'Goldman lives up to the hype. The people are smart, the work is challenging, and you feel like you\'re at the center of finance. Would recommend to anyone serious about banking.' }
+      ],
+      'Meta': [
+        { user: 'Kevin Nguyen', role: 'Product Intern', year: '2024', rating: 5, title: 'Innovation at its finest', review: 'Working on products used by billions is surreal. The product culture is strong and data-driven. Great perks, amazing food, and super smart colleagues. Highly recommend!' },
+        { user: 'Amanda Lee', role: 'SWE Intern', year: '2024', rating: 5, title: 'Top-tier engineering culture', review: 'Move fast and break things is real here. You own your projects and have real impact. The bootcamp was intense but prepared me well. Best internship for software engineers.' },
+        { user: 'Tyler Johnson', role: 'Data Science Intern', year: '2023', rating: 4, title: 'Great for ML enthusiasts', review: 'Worked on recommendation algorithms. The scale of data is incredible. Good work-life balance and the team was collaborative. Learned so much about production ML.' }
+      ],
+      'Amazon': [
+        { user: 'Scarlett Davis', role: 'SDE Intern', year: '2024', rating: 4, title: 'Ownership from day one', review: 'Amazon gives you real ownership. Worked on services powering AWS. The leadership principles are everywhere but they work. Great compensation and return offer rate.' },
+        { user: 'Daniel Martinez', role: 'PM Intern', year: '2024', rating: 4, title: 'Customer obsession is real', review: 'Everything is data-driven and customer-focused. Good work-life balance compared to other tech giants. The scale of impact is massive. Would intern here again.' },
+        { user: 'Nora Anderson', role: 'SWE Intern', year: '2023', rating: 5, title: 'Best developer experience', review: 'The internal tools are amazing. You ship code that affects millions. Great mentorship and the team was supportive. Bar raiser process ensures quality everywhere.' }
+      ]
+    };
+
+    // Generate default reviews for all companies
+    const defaultReviews = [
+      { user: 'Anonymous', role: 'Summer Intern', year: '2024', rating: 5, title: 'Fantastic experience overall', review: 'Great company culture and amazing people to work with. Learned a ton and felt valued as an intern. Would definitely recommend to other students looking for internships.' },
+      { user: 'Former Intern', role: 'Intern', year: '2024', rating: 4, title: 'Solid internship program', review: 'Well-organized internship with good mentorship. The work was challenging and interesting. Good balance between learning and contributing. Happy with my experience.' },
+      { user: 'Student', role: 'Summer Intern', year: '2023', rating: 5, title: 'Exceeded expectations', review: 'The team was incredibly welcoming and I got to work on meaningful projects. Great professional development opportunities. Would love to return full-time!' }
+    ];
+
+    // Fill in reviews for companies that don't have custom ones
+    Object.keys(ratingsDatabase).forEach(company => {
+      if (!fullReviewsDatabase[company]) {
+        fullReviewsDatabase[company] = defaultReviews;
+      }
+    });
+
+    function showFullReviews(companyName) {
+      const reviews = fullReviewsDatabase[companyName] || defaultReviews;
+      const rating = ratingsDatabase[companyName];
+      
+      const modal = document.createElement('div');
+      modal.className = 'modal show reviews-modal';
+      modal.innerHTML = `
+        <div class="modal-content reviews-content">
+          <button class="modal-close" onclick="this.closest('.modal').remove(); document.body.style.overflow = 'auto';">&times;</button>
+          
+          <div class="reviews-header">
+            <h2>${companyName} Reviews</h2>
+            <div class="reviews-summary">
+              <div class="summary-score">
+                <span class="big-rating">${rating.rating}</span>
+                <div>
+                  <div class="rating-stars">${'⭐'.repeat(Math.floor(rating.rating))}</div>
+                  <div class="review-count">${rating.reviews} reviews</div>
+                </div>
+              </div>
+              <div class="summary-bars">
+                <div class="summary-row">
+                  <span>5 ⭐</span>
+                  <div class="summary-bar"><div class="summary-fill" style="width: 65%"></div></div>
+                  <span>65%</span>
+                </div>
+                <div class="summary-row">
+                  <span>4 ⭐</span>
+                  <div class="summary-bar"><div class="summary-fill" style="width: 25%"></div></div>
+                  <span>25%</span>
+                </div>
+                <div class="summary-row">
+                  <span>3 ⭐</span>
+                  <div class="summary-bar"><div class="summary-fill" style="width: 8%"></div></div>
+                  <span>8%</span>
+                </div>
+                <div class="summary-row">
+                  <span>2 ⭐</span>
+                  <div class="summary-bar"><div class="summary-fill" style="width: 2%"></div></div>
+                  <span>2%</span>
+                </div>
+                <div class="summary-row">
+                  <span>1 ⭐</span>
+                  <div class="summary-bar"><div class="summary-fill" style="width: 0%"></div></div>
+                  <span>0%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="reviews-list">
+            ${reviews.map(review => `
+              <div class="review-item">
+                <div class="review-header-row">
+                  <div>
+                    <div class="reviewer-name">${review.user}</div>
+                    <div class="reviewer-meta">${review.role} • ${review.year}</div>
+                  </div>
+                  <div class="review-rating">${'⭐'.repeat(review.rating)}</div>
+                </div>
+                <div class="review-title">${review.title}</div>
+                <div class="review-text">${review.review}</div>
+                <div class="review-actions">
+                  <button class="review-btn" onclick="alert('Thanks for the feedback!')">👍 Helpful</button>
+                  <button class="review-btn" onclick="alert('This is a demo feature')">💬 Comment</button>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+      
+      document.body.appendChild(modal);
+      document.body.style.overflow = 'hidden';
+      
+      // Close on background click
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          modal.remove();
+          document.body.style.overflow = 'auto';
+        }
+      });
+    }
+
+    function togglePing(companyName, event) {
+      event.stopPropagation();
+      userData.pingEnabled[companyName] = !userData.pingEnabled[companyName];
+      
+      const button = event.target;
+      if (userData.pingEnabled[companyName]) {
+        button.classList.add('ping-active');
+        button.textContent = '🔔 Ping ON';
+      } else {
+        button.classList.remove('ping-active');
+        button.textContent = '🔔 Ping';
+      }
+    }
+
+    function logout() {
+      document.getElementById('dashboard').classList.add('hidden');
+      document.querySelector('.hero').style.display = '';
+      document.querySelector('.features').style.display = '';
+      document.querySelector('.categories').style.display = '';
+      document.querySelector('.how-it-works').style.display = '';
+      document.querySelector('.cta-section').style.display = '';
+      document.querySelector('.footer').style.display = '';
+      document.querySelector('.nav').style.display = '';
+      
+      // Reset ALL user data - clear everything
+      userData = {
+        grade: '',
+        summers: [],
+        sector: '',
+        trackedCompanies: [],
+        pingEnabled: {}
+      };
+      
+      // Reset any selected buttons in onboarding
+      document.querySelectorAll('.option-btn.selected, .company-card.selected').forEach(el => {
+        el.classList.remove('selected');
+      });
+      
+      // Reset to first step
+      document.querySelectorAll('.onboarding-step').forEach(step => step.classList.add('hidden'));
+      document.getElementById('step-1').classList.remove('hidden');
+      
+      // Scroll to top
+      window.scrollTo(0, 0);
+    }
+
+    // Attach to CTA buttons
+    document.querySelectorAll('.cta-btn, .btn-secondary').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (btn.textContent.includes('Get Started') || btn.textContent.includes('Explore') || btn.textContent.includes('Waitlist') || btn.textContent.includes('Join the Waitlist')) {
+          // Reset sector if coming from a button (not a category)
+          userData.sector = '';
+          openOnboarding();
+        }
+      });
+    });
+  </script>
+
+  <style>
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(10px);
+      z-index: 10000;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal.show {
+      display: flex;
+      opacity: 1;
+    }
+
+    .modal-content {
+      background: white;
+      border-radius: 20px;
+      padding: 3rem;
+      max-width: 700px;
+      width: 90%;
+      max-height: 85vh;
+      overflow-y: auto;
+      position: relative;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: none;
+      border: none;
+      font-size: 2rem;
+      cursor: pointer;
+      color: var(--gray);
+      transition: color 0.2s;
+    }
+
+    .modal-close:hover {
+      color: var(--orange-primary);
+    }
+
+    .onboarding-step h2 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      color: var(--dark);
+    }
+
+    .step-subtitle {
+      color: var(--gray);
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+    }
+
+    .option-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1rem;
+    }
+
+    .option-btn {
+      padding: 1.2rem 1.5rem;
+      background: white;
+      border: 2px solid #E5E5E5;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      color: var(--dark);
+    }
+
+    .option-btn:hover {
+      border-color: var(--orange-primary);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(255, 107, 53, 0.2);
+    }
+
+    .option-btn.selected {
+      border-color: var(--orange-primary);
+      background: var(--orange-pale);
+      color: var(--orange-primary);
+    }
+
+    .next-btn {
+      padding: 1rem 2rem;
+      background: linear-gradient(135deg, var(--orange-primary), var(--orange-light));
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s;
+      width: 100%;
+    }
+
+    .next-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .back-step-btn {
+      padding: 1rem 2rem;
+      background: white;
+      color: var(--gray);
+      border: 2px solid #E5E5E5;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .back-step-btn:hover {
+      border-color: var(--orange-primary);
+      color: var(--orange-primary);
+      transform: translateY(-2px);
+    }
+
+    .companies-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .company-card {
+      background: white;
+      border: 2px solid #E5E5E5;
+      border-radius: 12px;
+      padding: 1.5rem 1rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      position: relative;
+    }
+
+    .company-card:hover {
+      border-color: var(--orange-primary);
+      transform: translateY(-3px);
+    }
+
+    .company-card.selected {
+      border-color: var(--orange-primary);
+      background: var(--orange-pale);
+    }
+
+    .company-card .check-icon {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      width: 24px;
+      height: 24px;
+      background: var(--orange-primary);
+      color: white;
+      border-radius: 50%;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+    }
+
+    .company-card.selected .check-icon {
+      display: flex;
+    }
+
+    .company-logo {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .company-name {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--dark);
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* Dashboard Styles */
+    .dashboard {
+      min-height: 100vh;
+      background: #F9FAFB;
+    }
+
+    .dashboard-nav {
+      background: white;
+      border-bottom: 1px solid #E5E7EB;
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .dashboard-logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--orange-primary);
+      transition: opacity 0.2s;
+    }
+
+    .dashboard-logo:hover {
+      opacity: 0.7;
+    }
+
+    .dashboard-menu {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .dash-tab {
+      padding: 0.6rem 1.5rem;
+      background: none;
+      border: none;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--gray);
+      cursor: pointer;
+      border-radius: 8px;
+      transition: all 0.2s;
+    }
+
+    .dash-tab:hover {
+      background: var(--orange-pale);
+      color: var(--orange-primary);
+    }
+
+    .dash-tab.active {
+      background: var(--orange-pale);
+      color: var(--orange-primary);
+    }
+
+    .logout-btn {
+      padding: 0.6rem 1.2rem;
+      background: white;
+      border: 2px solid #E5E7EB;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .logout-btn:hover {
+      border-color: var(--orange-primary);
+      color: var(--orange-primary);
+    }
+
+    .dash-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+    }
+
+    .dash-header {
+      margin-bottom: 3rem;
+    }
+
+    .dash-header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      color: var(--dark);
+    }
+
+    .dash-header p {
+      color: var(--gray);
+      font-size: 1.1rem;
+    }
+
+    .tracked-companies {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .company-tracker-card {
+      background: white;
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      border: 1px solid #E5E7EB;
+    }
+
+    .tracker-header {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .tracker-logo {
+      font-size: 3rem;
+      width: 70px;
+      height: 70px;
+      background: var(--orange-pale);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .tracker-info {
+      flex: 1;
+    }
+
+    .tracker-info h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.3rem;
+      color: var(--dark);
+    }
+
+    .tracker-info p {
+      color: var(--gray);
+      font-size: 1rem;
+    }
+
+    .tracker-status {
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .tracker-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .action-btn {
+      padding: 0.7rem 1.3rem;
+      background: white;
+      border: 2px solid #E5E7EB;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 0.95rem;
+    }
+
+    .action-btn:hover {
+      border-color: var(--orange-primary);
+      color: var(--orange-primary);
+      transform: translateY(-2px);
+    }
+
+    .action-btn.primary {
+      background: linear-gradient(135deg, var(--orange-primary), var(--orange-light));
+      color: white;
+      border: none;
+    }
+
+    .action-btn.primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+    }
+
+    .ping-toggle {
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .ping-toggle.ping-active {
+      background: linear-gradient(135deg, #22C55E, #16A34A) !important;
+      color: white !important;
+      border-color: #22C55E !important;
+    }
+
+    .ping-toggle.ping-active:hover {
+      background: linear-gradient(135deg, #16A34A, #15803D) !important;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3) !important;
+    }
+
+    /* Threads Styles */
+    .threads-container {
+      display: grid;
+      gap: 2rem;
+    }
+
+    .thread-card {
+      background: white;
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      border: 1px solid #E5E7EB;
+    }
+
+    .thread-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid #F3F4F6;
+    }
+
+    .thread-header h3 {
+      font-size: 1.4rem;
+      color: var(--dark);
+    }
+
+    .thread-count {
+      color: var(--gray);
+      font-size: 0.9rem;
+    }
+
+    .thread-messages {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .thread-message {
+      padding: 1rem;
+      background: #F9FAFB;
+      border-radius: 10px;
+      border-left: 3px solid var(--orange-primary);
+    }
+
+    .message-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+    }
+
+    .message-user {
+      font-weight: 600;
+      color: var(--dark);
+    }
+
+    .message-time {
+      color: var(--gray);
+      font-size: 0.85rem;
+    }
+
+    .message-text {
+      color: #374151;
+      line-height: 1.5;
+    }
+
+    .thread-input {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .thread-input input {
+      flex: 1;
+      padding: 0.8rem 1rem;
+      border: 2px solid #E5E7EB;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: border-color 0.2s;
+    }
+
+    .thread-input input:focus {
+      outline: none;
+      border-color: var(--orange-primary);
+    }
+
+    .send-btn {
+      padding: 0.8rem 1.5rem;
+      background: var(--orange-primary);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .send-btn:hover {
+      background: var(--orange-dark);
+      transform: translateY(-2px);
+    }
+
+    /* Ratings Styles */
+    .ratings-container {
+      display: grid;
+      gap: 2rem;
+    }
+
+    .rating-card {
+      background: white;
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      border: 1px solid #E5E7EB;
+    }
+
+    .rating-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid #F3F4F6;
+    }
+
+    .rating-header h3 {
+      font-size: 1.5rem;
+      color: var(--dark);
+    }
+
+    .rating-score {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .rating-number {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--orange-primary);
+    }
+
+    .rating-stars {
+      font-size: 1.2rem;
+    }
+
+    .rating-count {
+      color: var(--gray);
+      font-size: 0.9rem;
+    }
+
+    .rating-breakdown {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .rating-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .rating-row span:first-child {
+      min-width: 150px;
+      color: var(--gray);
+      font-size: 0.95rem;
+    }
+
+    .rating-row span:last-child {
+      min-width: 40px;
+      text-align: right;
+      font-weight: 600;
+      color: var(--dark);
+    }
+
+    .rating-bar {
+      flex: 1;
+      height: 8px;
+      background: #E5E7EB;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .rating-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--orange-primary), var(--orange-light));
+      border-radius: 10px;
+      transition: width 0.3s ease;
+    }
+
+    /* Mobile Responsive for Dashboard */
+    @media (max-width: 768px) {
+      .dashboard-nav {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+      }
+
+      .dashboard-menu {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .tracker-header {
+        flex-wrap: wrap;
+      }
+
+      .tracker-logo {
+        font-size: 2rem;
+        width: 50px;
+        height: 50px;
+      }
+
+      .rating-row span:first-child {
+        min-width: 100px;
+        font-size: 0.85rem;
+      }
+    }
+
+    /* Reviews Modal Styles */
+    .reviews-modal .modal-content {
+      max-width: 900px;
+    }
+
+    .reviews-content {
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .reviews-header {
+      border-bottom: 2px solid #F3F4F6;
+      padding-bottom: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .reviews-header h2 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      color: var(--dark);
+    }
+
+    .reviews-summary {
+      display: flex;
+      gap: 3rem;
+      align-items: flex-start;
+    }
+
+    .summary-score {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .big-rating {
+      font-size: 4rem;
+      font-weight: 700;
+      color: var(--orange-primary);
+      line-height: 1;
+    }
+
+    .summary-bars {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .summary-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.9rem;
+    }
+
+    .summary-row span:first-child {
+      min-width: 40px;
+      color: var(--gray);
+    }
+
+    .summary-row span:last-child {
+      min-width: 45px;
+      text-align: right;
+      color: var(--gray);
+    }
+
+    .summary-bar {
+      flex: 1;
+      height: 8px;
+      background: #E5E7EB;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .summary-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--orange-primary), var(--orange-light));
+      border-radius: 10px;
+    }
+
+    .reviews-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .review-item {
+      background: #F9FAFB;
+      padding: 1.5rem;
+      border-radius: 12px;
+      border: 1px solid #E5E7EB;
+    }
+
+    .review-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+    }
+
+    .reviewer-name {
+      font-weight: 700;
+      color: var(--dark);
+      font-size: 1.1rem;
+    }
+
+    .reviewer-meta {
+      color: var(--gray);
+      font-size: 0.9rem;
+      margin-top: 0.25rem;
+    }
+
+    .review-rating {
+      font-size: 1.2rem;
+    }
+
+    .review-title {
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: var(--dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .review-text {
+      color: #374151;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .review-actions {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .review-btn {
+      padding: 0.5rem 1rem;
+      background: white;
+      border: 1px solid #E5E7EB;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      color: var(--gray);
+    }
+
+    .review-btn:hover {
+      border-color: var(--orange-primary);
+      color: var(--orange-primary);
+    }
+
+    @media (max-width: 768px) {
+      .reviews-summary {
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .summary-bars {
+        width: 100%;
+      }
+    }
+  </style>
+</body>
+</html>
+
