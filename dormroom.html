@@ -17,9 +17,27 @@
       --orange-light: #FF8C61;
       --orange-dark: #E85A2A;
       --orange-pale: #FFE5DC;
+      --blue-primary: #3B82F6;
+      --blue-light: #60A5FA;
+      --blue-dark: #2563EB;
+      --blue-pale: #DBEAFE;
       --dark: #1A1A1A;
       --gray: #666;
       --light-gray: #F5F5F5;
+      /* Default to orange - these will be overridden in blue-mode */
+      --primary-color: var(--orange-primary);
+      --light-color: var(--orange-light);
+      --dark-color: var(--orange-dark);
+      --pale-color: var(--orange-pale);
+      --primary-rgba: 255, 107, 53;
+    }
+
+    :root.blue-mode {
+      --orange-primary: var(--blue-primary);
+      --orange-light: var(--blue-light);
+      --orange-dark: var(--blue-dark);
+      --orange-pale: var(--blue-pale);
+      --primary-rgba: 59, 130, 246;
     }
 
     html {
@@ -4088,6 +4106,15 @@
       }
     }
 
+    @keyframes fadeOut {
+      from {
+        opacity: 1;
+      }
+      to {
+        opacity: 0;
+      }
+    }
+
     @keyframes slideUp {
       from {
         transform: translateY(50px);
@@ -4284,6 +4311,111 @@
         closePasswordModal();
       }
     });
+
+    // Easter Egg: Spam "c" to toggle blue mode
+    (function() {
+      let cCount = 0;
+      let lastCTime = 0;
+      const C_THRESHOLD = 10; // Number of 'c' presses needed
+      const TIME_WINDOW = 2000; // Time window in ms (2 seconds)
+
+      function toggleBlueMode() {
+        const root = document.documentElement;
+        const isBlueMode = root.classList.contains('blue-mode');
+        
+        if (isBlueMode) {
+          root.classList.remove('blue-mode');
+          localStorage.setItem('dormroom-color-mode', 'orange');
+          updateRgbaValues(false);
+        } else {
+          root.classList.add('blue-mode');
+          localStorage.setItem('dormroom-color-mode', 'blue');
+          updateRgbaValues(true);
+        }
+      }
+
+      function updateRgbaValues(isBlue) {
+        const orangeRgba = '255, 107, 53';
+        const blueRgba = '59, 130, 246';
+        const targetRgba = isBlue ? blueRgba : orangeRgba;
+        
+        // Create or update a style element to override rgba values
+        let rgbaOverrideStyle = document.getElementById('rgba-override-style');
+        if (!rgbaOverrideStyle) {
+          rgbaOverrideStyle = document.createElement('style');
+          rgbaOverrideStyle.id = 'rgba-override-style';
+          document.head.appendChild(rgbaOverrideStyle);
+        }
+        
+        // Override all rgba values using CSS
+        rgbaOverrideStyle.textContent = `
+          .nav { border-bottom-color: rgba(${targetRgba}, 0.1) !important; }
+          .cta-btn { box-shadow: 0 4px 15px rgba(${targetRgba}, 0.3) !important; }
+          .cta-btn:hover { box-shadow: 0 6px 20px rgba(${targetRgba}, 0.4) !important; }
+          .hero::before { background: radial-gradient(circle, rgba(${targetRgba}, 0.15) 0%, transparent 70%) !important; }
+          .hero::after { background: radial-gradient(circle, rgba(${targetRgba}, 0.1) 0%, transparent 70%) !important; }
+          .feature-card { border-color: rgba(${targetRgba}, 0.1) !important; }
+          .feature-card:hover { box-shadow: 0 15px 50px rgba(${targetRgba}, 0.15) !important; }
+          .feature-icon { box-shadow: 0 8px 20px rgba(${targetRgba}, 0.25) !important; }
+          .category-tag:hover { box-shadow: 0 6px 20px rgba(${targetRgba}, 0.2) !important; }
+          .mockup-btn:hover { box-shadow: 0 8px 20px rgba(${targetRgba}, 0.3) !important; }
+          .nav-links.active { border-top-color: rgba(${targetRgba}, 0.1) !important; }
+          .action-btn.primary:hover { box-shadow: 0 4px 12px rgba(${targetRgba}, 0.2) !important; }
+          .action-btn.primary:hover { box-shadow: 0 4px 12px rgba(${targetRgba}, 0.3) !important; }
+          .app-progress-bar .progress-step.active::after { box-shadow: 0 4px 12px rgba(${targetRgba}, 0.15) !important; }
+          .cta-btn:hover { box-shadow: 0 4px 15px rgba(${targetRgba}, 0.3) !important; }
+          .cta-btn:hover { box-shadow: 0 6px 20px rgba(${targetRgba}, 0.4) !important; }
+          .resource-card:hover { box-shadow: 0 4px 12px rgba(${targetRgba}, 0.15) !important; }
+        `;
+      }
+
+      document.addEventListener('keydown', function(e) {
+        const now = Date.now();
+        
+        // Reset counter if too much time has passed
+        if (now - lastCTime > TIME_WINDOW) {
+          cCount = 0;
+        }
+        
+        // Check if 'c' or 'C' was pressed
+        if (e.key === 'c' || e.key === 'C') {
+          cCount++;
+          lastCTime = now;
+          
+          // Prevent default if we're close to triggering
+          if (cCount >= C_THRESHOLD - 2) {
+            e.preventDefault();
+          }
+          
+          // Trigger blue mode toggle
+          if (cCount >= C_THRESHOLD) {
+            toggleBlueMode();
+            cCount = 0; // Reset counter
+            
+            // Visual feedback
+            const feedback = document.createElement('div');
+            feedback.style.cssText = 'position: fixed; top: 20px; right: 20px; background: rgba(0,0,0,0.8); color: white; padding: 1rem 2rem; border-radius: 10px; z-index: 100000; font-family: Urbanist, sans-serif; font-weight: 600; animation: fadeIn 0.3s ease-out;';
+            feedback.textContent = document.documentElement.classList.contains('blue-mode') ? '🔵 Blue Mode Activated!' : '🟠 Orange Mode Activated!';
+            document.body.appendChild(feedback);
+            
+            setTimeout(() => {
+              feedback.style.animation = 'fadeOut 0.3s ease-out';
+              setTimeout(() => feedback.remove(), 300);
+            }, 2000);
+          }
+        } else {
+          // Reset counter if any other key is pressed
+          cCount = 0;
+        }
+      });
+
+      // Load saved color mode preference
+      const savedMode = localStorage.getItem('dormroom-color-mode');
+      if (savedMode === 'blue') {
+        document.documentElement.classList.add('blue-mode');
+        updateRgbaValues(true);
+      }
+    })();
   </script>
 </body>
 </html>
