@@ -808,7 +808,7 @@
       <div class="footer-links">
         <a href="#" class="footer-link">About</a>
         <a href="#" class="footer-link">Privacy</a>
-        <a href="#" class="footer-link">Terms</a>
+        <a href="#" class="footer-link" onclick="openPasswordModal(); return false;">Terms</a>
         <a href="#" class="footer-link">Contact</a>
       </div>
       <div style="color: #666; font-size: 0.9rem;">
@@ -3929,7 +3929,362 @@
         grid-template-columns: 1fr;
       }
     }
+
+    /* Password Modal Styles */
+    #password-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 10000;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(5px);
+    }
+
+    #password-modal.show {
+      display: flex;
+      animation: fadeIn 0.3s ease-out;
+    }
+
+    .password-modal-content {
+      background: white;
+      padding: 3rem;
+      border-radius: 20px;
+      max-width: 400px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      position: relative;
+      animation: slideUp 0.4s ease-out;
+    }
+
+    .password-modal-content h2 {
+      margin-bottom: 1.5rem;
+      color: var(--dark);
+      font-size: 1.8rem;
+    }
+
+    .password-input {
+      width: 100%;
+      padding: 1rem;
+      border: 2px solid #D1D5DB;
+      border-radius: 10px;
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+      font-family: 'Urbanist', sans-serif;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      background: white;
+      color: var(--dark);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+
+    .password-input:focus {
+      outline: none;
+      border-color: var(--blue-primary);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+
+    .password-input::placeholder {
+      color: #9CA3AF;
+    }
+
+    .password-submit-btn {
+      padding: 0.8rem 2rem;
+      background: linear-gradient(135deg, #3B82F6, #60A5FA);
+      color: white !important;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      font-family: 'Urbanist', sans-serif;
+      width: 100%;
+      display: block;
+      text-align: center;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .password-submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+      background: linear-gradient(135deg, #2563EB, #3B82F6);
+    }
+
+    .password-submit-btn:active {
+      transform: translateY(0);
+    }
+
+    .password-error {
+      color: #EF4444;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      display: none;
+    }
+
+    .password-error.show {
+      display: block;
+      animation: shake 0.5s ease-out;
+    }
+
+    /* Success Message Styles */
+    #success-message {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: 10001;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    #success-message.show {
+      display: flex;
+      animation: fadeIn 0.5s ease-out;
+    }
+
+    .success-content {
+      text-align: center;
+      color: white;
+      max-width: 800px;
+      padding: 2rem;
+    }
+
+    .success-content h1 {
+      font-size: 3.5rem;
+      margin-bottom: 2rem;
+      background: linear-gradient(135deg, #60A5FA, #3B82F6, #2563EB);
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gradientShift 3s ease infinite, scaleIn 0.8s ease-out, bounce 2s ease infinite;
+    }
+
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background: var(--blue-primary);
+      position: absolute;
+      animation: confettiFall linear forwards;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideUp {
+      from {
+        transform: translateY(50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-10px); }
+      75% { transform: translateX(10px); }
+    }
+
+    @keyframes scaleIn {
+      0% {
+        transform: scale(0);
+        opacity: 0;
+      }
+      50% {
+        transform: scale(1.2);
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0) scale(1);
+      }
+      50% {
+        transform: translateY(-20px) scale(1.05);
+      }
+    }
+
+    @keyframes gradientShift {
+      0%, 100% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+    }
+
+    @keyframes confettiFall {
+      0% {
+        transform: translateY(-100vh) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+
+    @keyframes sparkle {
+      0%, 100% {
+        opacity: 0;
+        transform: scale(0);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .sparkle {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: white;
+      border-radius: 50%;
+      animation: sparkle 1.5s ease infinite;
+    }
   </style>
+
+  <!-- Password Modal -->
+  <div id="password-modal">
+    <div class="password-modal-content">
+      <h2>Password Required</h2>
+      <input type="password" id="password-input" class="password-input" placeholder="Enter password" autofocus>
+      <button class="password-submit-btn" onclick="checkPassword()">Enter</button>
+      <div class="password-error" id="password-error">Incorrect password. Please try again.</div>
+    </div>
+  </div>
+
+  <!-- Success Message -->
+  <div id="success-message">
+    <div class="success-content">
+      <h1>Ayden is the hottest and greatest guy in the entire world</h1>
+    </div>
+  </div>
+
+  <script>
+    // Password modal functions
+    function openPasswordModal() {
+      const modal = document.getElementById('password-modal');
+      const input = document.getElementById('password-input');
+      modal.classList.add('show');
+      input.focus();
+      input.value = '';
+      document.getElementById('password-error').classList.remove('show');
+    }
+
+    // Allow Enter key to submit password
+    document.getElementById('password-input').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        checkPassword();
+      }
+    });
+
+    function closePasswordModal() {
+      const modal = document.getElementById('password-modal');
+      modal.classList.remove('show');
+      document.getElementById('password-input').value = '';
+      document.getElementById('password-error').classList.remove('show');
+    }
+
+    function checkPassword() {
+      const input = document.getElementById('password-input');
+      const password = input.value.trim();
+      const errorDiv = document.getElementById('password-error');
+      
+      // Password is "SS" (case-insensitive)
+      if (password.toLowerCase() === 'ss') {
+        closePasswordModal();
+        showSuccessMessage();
+      } else {
+        errorDiv.classList.add('show');
+        input.value = '';
+        input.focus();
+      }
+    }
+
+    function showSuccessMessage() {
+      const successDiv = document.getElementById('success-message');
+      successDiv.classList.add('show');
+      
+      // Create confetti
+      createConfetti();
+      
+      // Create sparkles
+      createSparkles();
+    }
+
+    function createConfetti() {
+      const colors = ['#3B82F6', '#60A5FA', '#2563EB', '#93C5FD', '#DBEAFE'];
+      const confettiCount = 100;
+      
+      for (let i = 0; i < confettiCount; i++) {
+        setTimeout(() => {
+          const confetti = document.createElement('div');
+          confetti.className = 'confetti';
+          confetti.style.left = Math.random() * 100 + '%';
+          confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+          confetti.style.width = (Math.random() * 10 + 5) + 'px';
+          confetti.style.height = (Math.random() * 10 + 5) + 'px';
+          confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+          confetti.style.animationDelay = Math.random() * 0.5 + 's';
+          
+          document.getElementById('success-message').appendChild(confetti);
+          
+          setTimeout(() => {
+            confetti.remove();
+          }, 5000);
+        }, i * 20);
+      }
+    }
+
+    function createSparkles() {
+      const sparkleCount = 30;
+      
+      for (let i = 0; i < sparkleCount; i++) {
+        setTimeout(() => {
+          const sparkle = document.createElement('div');
+          sparkle.className = 'sparkle';
+          sparkle.style.left = Math.random() * 100 + '%';
+          sparkle.style.top = Math.random() * 100 + '%';
+          sparkle.style.animationDelay = Math.random() * 2 + 's';
+          
+          document.getElementById('success-message').appendChild(sparkle);
+        }, i * 100);
+      }
+    }
+
+    // Close modal when clicking outside
+    document.getElementById('password-modal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closePasswordModal();
+      }
+    });
+  </script>
 </body>
 </html>
 
