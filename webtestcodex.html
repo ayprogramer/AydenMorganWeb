@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AetherGrid | Orbital Data Centers</title>
+  <meta name="description" content="AetherGrid builds orbital data centers that stay cold without consuming Earth's resources. Explore our zero-gravity compute platform." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #03030c;
+      --bg-secondary: #0b1222;
+      --bg-panel: rgba(15, 26, 45, 0.75);
+      --accent: #63fef3;
+      --accent-2: #7b74ff;
+      --accent-3: #ffbf81;
+      --text: #f3f6ff;
+      --muted: rgba(243, 246, 255, 0.78);
+      --border: rgba(255, 255, 255, 0.08);
+      --gradient: linear-gradient(120deg, rgba(99, 254, 243, 0.18), rgba(123, 116, 255, 0.18));
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Inter", "Space Grotesk", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: radial-gradient(circle at top, rgba(99, 254, 243, 0.15), transparent 50%), var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.02) 0, rgba(255, 255, 255, 0.02) 1px, transparent 1px, transparent 120px),
+        repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.015) 0, rgba(255, 255, 255, 0.015) 1px, transparent 1px, transparent 80px);
+      opacity: 0.35;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+      width: min(1200px, 100%);
+      margin: 0 auto;
+      padding: 40px clamp(16px, 5vw, 40px) 100px;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0 32px;
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(12px);
+      background: rgba(3, 3, 12, 0.7);
+      z-index: 5;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-weight: 600;
+      font-size: 0.85rem;
+    }
+
+    .brand-orbit {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 2px solid var(--accent);
+      position: relative;
+    }
+
+    .brand-orbit::before {
+      content: "";
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      top: 4px;
+      right: 4px;
+      box-shadow: 0 0 25px var(--accent);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 24px;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color 0.2s ease;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    .btn {
+      border: none;
+      padding: 12px 22px;
+      border-radius: 999px;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    .btn-primary {
+      background: linear-gradient(120deg, var(--accent), var(--accent-2));
+      color: #03030c;
+      box-shadow: 0 10px 35px rgba(99, 254, 243, 0.25);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .hero {
+      padding: 80px 0 60px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 36px;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-family: "Space Grotesk", "Inter", sans-serif;
+      font-weight: 600;
+      font-size: clamp(2.6rem, 6vw, 4.6rem);
+      margin: 0 0 16px;
+      line-height: 1.1;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--muted);
+      margin: 0 0 28px;
+    }
+
+    .hero-panel {
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: clamp(24px, 4vw, 36px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-panel::after {
+      content: "";
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(99, 254, 243, 0.09), transparent 60%);
+      top: -70%;
+      right: -110%;
+      transform: rotate(35deg);
+    }
+
+    .hero-meta {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 18px;
+      margin-top: 24px;
+    }
+
+    .hero-meta div {
+      padding: 18px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+    }
+
+    .hero-meta h3 {
+      margin: 0;
+      font-size: 1.9rem;
+    }
+
+    section {
+      margin-top: 90px;
+    }
+
+    section header {
+      margin-bottom: 32px;
+    }
+
+    section h2 {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      margin: 0;
+    }
+
+    section p.lead {
+      margin: 12px 0 0;
+      color: var(--muted);
+      max-width: 680px;
+    }
+
+    .panel-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 22px;
+    }
+
+    .panel {
+      padding: 24px;
+      border-radius: 22px;
+      border: 1px solid var(--border);
+      background: rgba(5, 8, 18, 0.7);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: var(--gradient);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .panel:hover::before {
+      opacity: 1;
+    }
+
+    .panel > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .panel h3 {
+      margin: 0 0 12px;
+      font-size: 1.25rem;
+    }
+
+    .panel p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .chip::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 8px var(--accent);
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .orbit-card {
+      border-radius: 28px;
+      border: 1px solid var(--border);
+      padding: 32px;
+      background: linear-gradient(200deg, rgba(18, 36, 71, 0.9), rgba(3, 3, 12, 0.9));
+      position: relative;
+      overflow: hidden;
+    }
+
+    .orbit-card::after {
+      content: "";
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 50%;
+      top: -90px;
+      right: -70px;
+    }
+
+    .stat-list {
+      display: grid;
+      gap: 18px;
+      margin-top: 24px;
+    }
+
+    .stat {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      padding-bottom: 12px;
+    }
+
+    .stat span:first-child {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .stat strong {
+      font-size: 1.4rem;
+      font-weight: 600;
+    }
+
+    .progress-bar {
+      margin-top: 10px;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress {
+      height: 100%;
+      background: linear-gradient(120deg, var(--accent), var(--accent-2));
+      width: 0;
+      transition: width 0.6s ease;
+    }
+
+    .system-map {
+      margin-top: 30px;
+      padding: 28px;
+      border-radius: 22px;
+      border: 1px dashed rgba(255, 255, 255, 0.2);
+      display: grid;
+      gap: 14px;
+    }
+
+    .system-node {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 18px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .system-node span {
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .timeline {
+      display: flex;
+      gap: 24px;
+      overflow-x: auto;
+      padding-bottom: 10px;
+    }
+
+    .timeline-card {
+      flex: 0 0 260px;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 20px;
+      background: rgba(5, 10, 20, 0.8);
+    }
+
+    .timeline-card strong {
+      display: block;
+      font-size: 0.9rem;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .orbit-simulator {
+      margin-top: 30px;
+      padding: 30px;
+      border-radius: 24px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .orbit-slider {
+      width: 100%;
+      margin: 16px 0 0;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .metric {
+      padding: 16px;
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(0, 0, 0, 0.35);
+    }
+
+    .metric small {
+      color: var(--muted);
+      display: block;
+      margin-bottom: 6px;
+      letter-spacing: 0.08em;
+      font-size: 0.8rem;
+    }
+
+    .metric strong {
+      font-size: 1.4rem;
+      display: block;
+    }
+
+    .showcase-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+    }
+
+    .showcase-card {
+      position: relative;
+      padding: 24px;
+      border-radius: 24px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.03);
+      overflow: hidden;
+    }
+
+    .showcase-card::after {
+      content: attr(data-label);
+      position: absolute;
+      bottom: 16px;
+      right: 20px;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+    }
+
+    .testimonials {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+    }
+
+    .testimonial {
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 22px;
+      padding: 22px;
+      border: 1px solid var(--border);
+    }
+
+    .testimonial strong {
+      display: block;
+      margin-top: 18px;
+      font-size: 1rem;
+    }
+
+    .cta {
+      text-align: center;
+      padding: 60px 20px;
+      border-radius: 32px;
+      border: 1px solid var(--border);
+      background: radial-gradient(circle at top, rgba(123, 116, 255, 0.25), rgba(3, 3, 12, 0.95));
+    }
+
+    .cta h2 {
+      margin-bottom: 16px;
+    }
+
+    .cta-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    form {
+      margin-top: 30px;
+      display: grid;
+      gap: 16px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 16px;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(3, 3, 12, 0.6);
+      color: var(--text);
+      font-size: 1rem;
+      font-family: inherit;
+    }
+
+    footer {
+      margin-top: 70px;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 14px;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.9rem;
+    }
+
+    .notice {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+    }
+
+    .floating-signal {
+      position: fixed;
+      right: 30px;
+      bottom: 30px;
+      padding: 16px 24px;
+      border-radius: 20px;
+      background: rgba(3, 3, 12, 0.9);
+      border: 1px solid var(--border);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .floating-signal strong {
+      display: block;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+    }
+
+    .floating-signal span {
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    @media (max-width: 600px) {
+      nav {
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 14px;
+      }
+
+      .cta-buttons {
+        flex-direction: column;
+      }
+
+      .floating-signal {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <nav>
+      <div class="brand">
+        <div class="brand-orbit"></div>
+        AetherGrid
+      </div>
+      <ul>
+        <li><a href="#vision">Vision</a></li>
+        <li><a href="#tech">Technology</a></li>
+        <li><a href="#timeline">Roadmap</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="btn btn-secondary">Mission Deck</button>
+    </nav>
+
+    <section class="hero" id="home">
+      <div class="hero-panel">
+        <p class="chip">Zero-cooling orbital compute</p>
+        <h1>Data centers built in space so Earth can breathe easier.</h1>
+        <p>We deploy autonomous data centers in low Earth orbit where the vacuum is an inexhaustible heat sink and solar energy is constant. AetherGrid keeps Earth’s resources on Earth.</p>
+        <div class="cta-buttons">
+          <button class="btn btn-primary">Book a mission brief</button>
+          <button class="btn btn-secondary">Download specs</button>
+        </div>
+        <div class="hero-meta">
+          <div>
+            <p class="chip">Heat waste</p>
+            <h3>−94%</h3>
+            <p>Projected cooling power draw</p>
+          </div>
+          <div>
+            <p class="chip">Orbital uptime</p>
+            <h3>99.997%</h3>
+            <p>Radiation-hardened redundancy</p>
+          </div>
+          <div>
+            <p class="chip">Launch cadence</p>
+            <h3>12 / yr</h3>
+            <p>Modular bay deployments</p>
+          </div>
+        </div>
+      </div>
+      <div class="hero-panel">
+        <h3>Orbital rack telemetry</h3>
+        <div class="stat-list">
+          <div class="stat">
+            <span>Passive thermal rejection</span>
+            <strong>14.8 kW / rack</strong>
+          </div>
+          <div class="progress-bar"><div class="progress" style="width: 88%"></div></div>
+
+          <div class="stat">
+            <span>Solar intake</span>
+            <strong>62 kW</strong>
+          </div>
+          <div class="progress-bar"><div class="progress" style="width: 76%"></div></div>
+
+          <div class="stat">
+            <span>Photon uplink latency</span>
+            <strong>38 ms RTT</strong>
+          </div>
+          <div class="progress-bar"><div class="progress" style="width: 42%"></div></div>
+        </div>
+        <div class="system-map">
+          <div class="system-node">
+            <span>Edge Sensing Constellation</span>
+            <small>+4 Tbps optical</small>
+          </div>
+          <div class="system-node">
+            <span>LEO Compute Halo</span>
+            <small>AI + HPC workloads</small>
+          </div>
+          <div class="system-node">
+            <span>Earth Gateway Ring</span>
+            <small>3 ground stations live</small>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="vision">
+      <header>
+        <h2>Why orbit is the only cooling stack that scales.</h2>
+        <p class="lead">Earth’s data appetite doubles every 20 months, but cooling already guzzles one fifth of the grid. Above the atmosphere, heat slides into darkness instantly and solar power never sets.</p>
+      </header>
+      <div class="panel-grid">
+        <article class="panel">
+          <h3>Vacuum heat sinks</h3>
+          <p>Space radiators reject thermal load 40% faster than their terrestrial counterparts, so we eliminate chillers and water towers entirely.</p>
+        </article>
+        <article class="panel">
+          <h3>Constant renewables</h3>
+          <p>Each module carries thin-film solar deployed by robot arms, feeding solid-state batteries that never see clouds or nights.</p>
+        </article>
+        <article class="panel">
+          <h3>Resource neutrality</h3>
+          <p>Every orbital bay offsets 12 Olympic pools of yearly water usage and 17 acres of land that would otherwise house cooling hardware.</p>
+        </article>
+        <article class="panel">
+          <h3>Planet positive compute</h3>
+          <p>We plan deorbit recycling that re-enters only inert hardware while new modules replace them seamlessly.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="tech">
+      <header>
+        <h2>Technology stack from launch to latency.</h2>
+        <p class="lead">AetherGrid modules launch folded, self-assemble in orbit, and join a mesh so workloads fail over before you notice.</p>
+      </header>
+      <div class="split">
+        <div class="orbit-card">
+          <p class="chip">Stack architecture</p>
+          <h3>Self-balancing orbital compute lattice</h3>
+          <p>Each bay contains 960 compute sleds, two optical transceivers, and a graphene radiator wing that fans out to cool without coolant.</p>
+          <div class="stat-list">
+            <div>
+              <div class="stat">
+                <span>AI inference density</span>
+                <strong>400 PFLOPS</strong>
+              </div>
+              <div class="progress-bar"><div class="progress" style="width: 84%"></div></div>
+            </div>
+            <div>
+              <div class="stat">
+                <span>Thermal overhead</span>
+                <strong>0.8%</strong>
+              </div>
+              <div class="progress-bar"><div class="progress" style="width: 16%"></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="panel">
+          <h3>Mission layers</h3>
+          <p>We orchestrate three concentric rings to keep latency and reliability predictable.</p>
+          <ul>
+            <li>Orbit ring: Low Earth Orbit (450–1,200 km) modules for HPC.</li>
+            <li>Relay ring: Optical satellites handling downlink bursts.</li>
+            <li>Ground ring: Coastal landing pads with hydrogen fuel-cell backups.</li>
+          </ul>
+          <p>Each ring negotiates load in under 90 milliseconds using a consensus bus we call Aurora.</p>
+        </div>
+      </div>
+      <div class="orbit-simulator" aria-live="polite">
+        <div class="badge">Orbit scenario lab</div>
+        <h3>Adjust orbital altitude to explore performance</h3>
+        <input id="orbit-slider" class="orbit-slider" type="range" min="350" max="1600" value="600" />
+        <div class="metrics">
+          <div class="metric">
+            <small>Altitude</small>
+            <strong data-altitude>600 km</strong>
+            <p>Low Earth orbit sweet spot</p>
+          </div>
+          <div class="metric">
+            <small>Cooling power saved</small>
+            <strong data-cooling>92%</strong>
+            <p>vs Tier 4 terrestrial facilities</p>
+          </div>
+          <div class="metric">
+            <small>Round trip latency</small>
+            <strong data-latency>42 ms</strong>
+            <p>Optical backhaul via Aurora mesh</p>
+          </div>
+          <div class="metric">
+            <small>Solar duty cycle</small>
+            <strong data-solar>99.2%</strong>
+            <p>Continuous energy availability</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="timeline">
+      <header>
+        <h2>Roadmap to the orbital cloud.</h2>
+        <p class="lead">Regulators, launch partners, and anchor clients have us on track for commercial compute drop-ins by 2027.</p>
+      </header>
+      <div class="timeline" role="list">
+        <article class="timeline-card" role="listitem">
+          <strong>2024</strong>
+          <h3>Thermal vacuum validation</h3>
+          <p>NASA Ames chamber qualified our passive radiator wing at −180°C to 130°C swings.</p>
+        </article>
+        <article class="timeline-card" role="listitem">
+          <strong>2025</strong>
+          <h3>Automated assembly flight</h3>
+          <p>Robotic truss expanded from 2 m to 16 m in microgravity with zero human EVA time.</p>
+        </article>
+        <article class="timeline-card" role="listitem">
+          <strong>2026</strong>
+          <h3>Client pilot workloads</h3>
+          <p>Confidential AI training loads run on dual bays with live optical backhaul to Guam.</p>
+        </article>
+        <article class="timeline-card" role="listitem">
+          <strong>2028</strong>
+          <h3>Global orbital constellation</h3>
+          <p>18 bays across three orbital planes deliver 3.4 exaFLOPS with planetary footprint near zero.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <header>
+        <h2>Proof of impact.</h2>
+        <p class="lead">From hyperscalers to climate labs, every partner picks orbit to cut energy without capping compute.</p>
+      </header>
+      <div class="showcase-grid">
+        <article class="showcase-card" data-label="Hyperscale">
+          <div class="badge">AI Clouds</div>
+          <h3>45% higher GPU density</h3>
+          <p>Orbital radiators give us 320 kW per rack with no chillers, so inference farms scale without new substations.</p>
+        </article>
+        <article class="showcase-card" data-label="Climate">
+          <div class="badge">Environmental</div>
+          <h3>Neutral water footprint</h3>
+          <p>Waterless cooling let a climate-monitoring customer reallocate 90M gallons to drought resilience programs.</p>
+        </article>
+        <article class="showcase-card" data-label="Finance">
+          <div class="badge">FinTech</div>
+          <h3>Real-time arbitrage mesh</h3>
+          <p>Low-latency downlinks keep global ledgers synced with 32 ms jitter for orbital arbitrage strategies.</p>
+        </article>
+        <article class="showcase-card" data-label="Research">
+          <div class="badge">Science</div>
+          <h3>In-vacuum HPC</h3>
+          <p>Radiation-hardened bays crunch heavy simulations next to telescopes, keeping petabytes off Earth.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <header>
+        <h2>Voices from orbit.</h2>
+        <p class="lead">Early access partners and advisors keep us honest about what matters for the next decade of compute.</p>
+      </header>
+      <div class="testimonials">
+        <article class="testimonial">
+          <p>“AetherGrid is the first team shipping a zero-cooling architecture that does not ask us to compromise on performance. It is the future we always talked about.”</p>
+          <strong>Linh Rojas — CTO, AuroraNet</strong>
+        </article>
+        <article class="testimonial">
+          <p>“Their orbital bays eliminated our water cooling footprint entirely. We redeployed that budget into pure compute and still emit less.”</p>
+          <strong>Sasha Menon — VP Infrastructure, TideLabs</strong>
+        </article>
+        <article class="testimonial">
+          <p>“From the first mission brief, the engineering maturity was obvious. They talk in orbital dynamics and rack power density with equal fluency.”</p>
+          <strong>Cmdr. Ian Blake — Former ISS Flight Director</strong>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="cta">
+        <p class="notice">Mission control is accepting new orbital workloads</p>
+        <h2>Ready to move your compute off-world?</h2>
+        <p class="lead" style="margin:0 auto 24px; max-width:600px;">Tell us about your power budget, latency requirements, and sustainability targets. We will craft a custom mission stack and deployment window.</p>
+        <div class="cta-buttons">
+          <button class="btn btn-primary">Schedule a constellation tour</button>
+          <button class="btn btn-secondary">View security posture</button>
+        </div>
+        <form id="contact-form">
+          <input type="text" name="name" placeholder="Full name" required />
+          <input type="email" name="email" placeholder="Work email" required />
+          <input type="text" name="company" placeholder="Organization" />
+          <textarea name="message" rows="4" placeholder="Tell us about your mission" required></textarea>
+          <button class="btn btn-primary" type="submit">Transmit request</button>
+          <p id="form-status" role="status"></p>
+        </form>
+      </div>
+    </section>
+
+    <footer>
+      <span>© <span id="year"></span> AetherGrid Orbital Compute</span>
+      <span>Low Earth Orbit | Houston | Reykjavik</span>
+      <span>contact@aethergrid.space • +1 (713) 555-0144</span>
+    </footer>
+  </main>
+
+  <div class="floating-signal" aria-live="polite">
+    <strong>Ground link nominal</strong>
+    <span>Optical lane · 4.1 Tbps</span>
+  </div>
+
+  <script>
+    const slider = document.getElementById("orbit-slider");
+    const altitudeEl = document.querySelector("[data-altitude]");
+    const coolingEl = document.querySelector("[data-cooling]");
+    const latencyEl = document.querySelector("[data-latency]");
+    const solarEl = document.querySelector("[data-solar]");
+    const statusEl = document.getElementById("form-status");
+    const form = document.getElementById("contact-form");
+    const yearEl = document.getElementById("year");
+    yearEl.textContent = new Date().getFullYear();
+
+    function updateOrbitMetrics(value) {
+      const cooling = 88 + Math.round((1600 - value) / 20);
+      const latency = 28 + Math.round((value - 350) / 20);
+      const solar = (98 + (value / 1600) * 2).toFixed(1);
+      altitudeEl.textContent = `${value} km`;
+      coolingEl.textContent = `${cooling}%`;
+      latencyEl.textContent = `${latency} ms`;
+      solarEl.textContent = `${solar}%`;
+    }
+
+    slider.addEventListener("input", (event) => {
+      updateOrbitMetrics(Number(event.target.value));
+    });
+
+    updateOrbitMetrics(Number(slider.value));
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      statusEl.textContent = "Transmitting…";
+      setTimeout(() => {
+        statusEl.textContent = "Mission request received. Control will reply within 24 hours.";
+        form.reset();
+        updateOrbitMetrics(Number(slider.value));
+      }, 800);
+    });
+  </script>
+</body>
+</html>
+
