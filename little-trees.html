@@ -4,9 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Little Trees – Ayden Morgan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="css/styles.css" />
   <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600&display=swap" rel="stylesheet">
-
 
   <style>
     /* ---------- PAGE-SPECIFIC STYLES ---------- */
@@ -98,16 +99,23 @@
 
   <a href="projects.html" class="back-link">&lt;</a>
 
-  <div id="menu-container"></div>
+  <div id="menu-container">
+    <button id="menu-btn" class="menu-btn" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div id="menu-overlay" class="menu-overlay" aria-hidden="true">
+      <button id="close-menu" class="close-menu" aria-label="Close menu">&times;</button>
+      <nav class="menu-nav">
+        <a href="index.html" class="menu-link">Home</a>
+        <a href="photos.html" class="menu-link">Photos</a>
+        <a href="about.html" class="menu-link">About Me</a>
+        <a href="projects.html" class="menu-link">Projects</a>
+        <a href="mailto:aymorgan@calpoly.edu" class="menu-link">Contact</a>
+      </nav>
+    </div>
+  </div>
   <script>
-    fetch('menu.html')
-      .then(res => res.text())
-      .then(html => {
-        document.getElementById('menu-container').innerHTML = html;
-        const script = document.createElement('script');
-        script.src = 'menu.js';
-        document.body.appendChild(script);
-      });
+    (function(){var b=document.getElementById('menu-btn'),o=document.getElementById('menu-overlay'),c=document.getElementById('close-menu');if(!b||!o||!c)return;function close(){o.classList.remove('active');setTimeout(function(){o.style.display='none';o.setAttribute('aria-hidden','true')},350)}b.addEventListener('click',function(){o.classList.add('active');o.style.display='flex';o.setAttribute('aria-hidden','false');document.querySelectorAll('.menu-link').forEach(function(l){l.style.animation='none';void l.offsetWidth;l.style.animation=''})});c.addEventListener('click',close);o.addEventListener('click',function(e){if(e.target===o)close()})})();
   </script>
 
   <main class="container">
@@ -135,10 +143,10 @@
     </div>
 
     <div class="gallery hc-gallery">
-      <img src="images/LTAppStore1 copy.png" alt="Little Trees App Store Screenshot 1" loading="lazy" />
-      <img src="images/LTAppStore2 copy.png" alt="Little Trees App Store Screenshot 2" loading="lazy" />
-      <img src="images/LTAppStore3 copy.png" alt="Little Trees App Store Screenshot 3" loading="lazy" />
-      <img src="images/LTAppStore4 copy.png" alt="Little Trees App Store Screenshot 4" loading="lazy" />
+      <img src="images/LTAppStore1 copy.jpg" alt="Little Trees App Store Screenshot 1" loading="lazy" />
+      <img src="images/LTAppStore2 copy.jpg" alt="Little Trees App Store Screenshot 2" loading="lazy" />
+      <img src="images/LTAppStore3 copy.jpg" alt="Little Trees App Store Screenshot 3" loading="lazy" />
+      <img src="images/LTAppStore4 copy.jpg" alt="Little Trees App Store Screenshot 4" loading="lazy" />
     </div>
   </main>
 
@@ -155,7 +163,5 @@
     })();
   </script>
 
-  <!-- Snake Game Easter Egg -->
-  <script src="js/snake-game.js"></script>
 </body>
 </html>

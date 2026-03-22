@@ -17,39 +17,31 @@
     .loader { position: fixed; inset: 0; background: white; z-index: 999; transition: opacity 0.2s ease; }
     .loader.done { opacity: 0; pointer-events: none; }
   </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="css/styles.css" />
   <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600&display=swap" rel="stylesheet">
-
-
-
-
 </head>
 <body class="index">
   <div id="loader" class="loader" aria-hidden="true"></div>
 
-  <div id="menu-container"></div>
+  <div id="menu-container">
+    <button id="menu-btn" class="menu-btn" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div id="menu-overlay" class="menu-overlay" aria-hidden="true">
+      <button id="close-menu" class="close-menu" aria-label="Close menu">&times;</button>
+      <nav class="menu-nav">
+        <a href="index.html" class="menu-link">Home</a>
+        <a href="photos.html" class="menu-link">Photos</a>
+        <a href="about.html" class="menu-link">About Me</a>
+        <a href="projects.html" class="menu-link">Projects</a>
+        <a href="mailto:aymorgan@calpoly.edu" class="menu-link">Contact</a>
+      </nav>
+    </div>
+  </div>
   <script>
-    fetch('menu.html')
-      .then(res => {
-        if (!res.ok) throw new Error('Menu failed to load');
-        return res.text();
-      })
-      .then(html => {
-        document.getElementById('menu-container').innerHTML = html;
-        const script = document.createElement('script');
-        script.src = 'menu.js';
-        document.body.appendChild(script);
-      })
-      .catch(err => {
-        console.warn('Menu fallback:', err);
-        document.getElementById('menu-container').innerHTML = `
-          <div style="position: fixed; top: 2rem; right: 3rem; z-index: 1001;">
-            <a href="about.html" style="margin-right: 1rem; text-decoration: none; color: #111;">About</a>
-            <a href="projects.html" style="margin-right: 1rem; text-decoration: none; color: #111;">Projects</a>
-            <a href="photos.html" style="text-decoration: none; color: #111;">Photos</a>
-          </div>
-        `;
-      });
+    (function(){var b=document.getElementById('menu-btn'),o=document.getElementById('menu-overlay'),c=document.getElementById('close-menu');if(!b||!o||!c)return;function close(){o.classList.remove('active');setTimeout(function(){o.style.display='none';o.setAttribute('aria-hidden','true')},350)}b.addEventListener('click',function(){o.classList.add('active');o.style.display='flex';o.setAttribute('aria-hidden','false');document.querySelectorAll('.menu-link').forEach(function(l){l.style.animation='none';void l.offsetWidth;l.style.animation=''})});c.addEventListener('click',close);o.addEventListener('click',function(e){if(e.target===o)close()})})();
   </script>
 
   <a href="index.html" class="home-link">Ayden Morgan</a>
@@ -61,19 +53,19 @@
     <div class="card-grid">
       <div class="card">
         <a href="photos.html">
-          <img src="images/scimage3.png" alt="Photos" />
+          <img src="images/scimage3.jpg" alt="Photos" loading="lazy" width="350" height="195" />
         </a>
         <p class="label">Photos</p> 
       </div>
       <div class="card">
         <a href="about.html">
-          <img src="images/scimage1.png" alt="About Me" />
+          <img src="images/scimage1.jpg" alt="About Me" loading="lazy" width="350" height="195" />
         </a>
         <p class="label">About Me</p>
       </div>
       <div class="card">
         <a href="projects.html">
-          <img src="images/LTLogo3.png" alt="Projects" />
+          <img src="images/LTLogo3.jpg" alt="Projects" loading="lazy" width="350" height="233" />
         </a>
         <p class="label">Projects</p>
       </div>
@@ -105,12 +97,12 @@
   <script>
     window.addEventListener('load', () => {
       const preloadImages = [
-        "images/scimage1.png",
-        "images/scimage2.png",
-        "images/scimage3.png",
-        "images/scimage4.png",
-        "images/hellocampus-preview8.png",
-        "images/dsp-preview2.png"
+        "images/scimage1.jpg",
+        "images/scimage2.jpg",
+        "images/scimage3.jpg",
+        "images/scimage4.jpg",
+        "images/hellocampus-preview8.jpg",
+        "images/dsp-preview2.jpg"
       ];
       preloadImages.forEach(src => {
         const img = new Image();
@@ -119,7 +111,5 @@
     });
   </script>
 
-  <!-- Snake Game Easter Egg -->
-  <script src="js/snake-game.js"></script>
 </body>
 </html>

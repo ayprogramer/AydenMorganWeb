@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Projects - Ayden Morgan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="css/styles.css" />
   <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
@@ -12,29 +14,23 @@
 
   <a href="index.html" class="home-link">Ayden Morgan</a>
 
-  <div id="menu-container"></div>
+  <div id="menu-container">
+    <button id="menu-btn" class="menu-btn" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div id="menu-overlay" class="menu-overlay" aria-hidden="true">
+      <button id="close-menu" class="close-menu" aria-label="Close menu">&times;</button>
+      <nav class="menu-nav">
+        <a href="index.html" class="menu-link">Home</a>
+        <a href="photos.html" class="menu-link">Photos</a>
+        <a href="about.html" class="menu-link">About Me</a>
+        <a href="projects.html" class="menu-link">Projects</a>
+        <a href="mailto:aymorgan@calpoly.edu" class="menu-link">Contact</a>
+      </nav>
+    </div>
+  </div>
   <script>
-    fetch('menu.html')
-      .then(res => {
-        if (!res.ok) throw new Error('Menu failed to load');
-        return res.text();
-      })
-      .then(html => {
-        document.getElementById('menu-container').innerHTML = html;
-        const script = document.createElement('script');
-        script.src = 'menu.js';
-        document.body.appendChild(script);
-      })
-      .catch(err => {
-        console.warn('Menu fallback:', err);
-        document.getElementById('menu-container').innerHTML = `
-          <div style="position: fixed; top: 2rem; right: 3rem; z-index: 1001;">
-            <a href="index.html" style="margin-right: 1rem; text-decoration: none; color: #111;">Home</a>
-            <a href="about.html" style="margin-right: 1rem; text-decoration: none; color: #111;">About</a>
-            <a href="photos.html" style="text-decoration: none; color: #111;">Photos</a>
-          </div>
-        `;
-      });
+    (function(){var b=document.getElementById('menu-btn'),o=document.getElementById('menu-overlay'),c=document.getElementById('close-menu');if(!b||!o||!c)return;function close(){o.classList.remove('active');setTimeout(function(){o.style.display='none';o.setAttribute('aria-hidden','true')},350)}b.addEventListener('click',function(){o.classList.add('active');o.style.display='flex';o.setAttribute('aria-hidden','false');document.querySelectorAll('.menu-link').forEach(function(l){l.style.animation='none';void l.offsetWidth;l.style.animation=''})});c.addEventListener('click',close);o.addEventListener('click',function(e){if(e.target===o)close()})})();
   </script>
 
   <main class="container page-transition">
@@ -45,7 +41,7 @@
 
       <!-- 1 — This Website, Keep this here I might want to un comment later -->
       <!-- <div class="project-card no-hover no-click">
-        <img src="images/website-photo5.png" alt="This Website preview" loading="lazy">
+        <img src="images/website-photo5.jpg" alt="This Website preview" loading="lazy">
         <h2>This Website</h2>
         <p class="subtitle">Portfolio &amp; Personal Archive</p>
         <p>A custom site I built from scratch using HTML, CSS, and JavaScript to showcase my work, photography, and experiments with design and layout.</p>
@@ -53,7 +49,7 @@
 
       <!-- 2 — Hello Campus -->
       <a href="hello-campus.html" class="project-card">
-        <img src="images/hellocampus-preview8.png" alt="Hello Campus preview" loading="lazy"/>
+        <img src="images/hellocampus-preview8.jpg" alt="Hello Campus preview" loading="lazy"/>
         <h2>Hello Campus</h2>
         <p class="subtitle">Student Networking App</p>
         <p>College Advisory Board Member on a mobile app that helps students form interest-based groups and build their own communities. Collaborated with finance, product, and growth teams to improve user flow and drive adoption to 3,000+ users.</p>
@@ -61,7 +57,7 @@
 
        <!-- 3 — Delta Sigma Pi Website -->
       <a href="delta-sigma-pi.html" class="project-card">
-        <img src="images/dsp-preview2.png" alt="Delta Sigma Pi Website preview" loading="lazy">
+        <img src="images/dsp-preview2.jpg" alt="Delta Sigma Pi Website preview" loading="lazy">
         <h2>Delta Sigma Pi Website</h2>
         <p class="subtitle">Chapter Information Portal</p>
         <p>As Finance Chair & Webmaster, I redesigned the chapter site serving 70+ members and 3,500+ annual visitors, centralizing recruitment, event registration, and streamlining $25k in national due payments.</p>
@@ -69,7 +65,7 @@
 
       <!-- 4 — Little Trees App -->
       <a href="little-trees.html" class="project-card">
-        <img src="images/liltreepale7.png" alt="Little Trees App preview" loading="lazy">
+        <img src="images/liltreepale7.jpg" alt="Little Trees App preview" loading="lazy">
         <h2>Little Trees</h2>
         <p class="subtitle">Screen Time Blocking App</p>
         <p>A mobile app I founded to help users reduce screen time through a collaborative tree-planting experience. Now at 1,000+ users with 65 paying subscribers and $5k in annual recurring revenue.</p>
@@ -119,7 +115,5 @@
     });
   </script>
 
-  <!-- Snake Game Easter Egg -->
-  <script src="js/snake-game.js"></script>
 </body>
 </html>
