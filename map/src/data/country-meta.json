@@ -1,0 +1,1052 @@
+{
+  "004": {
+    "alpha2": "AF",
+    "alpha3": "AFG",
+    "name": "Afghanistan",
+    "continent": "Asia"
+  },
+  "008": {
+    "alpha2": "AL",
+    "alpha3": "ALB",
+    "name": "Albania",
+    "continent": "Europe"
+  },
+  "012": {
+    "alpha2": "DZ",
+    "alpha3": "DZA",
+    "name": "Algeria",
+    "continent": "Africa"
+  },
+  "024": {
+    "alpha2": "AO",
+    "alpha3": "AGO",
+    "name": "Angola",
+    "continent": "Africa"
+  },
+  "031": {
+    "alpha2": "AZ",
+    "alpha3": "AZE",
+    "name": "Azerbaijan",
+    "continent": "Asia"
+  },
+  "032": {
+    "alpha2": "AR",
+    "alpha3": "ARG",
+    "name": "Argentina",
+    "continent": "South America"
+  },
+  "036": {
+    "alpha2": "AU",
+    "alpha3": "AUS",
+    "name": "Australia",
+    "continent": "Oceania"
+  },
+  "040": {
+    "alpha2": "AT",
+    "alpha3": "AUT",
+    "name": "Austria",
+    "continent": "Europe"
+  },
+  "044": {
+    "alpha2": "BS",
+    "alpha3": "BHS",
+    "name": "Bahamas",
+    "continent": "North America"
+  },
+  "050": {
+    "alpha2": "BD",
+    "alpha3": "BGD",
+    "name": "Bangladesh",
+    "continent": "Asia"
+  },
+  "051": {
+    "alpha2": "AM",
+    "alpha3": "ARM",
+    "name": "Armenia",
+    "continent": "Asia"
+  },
+  "056": {
+    "alpha2": "BE",
+    "alpha3": "BEL",
+    "name": "Belgium",
+    "continent": "Europe"
+  },
+  "064": {
+    "alpha2": "BT",
+    "alpha3": "BTN",
+    "name": "Bhutan",
+    "continent": "Asia"
+  },
+  "068": {
+    "alpha2": "BO",
+    "alpha3": "BOL",
+    "name": "Bolivia",
+    "continent": "South America"
+  },
+  "070": {
+    "alpha2": "BA",
+    "alpha3": "BIH",
+    "name": "Bosnia and Herzegovina",
+    "continent": "Europe"
+  },
+  "072": {
+    "alpha2": "BW",
+    "alpha3": "BWA",
+    "name": "Botswana",
+    "continent": "Africa"
+  },
+  "076": {
+    "alpha2": "BR",
+    "alpha3": "BRA",
+    "name": "Brazil",
+    "continent": "South America"
+  },
+  "084": {
+    "alpha2": "BZ",
+    "alpha3": "BLZ",
+    "name": "Belize",
+    "continent": "North America"
+  },
+  "090": {
+    "alpha2": "SB",
+    "alpha3": "SLB",
+    "name": "Solomon Islands",
+    "continent": "Oceania"
+  },
+  "096": {
+    "alpha2": "BN",
+    "alpha3": "BRN",
+    "name": "Brunei",
+    "continent": "Asia"
+  },
+  "100": {
+    "alpha2": "BG",
+    "alpha3": "BGR",
+    "name": "Bulgaria",
+    "continent": "Europe"
+  },
+  "104": {
+    "alpha2": "MM",
+    "alpha3": "MMR",
+    "name": "Myanmar",
+    "continent": "Asia"
+  },
+  "108": {
+    "alpha2": "BI",
+    "alpha3": "BDI",
+    "name": "Burundi",
+    "continent": "Africa"
+  },
+  "112": {
+    "alpha2": "BY",
+    "alpha3": "BLR",
+    "name": "Belarus",
+    "continent": "Europe"
+  },
+  "116": {
+    "alpha2": "KH",
+    "alpha3": "KHM",
+    "name": "Cambodia",
+    "continent": "Asia"
+  },
+  "120": {
+    "alpha2": "CM",
+    "alpha3": "CMR",
+    "name": "Cameroon",
+    "continent": "Africa"
+  },
+  "124": {
+    "alpha2": "CA",
+    "alpha3": "CAN",
+    "name": "Canada",
+    "continent": "North America"
+  },
+  "140": {
+    "alpha2": "CF",
+    "alpha3": "CAF",
+    "name": "Central African Republic",
+    "continent": "Africa"
+  },
+  "144": {
+    "alpha2": "LK",
+    "alpha3": "LKA",
+    "name": "Sri Lanka",
+    "continent": "Asia"
+  },
+  "148": {
+    "alpha2": "TD",
+    "alpha3": "TCD",
+    "name": "Chad",
+    "continent": "Africa"
+  },
+  "152": {
+    "alpha2": "CL",
+    "alpha3": "CHL",
+    "name": "Chile",
+    "continent": "South America"
+  },
+  "156": {
+    "alpha2": "CN",
+    "alpha3": "CHN",
+    "name": "China",
+    "continent": "Asia"
+  },
+  "158": {
+    "alpha2": "TW",
+    "alpha3": "TWN",
+    "name": "Taiwan",
+    "continent": "Asia"
+  },
+  "170": {
+    "alpha2": "CO",
+    "alpha3": "COL",
+    "name": "Colombia",
+    "continent": "South America"
+  },
+  "178": {
+    "alpha2": "CG",
+    "alpha3": "COG",
+    "name": "Congo (Republic)",
+    "continent": "Africa"
+  },
+  "180": {
+    "alpha2": "CD",
+    "alpha3": "COD",
+    "name": "Congo (DRC)",
+    "continent": "Africa"
+  },
+  "188": {
+    "alpha2": "CR",
+    "alpha3": "CRI",
+    "name": "Costa Rica",
+    "continent": "North America"
+  },
+  "191": {
+    "alpha2": "HR",
+    "alpha3": "HRV",
+    "name": "Croatia",
+    "continent": "Europe"
+  },
+  "192": {
+    "alpha2": "CU",
+    "alpha3": "CUB",
+    "name": "Cuba",
+    "continent": "North America"
+  },
+  "196": {
+    "alpha2": "CY",
+    "alpha3": "CYP",
+    "name": "Cyprus",
+    "continent": "Europe"
+  },
+  "203": {
+    "alpha2": "CZ",
+    "alpha3": "CZE",
+    "name": "Czech Republic",
+    "continent": "Europe"
+  },
+  "204": {
+    "alpha2": "BJ",
+    "alpha3": "BEN",
+    "name": "Benin",
+    "continent": "Africa"
+  },
+  "208": {
+    "alpha2": "DK",
+    "alpha3": "DNK",
+    "name": "Denmark",
+    "continent": "Europe"
+  },
+  "214": {
+    "alpha2": "DO",
+    "alpha3": "DOM",
+    "name": "Dominican Republic",
+    "continent": "North America"
+  },
+  "218": {
+    "alpha2": "EC",
+    "alpha3": "ECU",
+    "name": "Ecuador",
+    "continent": "South America"
+  },
+  "222": {
+    "alpha2": "SV",
+    "alpha3": "SLV",
+    "name": "El Salvador",
+    "continent": "North America"
+  },
+  "226": {
+    "alpha2": "GQ",
+    "alpha3": "GNQ",
+    "name": "Equatorial Guinea",
+    "continent": "Africa"
+  },
+  "231": {
+    "alpha2": "ET",
+    "alpha3": "ETH",
+    "name": "Ethiopia",
+    "continent": "Africa"
+  },
+  "232": {
+    "alpha2": "ER",
+    "alpha3": "ERI",
+    "name": "Eritrea",
+    "continent": "Africa"
+  },
+  "233": {
+    "alpha2": "EE",
+    "alpha3": "EST",
+    "name": "Estonia",
+    "continent": "Europe"
+  },
+  "238": {
+    "alpha2": "FK",
+    "alpha3": "FLK",
+    "name": "Falkland Islands",
+    "continent": "South America"
+  },
+  "242": {
+    "alpha2": "FJ",
+    "alpha3": "FJI",
+    "name": "Fiji",
+    "continent": "Oceania"
+  },
+  "246": {
+    "alpha2": "FI",
+    "alpha3": "FIN",
+    "name": "Finland",
+    "continent": "Europe"
+  },
+  "250": {
+    "alpha2": "FR",
+    "alpha3": "FRA",
+    "name": "France",
+    "continent": "Europe"
+  },
+  "260": {
+    "alpha2": "TF",
+    "alpha3": "ATF",
+    "name": "French Southern and Antarctic Lands",
+    "continent": "Antarctica"
+  },
+  "262": {
+    "alpha2": "DJ",
+    "alpha3": "DJI",
+    "name": "Djibouti",
+    "continent": "Africa"
+  },
+  "266": {
+    "alpha2": "GA",
+    "alpha3": "GAB",
+    "name": "Gabon",
+    "continent": "Africa"
+  },
+  "268": {
+    "alpha2": "GE",
+    "alpha3": "GEO",
+    "name": "Georgia",
+    "continent": "Asia"
+  },
+  "270": {
+    "alpha2": "GM",
+    "alpha3": "GMB",
+    "name": "Gambia",
+    "continent": "Africa"
+  },
+  "275": {
+    "alpha2": "PS",
+    "alpha3": "PSE",
+    "name": "Palestine",
+    "continent": "Asia"
+  },
+  "276": {
+    "alpha2": "DE",
+    "alpha3": "DEU",
+    "name": "Germany",
+    "continent": "Europe"
+  },
+  "288": {
+    "alpha2": "GH",
+    "alpha3": "GHA",
+    "name": "Ghana",
+    "continent": "Africa"
+  },
+  "300": {
+    "alpha2": "GR",
+    "alpha3": "GRC",
+    "name": "Greece",
+    "continent": "Europe"
+  },
+  "304": {
+    "alpha2": "GL",
+    "alpha3": "GRL",
+    "name": "Greenland",
+    "continent": "North America"
+  },
+  "320": {
+    "alpha2": "GT",
+    "alpha3": "GTM",
+    "name": "Guatemala",
+    "continent": "North America"
+  },
+  "324": {
+    "alpha2": "GN",
+    "alpha3": "GIN",
+    "name": "Guinea",
+    "continent": "Africa"
+  },
+  "328": {
+    "alpha2": "GY",
+    "alpha3": "GUY",
+    "name": "Guyana",
+    "continent": "South America"
+  },
+  "332": {
+    "alpha2": "HT",
+    "alpha3": "HTI",
+    "name": "Haiti",
+    "continent": "North America"
+  },
+  "340": {
+    "alpha2": "HN",
+    "alpha3": "HND",
+    "name": "Honduras",
+    "continent": "North America"
+  },
+  "348": {
+    "alpha2": "HU",
+    "alpha3": "HUN",
+    "name": "Hungary",
+    "continent": "Europe"
+  },
+  "352": {
+    "alpha2": "IS",
+    "alpha3": "ISL",
+    "name": "Iceland",
+    "continent": "Europe"
+  },
+  "356": {
+    "alpha2": "IN",
+    "alpha3": "IND",
+    "name": "India",
+    "continent": "Asia"
+  },
+  "360": {
+    "alpha2": "ID",
+    "alpha3": "IDN",
+    "name": "Indonesia",
+    "continent": "Asia"
+  },
+  "364": {
+    "alpha2": "IR",
+    "alpha3": "IRN",
+    "name": "Iran",
+    "continent": "Asia"
+  },
+  "368": {
+    "alpha2": "IQ",
+    "alpha3": "IRQ",
+    "name": "Iraq",
+    "continent": "Asia"
+  },
+  "372": {
+    "alpha2": "IE",
+    "alpha3": "IRL",
+    "name": "Ireland",
+    "continent": "Europe"
+  },
+  "376": {
+    "alpha2": "IL",
+    "alpha3": "ISR",
+    "name": "Israel",
+    "continent": "Asia"
+  },
+  "380": {
+    "alpha2": "IT",
+    "alpha3": "ITA",
+    "name": "Italy",
+    "continent": "Europe"
+  },
+  "384": {
+    "alpha2": "CI",
+    "alpha3": "CIV",
+    "name": "Cote d'Ivoire",
+    "continent": "Africa"
+  },
+  "388": {
+    "alpha2": "JM",
+    "alpha3": "JAM",
+    "name": "Jamaica",
+    "continent": "North America"
+  },
+  "392": {
+    "alpha2": "JP",
+    "alpha3": "JPN",
+    "name": "Japan",
+    "continent": "Asia"
+  },
+  "398": {
+    "alpha2": "KZ",
+    "alpha3": "KAZ",
+    "name": "Kazakhstan",
+    "continent": "Asia"
+  },
+  "400": {
+    "alpha2": "JO",
+    "alpha3": "JOR",
+    "name": "Jordan",
+    "continent": "Asia"
+  },
+  "404": {
+    "alpha2": "KE",
+    "alpha3": "KEN",
+    "name": "Kenya",
+    "continent": "Africa"
+  },
+  "408": {
+    "alpha2": "KP",
+    "alpha3": "PRK",
+    "name": "North Korea",
+    "continent": "Asia"
+  },
+  "410": {
+    "alpha2": "KR",
+    "alpha3": "KOR",
+    "name": "South Korea",
+    "continent": "Asia"
+  },
+  "414": {
+    "alpha2": "KW",
+    "alpha3": "KWT",
+    "name": "Kuwait",
+    "continent": "Asia"
+  },
+  "417": {
+    "alpha2": "KG",
+    "alpha3": "KGZ",
+    "name": "Kyrgyzstan",
+    "continent": "Asia"
+  },
+  "418": {
+    "alpha2": "LA",
+    "alpha3": "LAO",
+    "name": "Laos",
+    "continent": "Asia"
+  },
+  "422": {
+    "alpha2": "LB",
+    "alpha3": "LBN",
+    "name": "Lebanon",
+    "continent": "Asia"
+  },
+  "426": {
+    "alpha2": "LS",
+    "alpha3": "LSO",
+    "name": "Lesotho",
+    "continent": "Africa"
+  },
+  "428": {
+    "alpha2": "LV",
+    "alpha3": "LVA",
+    "name": "Latvia",
+    "continent": "Europe"
+  },
+  "430": {
+    "alpha2": "LR",
+    "alpha3": "LBR",
+    "name": "Liberia",
+    "continent": "Africa"
+  },
+  "434": {
+    "alpha2": "LY",
+    "alpha3": "LBY",
+    "name": "Libya",
+    "continent": "Africa"
+  },
+  "440": {
+    "alpha2": "LT",
+    "alpha3": "LTU",
+    "name": "Lithuania",
+    "continent": "Europe"
+  },
+  "442": {
+    "alpha2": "LU",
+    "alpha3": "LUX",
+    "name": "Luxembourg",
+    "continent": "Europe"
+  },
+  "450": {
+    "alpha2": "MG",
+    "alpha3": "MDG",
+    "name": "Madagascar",
+    "continent": "Africa"
+  },
+  "454": {
+    "alpha2": "MW",
+    "alpha3": "MWI",
+    "name": "Malawi",
+    "continent": "Africa"
+  },
+  "458": {
+    "alpha2": "MY",
+    "alpha3": "MYS",
+    "name": "Malaysia",
+    "continent": "Asia"
+  },
+  "466": {
+    "alpha2": "ML",
+    "alpha3": "MLI",
+    "name": "Mali",
+    "continent": "Africa"
+  },
+  "478": {
+    "alpha2": "MR",
+    "alpha3": "MRT",
+    "name": "Mauritania",
+    "continent": "Africa"
+  },
+  "484": {
+    "alpha2": "MX",
+    "alpha3": "MEX",
+    "name": "Mexico",
+    "continent": "North America"
+  },
+  "496": {
+    "alpha2": "MN",
+    "alpha3": "MNG",
+    "name": "Mongolia",
+    "continent": "Asia"
+  },
+  "498": {
+    "alpha2": "MD",
+    "alpha3": "MDA",
+    "name": "Moldova",
+    "continent": "Europe"
+  },
+  "499": {
+    "alpha2": "ME",
+    "alpha3": "MNE",
+    "name": "Montenegro",
+    "continent": "Europe"
+  },
+  "504": {
+    "alpha2": "MA",
+    "alpha3": "MAR",
+    "name": "Morocco",
+    "continent": "Africa"
+  },
+  "508": {
+    "alpha2": "MZ",
+    "alpha3": "MOZ",
+    "name": "Mozambique",
+    "continent": "Africa"
+  },
+  "512": {
+    "alpha2": "OM",
+    "alpha3": "OMN",
+    "name": "Oman",
+    "continent": "Asia"
+  },
+  "516": {
+    "alpha2": "NA",
+    "alpha3": "NAM",
+    "name": "Namibia",
+    "continent": "Africa"
+  },
+  "524": {
+    "alpha2": "NP",
+    "alpha3": "NPL",
+    "name": "Nepal",
+    "continent": "Asia"
+  },
+  "528": {
+    "alpha2": "NL",
+    "alpha3": "NLD",
+    "name": "Netherlands",
+    "continent": "Europe"
+  },
+  "540": {
+    "alpha2": "NC",
+    "alpha3": "NCL",
+    "name": "New Caledonia",
+    "continent": "Oceania"
+  },
+  "548": {
+    "alpha2": "VU",
+    "alpha3": "VUT",
+    "name": "Vanuatu",
+    "continent": "Oceania"
+  },
+  "554": {
+    "alpha2": "NZ",
+    "alpha3": "NZL",
+    "name": "New Zealand",
+    "continent": "Oceania"
+  },
+  "558": {
+    "alpha2": "NI",
+    "alpha3": "NIC",
+    "name": "Nicaragua",
+    "continent": "North America"
+  },
+  "562": {
+    "alpha2": "NE",
+    "alpha3": "NER",
+    "name": "Niger",
+    "continent": "Africa"
+  },
+  "566": {
+    "alpha2": "NG",
+    "alpha3": "NGA",
+    "name": "Nigeria",
+    "continent": "Africa"
+  },
+  "578": {
+    "alpha2": "NO",
+    "alpha3": "NOR",
+    "name": "Norway",
+    "continent": "Europe"
+  },
+  "586": {
+    "alpha2": "PK",
+    "alpha3": "PAK",
+    "name": "Pakistan",
+    "continent": "Asia"
+  },
+  "591": {
+    "alpha2": "PA",
+    "alpha3": "PAN",
+    "name": "Panama",
+    "continent": "North America"
+  },
+  "598": {
+    "alpha2": "PG",
+    "alpha3": "PNG",
+    "name": "Papua New Guinea",
+    "continent": "Oceania"
+  },
+  "600": {
+    "alpha2": "PY",
+    "alpha3": "PRY",
+    "name": "Paraguay",
+    "continent": "South America"
+  },
+  "604": {
+    "alpha2": "PE",
+    "alpha3": "PER",
+    "name": "Peru",
+    "continent": "South America"
+  },
+  "608": {
+    "alpha2": "PH",
+    "alpha3": "PHL",
+    "name": "Philippines",
+    "continent": "Asia"
+  },
+  "616": {
+    "alpha2": "PL",
+    "alpha3": "POL",
+    "name": "Poland",
+    "continent": "Europe"
+  },
+  "620": {
+    "alpha2": "PT",
+    "alpha3": "PRT",
+    "name": "Portugal",
+    "continent": "Europe"
+  },
+  "624": {
+    "alpha2": "GW",
+    "alpha3": "GNB",
+    "name": "Guinea-Bissau",
+    "continent": "Africa"
+  },
+  "626": {
+    "alpha2": "TL",
+    "alpha3": "TLS",
+    "name": "Timor-Leste",
+    "continent": "Asia"
+  },
+  "630": {
+    "alpha2": "PR",
+    "alpha3": "PRI",
+    "name": "Puerto Rico",
+    "continent": "North America"
+  },
+  "634": {
+    "alpha2": "QA",
+    "alpha3": "QAT",
+    "name": "Qatar",
+    "continent": "Asia"
+  },
+  "642": {
+    "alpha2": "RO",
+    "alpha3": "ROU",
+    "name": "Romania",
+    "continent": "Europe"
+  },
+  "643": {
+    "alpha2": "RU",
+    "alpha3": "RUS",
+    "name": "Russia",
+    "continent": "Europe"
+  },
+  "646": {
+    "alpha2": "RW",
+    "alpha3": "RWA",
+    "name": "Rwanda",
+    "continent": "Africa"
+  },
+  "682": {
+    "alpha2": "SA",
+    "alpha3": "SAU",
+    "name": "Saudi Arabia",
+    "continent": "Asia"
+  },
+  "686": {
+    "alpha2": "SN",
+    "alpha3": "SEN",
+    "name": "Senegal",
+    "continent": "Africa"
+  },
+  "688": {
+    "alpha2": "RS",
+    "alpha3": "SRB",
+    "name": "Serbia",
+    "continent": "Europe"
+  },
+  "694": {
+    "alpha2": "SL",
+    "alpha3": "SLE",
+    "name": "Sierra Leone",
+    "continent": "Africa"
+  },
+  "702": {
+    "alpha2": "SG",
+    "alpha3": "SGP",
+    "name": "Singapore",
+    "continent": "Asia"
+  },
+  "703": {
+    "alpha2": "SK",
+    "alpha3": "SVK",
+    "name": "Slovakia",
+    "continent": "Europe"
+  },
+  "704": {
+    "alpha2": "VN",
+    "alpha3": "VNM",
+    "name": "Vietnam",
+    "continent": "Asia"
+  },
+  "705": {
+    "alpha2": "SI",
+    "alpha3": "SVN",
+    "name": "Slovenia",
+    "continent": "Europe"
+  },
+  "706": {
+    "alpha2": "SO",
+    "alpha3": "SOM",
+    "name": "Somalia",
+    "continent": "Africa"
+  },
+  "710": {
+    "alpha2": "ZA",
+    "alpha3": "ZAF",
+    "name": "South Africa",
+    "continent": "Africa"
+  },
+  "716": {
+    "alpha2": "ZW",
+    "alpha3": "ZWE",
+    "name": "Zimbabwe",
+    "continent": "Africa"
+  },
+  "724": {
+    "alpha2": "ES",
+    "alpha3": "ESP",
+    "name": "Spain",
+    "continent": "Europe"
+  },
+  "728": {
+    "alpha2": "SS",
+    "alpha3": "SSD",
+    "name": "South Sudan",
+    "continent": "Africa"
+  },
+  "729": {
+    "alpha2": "SD",
+    "alpha3": "SDN",
+    "name": "Sudan",
+    "continent": "Africa"
+  },
+  "732": {
+    "alpha2": "EH",
+    "alpha3": "ESH",
+    "name": "Western Sahara",
+    "continent": "Africa"
+  },
+  "740": {
+    "alpha2": "SR",
+    "alpha3": "SUR",
+    "name": "Suriname",
+    "continent": "South America"
+  },
+  "748": {
+    "alpha2": "SZ",
+    "alpha3": "SWZ",
+    "name": "Eswatini",
+    "continent": "Africa"
+  },
+  "752": {
+    "alpha2": "SE",
+    "alpha3": "SWE",
+    "name": "Sweden",
+    "continent": "Europe"
+  },
+  "756": {
+    "alpha2": "CH",
+    "alpha3": "CHE",
+    "name": "Switzerland",
+    "continent": "Europe"
+  },
+  "760": {
+    "alpha2": "SY",
+    "alpha3": "SYR",
+    "name": "Syria",
+    "continent": "Asia"
+  },
+  "762": {
+    "alpha2": "TJ",
+    "alpha3": "TJK",
+    "name": "Tajikistan",
+    "continent": "Asia"
+  },
+  "764": {
+    "alpha2": "TH",
+    "alpha3": "THA",
+    "name": "Thailand",
+    "continent": "Asia"
+  },
+  "768": {
+    "alpha2": "TG",
+    "alpha3": "TGO",
+    "name": "Togo",
+    "continent": "Africa"
+  },
+  "780": {
+    "alpha2": "TT",
+    "alpha3": "TTO",
+    "name": "Trinidad and Tobago",
+    "continent": "North America"
+  },
+  "784": {
+    "alpha2": "AE",
+    "alpha3": "ARE",
+    "name": "United Arab Emirates",
+    "continent": "Asia"
+  },
+  "788": {
+    "alpha2": "TN",
+    "alpha3": "TUN",
+    "name": "Tunisia",
+    "continent": "Africa"
+  },
+  "792": {
+    "alpha2": "TR",
+    "alpha3": "TUR",
+    "name": "Turkey",
+    "continent": "Asia"
+  },
+  "795": {
+    "alpha2": "TM",
+    "alpha3": "TKM",
+    "name": "Turkmenistan",
+    "continent": "Asia"
+  },
+  "800": {
+    "alpha2": "UG",
+    "alpha3": "UGA",
+    "name": "Uganda",
+    "continent": "Africa"
+  },
+  "804": {
+    "alpha2": "UA",
+    "alpha3": "UKR",
+    "name": "Ukraine",
+    "continent": "Europe"
+  },
+  "807": {
+    "alpha2": "MK",
+    "alpha3": "MKD",
+    "name": "North Macedonia",
+    "continent": "Europe"
+  },
+  "818": {
+    "alpha2": "EG",
+    "alpha3": "EGY",
+    "name": "Egypt",
+    "continent": "Africa"
+  },
+  "826": {
+    "alpha2": "GB",
+    "alpha3": "GBR",
+    "name": "United Kingdom",
+    "continent": "Europe"
+  },
+  "834": {
+    "alpha2": "TZ",
+    "alpha3": "TZA",
+    "name": "Tanzania",
+    "continent": "Africa"
+  },
+  "840": {
+    "alpha2": "US",
+    "alpha3": "USA",
+    "name": "United States",
+    "continent": "North America"
+  },
+  "854": {
+    "alpha2": "BF",
+    "alpha3": "BFA",
+    "name": "Burkina Faso",
+    "continent": "Africa"
+  },
+  "858": {
+    "alpha2": "UY",
+    "alpha3": "URY",
+    "name": "Uruguay",
+    "continent": "South America"
+  },
+  "860": {
+    "alpha2": "UZ",
+    "alpha3": "UZB",
+    "name": "Uzbekistan",
+    "continent": "Asia"
+  },
+  "862": {
+    "alpha2": "VE",
+    "alpha3": "VEN",
+    "name": "Venezuela",
+    "continent": "South America"
+  },
+  "887": {
+    "alpha2": "YE",
+    "alpha3": "YEM",
+    "name": "Yemen",
+    "continent": "Asia"
+  },
+  "894": {
+    "alpha2": "ZM",
+    "alpha3": "ZMB",
+    "name": "Zambia",
+    "continent": "Africa"
+  },
+  "-99": {
+    "alpha2": "XK",
+    "alpha3": "XKX",
+    "name": "Kosovo",
+    "continent": "Europe"
+  }
+}
