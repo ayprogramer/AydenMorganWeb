@@ -38,14 +38,15 @@ export function useCartogram({
 
     setIsComputing(true);
 
-    const id = requestAnimationFrame(() => {
+    // Use setTimeout to yield to the browser so clicks/UI stay responsive
+    const id = setTimeout(() => {
       try {
         if (mode === 'cartogram') {
           const result = buildCartogramFeatures({
             topology,
             metricByCountryId: metricData,
             projection,
-            iterations: 6,
+            iterations: 4,
           });
           setFeatures(result);
         } else {
@@ -64,9 +65,9 @@ export function useCartogram({
       } finally {
         setIsComputing(false);
       }
-    });
+    }, 20);
 
-    return () => cancelAnimationFrame(id);
+    return () => clearTimeout(id);
   }, [topology, metricData, mode, projection]);
 
   return { features, geoFeatures, isComputing };

@@ -147,7 +147,7 @@ export interface CartogramInput {
  * Render with `d3.geoPath().projection(null)`.
  */
 export function buildCartogramFeatures(input: CartogramInput): FeatureCollection {
-  const { topology, metricByCountryId, projection, iterations = 6 } = input;
+  const { topology, metricByCountryId, projection, iterations = 4 } = input;
 
   const countries = feature(topology, topology.objects.countries) as FeatureCollection;
   const filtered = countries.features.filter((f) => String(f.id) !== '010');

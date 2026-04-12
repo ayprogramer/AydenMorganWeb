@@ -173,14 +173,17 @@ export default function WorldMap({
       const nextPath = activePathGen(d) ?? '';
       const prevPath = prevPathsRef.current.get(id);
       const isHl = highlightId === id;
+      const dur = prevPath && prevPath !== nextPath ? 900 : 400;
 
-      if (prevPath && nextPath && prevPath !== nextPath) {
+      // Only use flubber for paths that actually changed — and use a coarse
+      // segment length so it doesn't choke the main thread
+      if (prevPath && nextPath && prevPath !== nextPath && nextPath.length < 3000) {
         try {
           const interp = flubberInterpolate(prevPath, nextPath, {
-            maxSegmentLength: 10,
+            maxSegmentLength: 80,
           });
           el.transition()
-            .duration(1200)
+            .duration(dur)
             .ease(d3.easeCubicInOut)
             .attrTween('d', () => interp)
             .attr('fill', getCountryColor(id))
@@ -189,7 +192,7 @@ export default function WorldMap({
             .attr('stroke-width', isHl ? 2 : 0.4);
         } catch {
           el.transition()
-            .duration(1200)
+            .duration(dur)
             .ease(d3.easeCubicInOut)
             .attr('d', nextPath)
             .attr('fill', getCountryColor(id))
@@ -197,7 +200,7 @@ export default function WorldMap({
         }
       } else {
         el.transition()
-          .duration(prevPath ? 400 : 1200)
+          .duration(dur)
           .ease(d3.easeCubicInOut)
           .attr('d', nextPath)
           .attr('fill', getCountryColor(id))
