@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Donostia / San Sebastián — Michelin Star Restaurant Map · Ayden Morgan</title>
+  <meta name="description" content="An interactive map of the Michelin-starred and Michelin-recommended restaurants of Donostia / San Sebastián, in the heart of the Basque Country." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        crossorigin="" />
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { font-family: 'Urbanist', sans-serif; color: #111; background: #fff; }
+    body { min-height: 100vh; }
+
+    a { color: inherit; }
+
+    /* --- Top bar / breadcrumb (matches /map style) --- */
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 1.75rem;
+      border-bottom: 1px solid #f0f0f0;
+      background: #fff;
+      position: sticky;
+      top: 0;
+      z-index: 1100;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      background: rgba(255,255,255,0.92);
+    }
+    .breadcrumb {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #9a9a9a;
+      text-decoration: none;
+      letter-spacing: 0.01em;
+    }
+    .breadcrumb .here { color: #111; font-weight: 600; }
+    .breadcrumb:hover .domain { color: #555; }
+
+    .filter-group {
+      display: inline-flex;
+      gap: 0.25rem;
+      background: #f4f4f4;
+      padding: 0.25rem;
+      border-radius: 10px;
+    }
+    .filter-btn {
+      border: none;
+      background: transparent;
+      font-family: inherit;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #777;
+      padding: 0.45rem 0.85rem;
+      border-radius: 7px;
+      cursor: pointer;
+      transition: background 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+    .filter-btn:hover { color: #222; }
+    .filter-btn.active {
+      background: #fff;
+      color: #111;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+
+    /* --- Hero / intro --- */
+    .hero {
+      max-width: 1200px;
+      margin: 2.25rem auto 1.25rem;
+      padding: 0 1.75rem;
+    }
+    .hero h1 {
+      font-size: 2.25rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.4rem;
+    }
+    .hero h1 .accent {
+      display: inline-block;
+      border-bottom: 3px solid #00b8d4;
+      padding-bottom: 0.15rem;
+    }
+    .hero p {
+      color: #666;
+      font-size: 1.05rem;
+      max-width: 720px;
+      line-height: 1.55;
+    }
+
+    /* --- Layout --- */
+    .layout {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 1.25rem auto 3rem;
+      padding: 0 1.75rem;
+    }
+    @media (max-width: 900px) {
+      .layout { grid-template-columns: 1fr; }
+    }
+
+    /* --- Restaurant list --- */
+    .list {
+      background: #fafafa;
+      border: 1px solid #eee;
+      border-radius: 14px;
+      padding: 0.75rem;
+      max-height: 620px;
+      overflow-y: auto;
+    }
+    .list-section {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #999;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.6rem 0.6rem 0.4rem;
+    }
+    .list-item {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 0.6rem;
+      align-items: flex-start;
+      padding: 0.55rem 0.6rem;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+    .list-item:hover { background: #f0f0f0; }
+    .list-item.active { background: #eef9fb; }
+    .list-item .stars-cell {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: 0.15rem;
+    }
+    .list-item h3 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      line-height: 1.25;
+      color: #111;
+    }
+    .list-item .meta {
+      font-size: 0.78rem;
+      color: #777;
+      margin-top: 0.1rem;
+    }
+    .list-item.muted { opacity: 0.35; }
+
+    /* --- Map --- */
+    #map {
+      width: 100%;
+      height: 620px;
+      border-radius: 14px;
+      border: 1px solid #eee;
+      overflow: hidden;
+      z-index: 1;
+    }
+    @media (max-width: 900px) {
+      #map { height: 460px; }
+    }
+
+    .leaflet-container { font-family: 'Urbanist', sans-serif; }
+    .leaflet-popup-content-wrapper { border-radius: 12px; }
+    .leaflet-popup-content {
+      margin: 0.85rem 1rem;
+      font-size: 0.9rem;
+      line-height: 1.45;
+    }
+    .leaflet-popup-content h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+    .leaflet-popup-content .pop-stars { display: inline-flex; gap: 2px; }
+    .leaflet-popup-content .pop-meta { color: #666; font-size: 0.82rem; margin-top: 0.25rem; }
+    .leaflet-popup-content a { color: #0096a8; font-weight: 600; text-decoration: none; }
+
+    /* --- Custom markers (Michelin red) --- */
+    .pin {
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform: translate(-50%, -100%);
+      filter: drop-shadow(0 2px 3px rgba(0,0,0,0.25));
+    }
+    .pin svg { width: 100%; height: 100%; display: block; }
+
+    /* --- Footer / source --- */
+    .meta-footer {
+      max-width: 1200px;
+      margin: 0 auto 3rem;
+      padding: 0 1.75rem;
+      color: #888;
+      font-size: 0.82rem;
+      line-height: 1.5;
+    }
+    .meta-footer a { color: #555; text-decoration: underline; text-decoration-color: #ddd; }
+    .meta-footer a:hover { text-decoration-color: #888; }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+      align-items: center;
+      margin: 1rem 0 1.25rem;
+      max-width: 1200px;
+      padding: 0 1.75rem;
+    }
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.82rem;
+      color: #555;
+    }
+    .legend-icon { width: 20px; height: 20px; }
+    .legend-icon svg { width: 100%; height: 100%; }
+
+    /* --- Back / home links (re-use site style if available) --- */
+    .home-link {
+      position: fixed;
+      top: 1.7rem;
+      left: 1.5rem;
+      z-index: 1200;
+      padding: 0.4rem 1rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 12px;
+      color: #111;
+      text-decoration: none;
+      background: rgba(255,255,255,0.55);
+      backdrop-filter: blur(18px) saturate(180%);
+      -webkit-backdrop-filter: blur(18px) saturate(180%);
+      border: 1px solid rgba(0,0,0,0.06);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .home-link:hover { transform: translateY(-1px); box-shadow: 0 8px 20px rgba(0,0,0,0.12); }
+
+    @media (max-width: 600px) {
+      .topbar { padding: 0.85rem 1rem; }
+      .hero { padding: 0 1rem; margin-top: 1.5rem; }
+      .hero h1 { font-size: 1.7rem; }
+      .layout { padding: 0 1rem; }
+      .legend { padding: 0 1rem; }
+      .meta-footer { padding: 0 1rem; }
+      .home-link { display: none; }
+      .filter-btn { padding: 0.4rem 0.6rem; font-size: 0.72rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="/index.html" class="home-link">Ayden Morgan</a>
+
+  <header class="topbar">
+    <a class="breadcrumb" href="/index.html">
+      <span class="domain">aydenmorgan.com/</span><span class="here">donostia</span>
+    </a>
+    <div class="filter-group" id="filters" role="tablist" aria-label="Filter restaurants">
+      <button class="filter-btn active" data-filter="all" role="tab">All</button>
+      <button class="filter-btn" data-filter="3" role="tab">3 Star</button>
+      <button class="filter-btn" data-filter="2" role="tab">2 Star</button>
+      <button class="filter-btn" data-filter="1" role="tab">1 Star</button>
+      <button class="filter-btn" data-filter="0" role="tab">Selected</button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <h1><span class="accent">Donostia / San Sebastián</span></h1>
+    <p>A live map of the Michelin-starred and Michelin-recommended restaurants in and around Donostia / San Sebastián — one of the most decorated dining cities in the world. Click a pin or a name to learn more, or filter by star rating above.</p>
+  </section>
+
+  <div class="legend" aria-label="Legend">
+    <div class="legend-item">
+      <span class="legend-icon">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="#c8102e" d="M12 2c.6 1.3 1.7 2 3 2 .8 0 1.6-.3 2.3-.8.4 1.2.3 2.4-.4 3.4 1.4-.1 2.7-.6 3.8-1.4-.2 1.7-1.1 3.2-2.4 4.2 1.5.4 3 .3 4.4-.2-1 1.4-2.6 2.4-4.4 2.6 1.4 1 3.1 1.4 4.7 1-1.1 1.5-2.8 2.4-4.6 2.4 1.1 1.3 2.6 2 4.2 2.1-1.6 1.4-3.6 2-5.6 1.7.7 1.5 1.9 2.6 3.4 3.1-2 .6-4.1.2-5.7-1-.1 1.6.4 3.1 1.4 4.3-1.8-.6-3.2-2-3.8-3.7-.6 1.7-2 3.1-3.8 3.7 1-1.2 1.5-2.7 1.4-4.3-1.6 1.2-3.7 1.6-5.7 1 1.5-.5 2.7-1.6 3.4-3.1-2 .3-4-.3-5.6-1.7 1.6-.1 3.1-.8 4.2-2.1-1.8 0-3.5-.9-4.6-2.4 1.6.4 3.3 0 4.7-1-1.8-.2-3.4-1.2-4.4-2.6 1.4.5 2.9.6 4.4.2-1.3-1-2.2-2.5-2.4-4.2 1.1.8 2.4 1.3 3.8 1.4-.7-1-.8-2.2-.4-3.4.7.5 1.5.8 2.3.8 1.3 0 2.4-.7 3-2z"/>
+        </svg>
+      </span>
+      Michelin Star
+    </div>
+    <div class="legend-item">
+      <span class="legend-icon">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="#c8102e" d="M5 2v8a2 2 0 0 0 2 2v10h2V12a2 2 0 0 0 2-2V2H9v6H8V2H7v6H6V2H5zm10 0c-1.7 0-3 2.2-3 5v4c0 1.5.7 2.7 1.7 3v8h2.6v-8c1-.3 1.7-1.5 1.7-3V7c0-2.8-1.3-5-3-5z"/>
+        </svg>
+      </span>
+      Michelin Selected
+    </div>
+    <div class="legend-item" style="margin-left:auto; color:#888;">
+      Map data © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors
+    </div>
+  </div>
+
+  <main class="layout">
+    <aside class="list" id="list" aria-label="Restaurant list"></aside>
+    <div id="map" role="application" aria-label="Map of Michelin restaurants in San Sebastián"></div>
+  </main>
+
+  <footer class="meta-footer">
+    <p>Restaurant data compiled from the
+      <a href="https://guide.michelin.com/en/es/pais-vasco/es-donostia-san-sebastian/restaurants" target="_blank" rel="noopener">MICHELIN Guide — Donostia / San Sebastián</a>
+      (2026 selection). Tile imagery © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors. Built by <a href="/index.html">Ayden Morgan</a>.</p>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+          crossorigin=""></script>
+
+  <script>
+  // ---------- Data ----------
+  // Stars: 3, 2, 1 = Michelin stars; 0 = Michelin Selected / recommended (no star).
+  const RESTAURANTS = [
+    // 3 stars
+    { name: "Arzak",                stars: 3, lat: 43.32260, lng: -1.95745,
+      area: "Alto de Miracruz", cuisine: "Creative Basque",
+      address: "Av. Alcalde José Elosegi 273", price: "€€€€",
+      url: "https://guide.michelin.com/en/es/pais-vasco/es-donostia-san-sebastian/restaurant/arzak" },
+    { name: "Akelaŕe",              stars: 3, lat: 43.30966, lng: -2.02738,
+      area: "Monte Igeldo", cuisine: "Creative Basque",
+      address: "Paseo del Padre Orcolaga 56", price: "€€€€",
+      url: "https://guide.michelin.com/en/es/pais-vasco/es-donostia-san-sebastian/restaurant/akelarre" },
+    { name: "Martín Berasategui",   stars: 3, lat: 43.27500, lng: -2.01890,
+      area: "Lasarte-Oria", cuisine: "Creative",
+      address: "Loidi Kalea 4, Lasarte-Oria", price: "€€€€",
+      url: "https://guide.michelin.com/en/pais-vasco/lasarte-oria/restaurant/martin-berasategui" },
+
+    // 2 stars
+    { name: "Amelia by Paulo Airaudo", stars: 2, lat: 43.31810, lng: -1.98800,
+      area: "Centro", cuisine: "Creative",
+      address: "Prim Kalea 34", price: "€€€€",
+      url: "https://guide.michelin.com/en/es/pais-vasco/es-donostia-san-sebastian/restaurant/amelia-1191398" },
+    { name: "Mugaritz",             stars: 2, lat: 43.27460, lng: -1.89220,
+      area: "Errenteria", cuisine: "Innovative",
+      address: "Aldura Aldea 20, Errenteria", price: "€€€€",
+      url: "https://guide.michelin.com/en/pais-vasco/errenteria/restaurant/mugaritz" },
+
+    // 1 star
+    { name: "Kokotxa",              stars: 1, lat: 43.32612, lng: -1.98996,
+      area: "Parte Vieja (Old Town)", cuisine: "Modern Basque",
+      address: "Campanario 11", price: "€€€€",
+      url: "https://guide.michelin.com/en/es/pais-vasco/es-donostia-san-sebastian/restaurant/kokotxa" },
+    { name: "iBAi by Paulo Airaudo", stars: 1, lat: 43.32175, lng: -1.98230,
+      area: "Gros", cuisine: "Basque",
+      address: "Ramón María Lili 2", price: "€€€€",
+      url: "https://guide.michelin.com/en/es/pais-vasco/es-donostia-san-sebastian/restaurant/ibai-by-paulo-airaudo" },
+    { name: "Mirador de Ulía",      stars: 1, lat: 43.33080, lng: -1.96100,
+      area: "Monte Ulía", cuisine: "Creative",
+      address: "Paseo de Ulía 193", price: "€€€",
+      url: "https://guide.michelin.com/en/es/pais-vasco/es-donostia-san-sebastian/restaurant/mirador-de-ulia" },
+    { name: "Elkano",               stars: 1, lat: 43.30470, lng: -2.20290,
+      area: "Getaria", cuisine: "Seafood",
+      address: "Herrerieta Kalea 2, Getaria", price: "€€€€",
+      url: "https://guide.michelin.com/en/pais-vasco/getaria/restaurant/elkano" },
+
+    // Michelin Selected (no star) — gives the map the same "neighborhood density" feel as the slide
+    { name: "Casa Urola",           stars: 0, lat: 43.32600, lng: -1.98745,
+      area: "Parte Vieja", cuisine: "Traditional Basque", price: "€€€",
+      address: "Fermin Calbeton 20",
+      url: "https://guide.michelin.com/en/pais-vasco/es-donostia-san-sebastian/restaurant/casa-urola" },
+    { name: "Ganbara",              stars: 0, lat: 43.32543, lng: -1.98793,
+      area: "Parte Vieja", cuisine: "Traditional Basque", price: "€",
+      address: "San Jeronimo 21" },
+    { name: "Bodegón Alejandro",    stars: 0, lat: 43.32490, lng: -1.98905,
+      area: "Parte Vieja", cuisine: "Traditional", price: "€€€",
+      address: "Fermin Calbeton 4" },
+    { name: "Narru",                stars: 0, lat: 43.31895, lng: -1.98125,
+      area: "Centro", cuisine: "Traditional Basque", price: "€€€",
+      address: "Zubieta 56" },
+    { name: "Rekondo",              stars: 0, lat: 43.30810, lng: -2.01160,
+      area: "Igeldo", cuisine: "Basque", price: "€€€",
+      address: "Paseo de Igueldo 57" },
+    { name: "Bergara",              stars: 0, lat: 43.32395, lng: -1.97580,
+      area: "Gros", cuisine: "Basque pintxos", price: "€",
+      address: "Gen. Artetxe 8" },
+    { name: "Sukaldean Aitor Santamaria", stars: 0, lat: 43.31480, lng: -1.97830,
+      area: "Centro / Egia", cuisine: "Contemporary", price: "€€€" },
+    { name: "Bruno Oteiza",         stars: 0, lat: 43.32060, lng: -1.98980,
+      area: "Centro", cuisine: "Contemporary", price: "€€€€" },
+    { name: "Casa 887",             stars: 0, lat: 43.32305, lng: -1.97965,
+      area: "Gros", cuisine: "Fusion", price: "€€" },
+    { name: "Artean Barra Abierta", stars: 0, lat: 43.32270, lng: -1.98165,
+      area: "Gros", cuisine: "Fusion", price: "€€" },
+    { name: "Ikaitz",               stars: 0, lat: 43.31985, lng: -1.98575,
+      area: "Centro", cuisine: "Traditional", price: "€€" },
+    { name: "Muka",                 stars: 0, lat: 43.31385, lng: -1.97350,
+      area: "Egia", cuisine: "Grills", price: "€€" },
+  ];
+
+  // ---------- Marker icons (SVG, Michelin red) ----------
+  const STAR_RED = "#c8102e";
+
+  function flowerSVG(starsLabel) {
+    // Michelin "flower"-style star pin, with a number on it (1/2/3).
+    return `
+      <svg viewBox="0 0 32 38" xmlns="http://www.w3.org/2000/svg">
+        <g>
+          <path fill="${STAR_RED}" stroke="#fff" stroke-width="1.5"
+            d="M16 2c1.4 0 2.6.7 3.4 1.8.8-.7 1.9-1 3-.7 1.4.4 2.4 1.7 2.5 3.1 1.2-.1 2.4.5 3 1.6.7 1.2.6 2.7-.2 3.8 1 .5 1.8 1.5 1.9 2.7.2 1.4-.6 2.7-1.8 3.3.7.9 1 2.1.6 3.2-.4 1.3-1.6 2.2-2.9 2.3.3 1.1 0 2.4-.9 3.2-1 .9-2.4 1.1-3.6.6-.1 1.1-.8 2.1-1.9 2.5-1.2.5-2.6.2-3.5-.7-.5 1-1.5 1.7-2.7 1.7-1.2 0-2.2-.7-2.7-1.7-.9.9-2.3 1.2-3.5.7-1.1-.4-1.8-1.4-1.9-2.5-1.2.5-2.6.3-3.6-.6-.9-.8-1.2-2.1-.9-3.2-1.3-.1-2.5-1-2.9-2.3-.4-1.1-.1-2.3.6-3.2C2.6 18 1.8 16.7 2 15.3c.1-1.2.9-2.2 1.9-2.7-.8-1.1-.9-2.6-.2-3.8.6-1.1 1.8-1.7 3-1.6.1-1.4 1.1-2.7 2.5-3.1 1.1-.3 2.2 0 3 .7C13 2.7 14.6 2 16 2z"/>
+          <path d="M16 6 L18 11 L22 11 L19 14 L20 19 L16 16 L12 19 L13 14 L10 11 L14 11 Z" fill="#fff"/>
+          <text x="16" y="35" text-anchor="middle" font-family="Urbanist, sans-serif"
+                font-size="9" font-weight="700" fill="${STAR_RED}">${starsLabel}</text>
+        </g>
+      </svg>`;
+  }
+
+  function forkSVG() {
+    // Knife & fork pin for Selected restaurants.
+    return `
+      <svg viewBox="0 0 28 36" xmlns="http://www.w3.org/2000/svg">
+        <path fill="${STAR_RED}" stroke="#fff" stroke-width="1.5"
+          d="M14 1c7 0 13 5 13 12 0 9-13 22-13 22S1 22 1 13C1 6 7 1 14 1z"/>
+        <g fill="#fff">
+          <rect x="9" y="6" width="1.4" height="10"/>
+          <rect x="11.4" y="6" width="1.4" height="6"/>
+          <rect x="13.8" y="6" width="1.4" height="6"/>
+          <rect x="9" y="11" width="6.2" height="1.4"/>
+          <path d="M19.5 6 c-1.5 0-2.5 1.5-2.5 4 0 1.6 .8 2.7 1.7 3.1 V18 h1.6 v-4.9 c.9-.4 1.7-1.5 1.7-3.1 0-2.5-1-4-2.5-4z"/>
+        </g>
+      </svg>`;
+  }
+
+  function makeIcon(stars) {
+    const html = stars > 0 ? flowerSVG(String(stars)) : forkSVG();
+    return L.divIcon({
+      className: "pin",
+      html,
+      iconSize: stars > 0 ? [32, 38] : [28, 36],
+      iconAnchor: stars > 0 ? [16, 36] : [14, 34],
+      popupAnchor: [0, -32],
+    });
+  }
+
+  // ---------- Map ----------
+  const map = L.map("map", {
+    zoomControl: true,
+    scrollWheelZoom: false,
+  }).setView([43.318, -1.985], 13);
+
+  // CartoDB Positron — clean light map style, similar to the slide screenshots.
+  L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
+    maxZoom: 19,
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+    subdomains: "abcd",
+  }).addTo(map);
+
+  // Re-enable scroll-wheel zoom only after the user clicks the map.
+  map.once("click", () => map.scrollWheelZoom.enable());
+
+  // ---------- Build markers + sidebar ----------
+  const starsHTMLInline = (n) => {
+    if (n === 0) return `<span style="color:#aaa; font-size:0.78rem;">Selected</span>`;
+    return `<span class="pop-stars">${"★".repeat(n)}</span>`;
+  };
+
+  const list = document.getElementById("list");
+  const groups = [
+    { id: 3, label: "Three Stars" },
+    { id: 2, label: "Two Stars" },
+    { id: 1, label: "One Star" },
+    { id: 0, label: "Selected · Michelin Guide" },
+  ];
+
+  const markersByName = {};
+  const itemsByName = {};
+
+  groups.forEach((g) => {
+    const subset = RESTAURANTS.filter((r) => r.stars === g.id);
+    if (!subset.length) return;
+    const header = document.createElement("div");
+    header.className = "list-section";
+    header.textContent = g.label + (g.id > 0 ? ` · ${subset.length}` : ` · ${subset.length}`);
+    list.appendChild(header);
+
+    subset.sort((a, b) => a.name.localeCompare(b.name)).forEach((r) => {
+      const marker = L.marker([r.lat, r.lng], { icon: makeIcon(r.stars) }).addTo(map);
+
+      const popHTML = `
+        <h3>${r.name} ${starsHTMLInline(r.stars)}</h3>
+        <div class="pop-meta">${r.cuisine || ""}${r.price ? " · " + r.price : ""}</div>
+        <div class="pop-meta">${r.area || ""}${r.address ? " · " + r.address : ""}</div>
+        ${r.url ? `<div style="margin-top:6px;"><a href="${r.url}" target="_blank" rel="noopener">MICHELIN Guide →</a></div>` : ""}
+      `;
+      marker.bindPopup(popHTML);
+      markersByName[r.name] = marker;
+
+      const item = document.createElement("div");
+      item.className = "list-item";
+      item.dataset.stars = r.stars;
+      item.innerHTML = `
+        <div class="stars-cell">${
+          r.stars > 0
+            ? `<span style="color:${STAR_RED}; font-size:0.95rem; line-height:1;">${"●".repeat(r.stars)}</span>`
+            : `<span style="color:#bbb; font-size:0.95rem;">●</span>`
+        }</div>
+        <div>
+          <h3>${r.name}</h3>
+          <div class="meta">${r.area}${r.cuisine ? " · " + r.cuisine : ""}</div>
+        </div>
+      `;
+      item.addEventListener("click", () => {
+        map.setView([r.lat, r.lng], 15, { animate: true });
+        marker.openPopup();
+        document.querySelectorAll(".list-item.active").forEach((n) => n.classList.remove("active"));
+        item.classList.add("active");
+      });
+      list.appendChild(item);
+      itemsByName[r.name] = item;
+    });
+  });
+
+  // ---------- Filters ----------
+  document.querySelectorAll(".filter-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll(".filter-btn").forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      const f = btn.dataset.filter;
+      RESTAURANTS.forEach((r) => {
+        const visible = f === "all" || String(r.stars) === f;
+        const m = markersByName[r.name];
+        if (visible) {
+          if (!map.hasLayer(m)) m.addTo(map);
+          itemsByName[r.name].style.display = "";
+        } else {
+          if (map.hasLayer(m)) map.removeLayer(m);
+          itemsByName[r.name].style.display = "none";
+        }
+      });
+
+      // Reframe the map to the visible set.
+      const visibleMarkers = RESTAURANTS
+        .filter((r) => f === "all" || String(r.stars) === f)
+        .map((r) => markersByName[r.name]);
+      if (visibleMarkers.length) {
+        const group = L.featureGroup(visibleMarkers);
+        map.fitBounds(group.getBounds().pad(0.25), { animate: true });
+      }
+    });
+  });
+  </script>
+</body>
+</html>
