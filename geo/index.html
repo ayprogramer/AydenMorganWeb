@@ -45,19 +45,21 @@ SOFTWARE.
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;font-size:14px;-webkit-font-smoothing:antialiased}button,a,canvas{-webkit-tap-highlight-color:transparent}button{font:inherit;color:inherit;cursor:pointer;border:0}button:disabled{cursor:default}button[hidden],[hidden]{display:none!important}button:focus-visible,a:focus-visible{outline:2px solid #397ada;outline-offset:4px}button{transition:background .15s,color .15s}a{color:inherit}
 header{height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:0 36px;border-bottom:1px solid var(--line);background:#fafaf9}.brand{display:flex;align-items:center;gap:12px;text-decoration:none}.brand-icon{width:34px;height:34px;display:grid;place-items:center}.brand-icon svg{width:32px;height:32px}.brand strong{display:block;font-size:19px;font-weight:650;letter-spacing:-.7px}.brand-byline{display:block;margin-top:3px;color:var(--muted);font-size:10px;letter-spacing:.03em}.header-note{font:10px var(--mono);letter-spacing:.09em;color:#7b8083;margin-left:auto;margin-right:24px}.header-note span{color:#c0c4c5;padding:0 14px}.quiet{font-size:12px;font-weight:500;background:transparent;padding:9px 12px;border:1px solid #dbdedf;border-radius:7px}.quiet:hover{background:#eaeceb}.quiet span{margin-left:8px;color:var(--muted)}
 main{display:grid;grid-template-columns:310px minmax(0,1fr);max-width:1680px;margin:auto;min-height:calc(100svh - 126px);padding:24px 28px 18px;gap:18px}.game-panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:26px 24px 20px;display:flex;flex-direction:column;min-height:610px;position:relative;box-shadow:0 2px 4px #17212603}.eyebrow{font:10px var(--mono);letter-spacing:.12em;line-height:1.6;color:var(--muted)}.panel-heading{display:flex;align-items:center;justify-content:space-between}.panel-index{color:#a2a8ac;font:10px var(--mono)}.modes{display:flex;border:1px solid #e7e8e7;background:#f1f2f1;border-radius:8px;padding:3px;gap:2px;margin:19px 0 32px}.modes button{flex:1;background:transparent;font-size:12px;font-weight:500;color:#71777b;padding:10px 4px;border-radius:5px}.modes button[aria-pressed=true]{background:#fff;color:#22282c;box-shadow:0 1px 4px #10182016}.modes button:hover:not([aria-pressed=true]){color:#1e252b;background:#e6e8e7}.round-meta{display:flex;align-items:center;justify-content:space-between;font:9px var(--mono);letter-spacing:.04em;color:#878d91}#roundLabel{color:#484f54}.progress{display:flex;gap:5px;margin:12px 0 32px}.progress i{height:3px;border-radius:2px;background:#e7e9e9;flex:1}.progress i.done{background:#316cbb}.progress i.current{background:#9baebf}.small{font-size:12px;line-height:1.65;color:var(--muted)}#prompt{font-size:12px;color:#7b8186}h1{font-size:37px;letter-spacing:-1.65px;line-height:1.12;font-weight:550;margin:13px 0 10px;overflow-wrap:anywhere}#countryHint{min-height:24px;font-size:13px;color:#7b8388}#challenge{min-height:172px}#flagWrap{margin:18px 0 12px}#flag{display:block;width:128px;height:96px;object-fit:contain;background:#fff;border:1px solid #e8e9e8;border-radius:4px}#flagWrap p{font-size:12px;color:var(--muted);line-height:1.6;margin:12px 0 0}#feedback{font-size:12px;line-height:1.65}#feedback .result-heading{display:flex;justify-content:space-between;gap:10px;align-items:baseline;color:#2761a8;font-size:16px;margin:6px 0;font-weight:600}#feedback p{color:#727b81;margin:0 0 8px}.action-area{margin-top:auto;padding-top:24px}#selection{font:10px/1.65 var(--mono);color:#7c858d;min-height:40px;padding-bottom:12px}.primary{width:100%;padding:14px 15px;border-radius:7px;background:#272e34;color:#fff;display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:12px;font-weight:550}.primary:hover{background:#414b54}.primary:active{background:#161c22}.primary:disabled{background:#eceeed;color:#959da1}.primary span{font-size:17px;font-weight:400}.scoreline{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);margin-top:25px;padding-top:22px}.scoreline .small{font:9px var(--mono);letter-spacing:.1em;display:block}.scoreline strong{display:block;font-size:35px;font-weight:450;letter-spacing:-1.6px;margin-top:7px;font-variant-numeric:tabular-nums}.scoreline em{font:12px var(--mono);letter-spacing:0;color:#92999e;font-style:normal}.score-icon{font:10px var(--mono);color:#9aa4ab;border:1px solid #e1e5e7;padding:7px;border-radius:5px}.panel-bottom{border-top:1px solid var(--line);margin-top:20px;padding-top:16px;display:flex;flex-direction:column;align-items:flex-start;gap:13px}.panel-bottom>span{font-size:11px;line-height:1.6;color:#858c91}.text-button{background:transparent;padding:0;color:#69747c;font-size:11px;text-underline-offset:4px}.text-button:hover{color:#202a32;text-decoration:underline}
-.globe-stage{position:relative;min-width:0;min-height:610px;overflow:hidden;border:1px solid #202a33;border-radius:12px;background:radial-gradient(ellipse at 50% 47%,#17252f 0,#111a22 51%,#0e161d 100%);color:#dae1e7}.globe-stage:before,.globe-stage:after{content:"";position:absolute;pointer-events:none;z-index:1;width:12px;height:12px;border-color:#506270;border-style:solid;opacity:.45}.globe-stage:before{left:20px;top:68px;border-width:1px 0 0 1px}.globe-stage:after{right:20px;bottom:65px;border-width:0 1px 1px 0}#globe{display:block;width:100%;height:100%;position:absolute;inset:0;cursor:grab;touch-action:none;outline:none}#globe:active{cursor:grabbing}#globe:focus-visible{box-shadow:inset 0 0 0 2px #8cbbf4;border-radius:12px}.map-heading{position:absolute;left:22px;right:22px;top:22px;display:flex;align-items:center;gap:9px;z-index:1;pointer-events:none;font:9px var(--mono);letter-spacing:.13em;color:#a0aeba}.map-heading>span:last-child{margin-left:auto;font-size:9px;color:#82939f;letter-spacing:.08em}.map-dot{height:5px;width:5px;background:#7fa68f;border-radius:50%;box-shadow:0 0 0 3px #7fa68f12}.map-controls{position:absolute;right:22px;top:50%;transform:translateY(-50%);background:#1a252e;border:1px solid #34414b;border-radius:8px;padding:3px;display:flex;flex-direction:column;align-items:center;gap:1px;box-shadow:0 3px 12px #0002}.map-controls button{width:32px;height:34px;border-radius:4px;font-size:20px;background:transparent;color:#c2cdd5}.map-controls button:hover{background:#2b3843}.map-controls button:disabled{opacity:.35}.map-controls #zoomLabel{font:9px var(--mono);padding:8px 0;color:#899ba9;min-width:30px;text-align:center}.divider{width:21px;height:1px;background:#35424d;margin:4px 0}.globe-instructions{position:absolute;left:20px;right:20px;bottom:20px;text-align:center;color:#82929e;font:9px/1.8 var(--mono);pointer-events:none}.globe-instructions span{padding:0 8px;color:#445663}.compass{position:absolute;right:34px;bottom:76px;color:#8396a5;font:9px var(--mono);text-align:center;pointer-events:none}.compass span{font-size:21px;line-height:1.8}.map-key{position:absolute;bottom:76px;left:23px;display:flex;gap:17px;color:#92a3b0;font:9px var(--mono);pointer-events:none}.map-key span{display:flex;gap:7px;align-items:center}.map-key i{width:6px;height:6px;border-radius:50%;display:inline-block}.guess-dot{background:#91bcf0}.answer-dot{background:#faac78}.center-reticle{display:none;position:absolute;left:50%;top:50%;width:13px;height:13px;border:1px solid #dce8f599;border-radius:50%;transform:translate(-50%,-50%);pointer-events:none}#globe:focus-visible+.center-reticle{display:block}footer{display:flex;justify-content:space-between;gap:16px;padding:0 30px 18px;margin:auto;max-width:1680px;color:#979da1;font:9px var(--mono);letter-spacing:.04em}footer .text-button{font:9px var(--mono);color:#858e95}
+.globe-stage{position:relative;min-width:0;min-height:610px;overflow:hidden;border:1px solid #202a33;border-radius:12px;background:radial-gradient(ellipse at 50% 47%,#17252f 0,#111a22 51%,#0e161d 100%);color:#dae1e7}.globe-stage:before,.globe-stage:after{content:"";position:absolute;pointer-events:none;z-index:1;width:12px;height:12px;border-color:#506270;border-style:solid;opacity:.45}.globe-stage:before{left:20px;top:68px;border-width:1px 0 0 1px}.globe-stage:after{right:20px;bottom:65px;border-width:0 1px 1px 0}#globe{display:block;width:100%;height:100%;position:absolute;inset:0;cursor:grab;touch-action:none;outline:none}#globe:active{cursor:grabbing}#globe:focus-visible{box-shadow:inset 0 0 0 2px #8cbbf4;border-radius:12px}.map-heading{position:absolute;left:22px;right:22px;top:22px;display:flex;align-items:center;gap:9px;z-index:1;pointer-events:none;font:9px var(--mono);letter-spacing:.13em;color:#a0aeba}.map-heading>span:last-child{margin-left:auto;font-size:9px;color:#82939f;letter-spacing:.08em}.map-dot{height:5px;width:5px;background:#7fa68f;border-radius:50%;box-shadow:0 0 0 3px #7fa68f12}.map-controls{position:absolute;right:22px;top:50%;transform:translateY(-50%);background:#1a252e;border:1px solid #34414b;border-radius:8px;padding:3px;display:flex;flex-direction:column;align-items:center;gap:1px;box-shadow:0 3px 12px #0002}.map-controls button{width:32px;height:34px;border-radius:4px;font-size:20px;background:transparent;color:#c2cdd5}.map-controls button:hover{background:#2b3843}.map-controls button:disabled{opacity:.35}.map-controls #zoomLabel{font:9px var(--mono);padding:8px 0;color:#899ba9;min-width:30px;text-align:center}.divider{width:21px;height:1px;background:#35424d;margin:4px 0}.globe-instructions{position:absolute;left:20px;right:20px;bottom:20px;text-align:center;color:#82929e;font:9px/1.8 var(--mono);pointer-events:none}.globe-instructions span{padding:0 8px;color:#445663}.compass{position:absolute;right:34px;bottom:76px;color:#8396a5;font:9px var(--mono);text-align:center;pointer-events:none}.compass span{font-size:21px;line-height:1.8}.map-key{position:absolute;bottom:76px;left:23px;display:flex;gap:17px;color:#92a3b0;font:9px var(--mono);pointer-events:none}.map-key span{display:flex;gap:7px;align-items:center}.map-key i{width:6px;height:6px;border-radius:50%;display:inline-block}.guess-dot{background:#91bcf0}.answer-dot{background:#faac78}.center-reticle{display:none;position:absolute;left:50%;top:50%;width:13px;height:13px;border:1px solid #dce8f599;border-radius:50%;transform:translate(-50%,-50%);pointer-events:none}#globe:focus-visible~.center-reticle{display:block}footer{display:flex;justify-content:space-between;gap:16px;padding:0 30px 18px;margin:auto;max-width:1680px;color:#979da1;font:9px var(--mono);letter-spacing:.04em}footer .text-button{font:9px var(--mono);color:#858e95}
 dialog{border:1px solid #e0e3e5;background:#fbfcfb;color:var(--ink);max-width:480px;width:calc(100% - 32px);padding:34px;border-radius:16px;box-shadow:0 24px 100px #07132240;max-height:90svh;overflow-y:auto}dialog::backdrop{background:#101a2466;backdrop-filter:blur(6px)}dialog h2{font-size:30px;font-weight:550;letter-spacing:-1.1px;line-height:1.16;margin:20px 0}dialog p,dialog li{font-size:13px;line-height:1.75;color:#68737c}dialog li{margin-bottom:10px}dialog ul{padding-left:18px}dialog a{color:#2867b2}.close{position:absolute;right:12px;top:10px;width:34px;height:34px;background:none;font-size:25px;font-weight:300;color:#78838b}.final-score{font-size:70px;font-weight:450;letter-spacing:-4px;color:#273d51}.final-score small{font-size:19px;letter-spacing:0;color:var(--muted);margin-left:10px}.result-row{display:grid;grid-template-columns:24px 1fr auto;gap:12px;border-top:1px solid var(--line);padding:13px 0;font-size:12px;align-items:center}.result-row small{display:block;color:var(--muted);font-size:11px;line-height:1.7}.result-row>span:first-child{color:#9aa2a9;font:10px var(--mono)}.result-row strong{color:#2867b2}#resultsList{margin:20px 0}body:has(dialog[open]){overflow:hidden}
 @media(min-width:1680px){header{padding:0 max(36px,calc((100vw - 1608px)/2))}}
 @media(max-width:1050px){header{padding:0 24px}main{grid-template-columns:280px minmax(0,1fr);padding:18px;gap:14px}.game-panel{padding:24px 20px}.header-note{margin-right:8px}.map-heading{left:17px;right:17px}.map-heading>span:last-child{font-size:8px}.globe-instructions{max-width:250px;margin:auto}.map-key{bottom:83px}.compass{bottom:90px}h1{font-size:33px}}
 @media(max-width:720px){header{height:67px;padding:0 18px;gap:12px}.brand strong{font-size:18px}.brand-byline{font-size:9px}.header-note{display:none}.quiet{font-size:11px;padding:8px 9px}.quiet span{display:none}main{display:flex;flex-direction:column;padding:14px 12px;gap:12px;min-height:0}.game-panel{min-height:0;width:100%;padding:20px;display:grid;grid-template-columns:minmax(0,1fr) 105px;gap:0 16px}.panel-heading,.modes,.round-meta,.progress,.panel-bottom{grid-column:1/-1}.modes{margin:14px 0 21px}.modes button{padding:11px 4px}.progress{margin:11px 0 20px}#challenge{grid-column:1;min-height:100px}h1{font-size:29px;margin:8px 0;letter-spacing:-1px}#countryHint{font-size:12px}.scoreline{grid-column:2;grid-row:5;border:0;margin:0;padding:0;align-self:start;justify-self:end}.scoreline strong{font-size:29px}.scoreline em{font-size:10px}.score-icon{display:none}#feedback{grid-column:1/-1}.action-area{grid-column:1/-1;padding-top:15px}#selection{min-height:30px;padding-bottom:10px;font-size:10px}.primary{padding:14px}.panel-bottom{margin-top:17px;padding-top:13px;flex-direction:row;justify-content:space-between;align-items:center;gap:12px}.panel-bottom>span{max-width:75%;font-size:10px}.panel-bottom button{white-space:nowrap}#flag{width:100px;height:75px}#flagWrap{margin:13px 0 8px}#flagWrap p{font-size:11px}.globe-stage{height:57svh;min-height:390px;width:100%;flex:none}.map-heading{top:18px;font-size:8px;left:17px;right:17px}.map-heading>span:last-child{font-size:8px}.map-controls{right:13px}.map-controls button{width:34px;height:36px}.globe-instructions{bottom:14px;max-width:none;left:13px;right:13px;font-size:8px}.globe-instructions span{padding:0 3px}.map-key{bottom:55px;left:18px;font-size:8px}.compass{bottom:56px;right:26px}.globe-stage:after{bottom:48px}.globe-stage:before{top:51px}footer{padding:3px 18px 20px;font-size:8px}footer .text-button{font-size:8px}dialog{padding:27px}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+
+#rocketOverlay{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}body:has([data-mode="rocket"][aria-pressed="true"]) .modes button{font-size:11px}.rocket-flight #globe{cursor:wait}
 </style></head>
 <body>
 <header><a class="brand" href="#" aria-label="GeoGuess by Ayden home"><span class="brand-icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="16" cy="16" r="12"/><ellipse cx="16" cy="16" rx="5.5" ry="12"/><path d="M4 16h24M7 8.5c6 4 12 4 18 0M7 23.5c6-4 12-4 18 0"/></svg></span><span><strong>GeoGuess</strong><span class="brand-byline">BY AYDEN</span></span></a><div class="header-note">FIVE ROUNDS <span>/</span> ONE WORLD</div><button class="quiet" id="help">How to play <span>↗</span></button></header>
 <main>
 <section class="game-panel" aria-label="Game controls">
 <div class="panel-heading"><div class="eyebrow">EXPLORATION</div><span class="panel-index" aria-hidden="true">01—05</span></div>
-<div class="modes" role="group" aria-label="Game mode"><button data-mode="cities" aria-pressed="true">Cities</button><button data-mode="countries" aria-pressed="false">Countries</button><button data-mode="flags" aria-pressed="false">Flags</button></div>
+<div class="modes" role="group" aria-label="Game mode"><button data-mode="cities" aria-pressed="true">Cities</button><button data-mode="countries" aria-pressed="false">Countries</button><button data-mode="flags" aria-pressed="false">Flags</button><button data-mode="rocket" aria-pressed="false">Rocket</button></div>
 <div class="round-meta"><span id="roundLabel">ROUND 01 / 05</span><span id="poolLabel"></span></div>
 <div class="progress" id="progress" aria-label="Round progress"></div>
 <div id="challenge"><div class="small" id="prompt">Drop a pin in</div><h1 id="targetName"></h1><div id="countryHint"></div><div id="flagWrap" hidden><img id="flag" alt="Mystery country flag" width="192" height="144"><p>Which country flies this flag?</p></div></div>
@@ -69,6 +71,7 @@ dialog{border:1px solid #e0e3e5;background:#fbfcfb;color:var(--ink);max-width:48
 <section class="globe-stage" aria-label="Interactive globe">
 <div class="map-heading"><span class="map-dot"></span> WORLD VIEW <span id="borderLabel">RIVERS &amp; LAKES</span></div>
 <canvas id="globe" tabindex="0" role="application" aria-label="Interactive globe. Drag to rotate, scroll or pinch to zoom. Click to place a pin. Use arrow keys to rotate, plus or minus to zoom, and Space to place a pin at the center."></canvas>
+<canvas id="rocketOverlay" aria-hidden="true" hidden></canvas>
 <div class="center-reticle" aria-hidden="true"></div>
 <div class="map-key" id="mapKey"><span><i class="guess-dot"></i>Your guess</span><span id="answerKey" hidden><i class="answer-dot"></i>Correct location</span></div>
 <div class="map-controls"><button id="zoomIn" aria-label="Zoom in" title="Zoom in">+</button><span id="zoomLabel">1.0×</span><button id="zoomOut" aria-label="Zoom out" title="Zoom out">−</button><div class="divider"></div><button id="resetView" aria-label="Reset globe view" title="Reset view">⌾</button></div>
@@ -77,7 +80,7 @@ dialog{border:1px solid #e0e3e5;background:#fbfcfb;color:var(--ink);max-width:48
 </section>
 </main>
 <footer><span>BY AYDEN / GEOGUESS</span><button class="text-button" id="about">Map &amp; credits</button></footer>
-<dialog id="helpDialog"><button class="close" aria-label="Close instructions">×</button><div class="eyebrow">FIELD GUIDE</div><h2>Find it. Pin it.<br>See how close.</h2><p>Each game draws five different places. Every round is worth up to <strong>100 points</strong>, for a maximum of <strong>500</strong>.</p><ul><li><strong>Cities:</strong> use coastlines, rivers, and lakes to find the named city. Pins within 75 km earn 100 points. Beyond that, the distance penalty is reduced by 20%.</li><li><strong>Countries:</strong> find the named country. Any point inside its mapped border earns 100 points.</li><li><strong>Flags:</strong> identify the flag, then pin its country. Country borders are visible.</li></ul><p>Misses lose points gradually with distance. Country and flag misses use the closest border, not the capital.</p><p class="small">North always stays up. Drag with one finger or your mouse; pinch or scroll to zoom. Tap or click to move your pin, then lock it in. With the globe focused, use arrow keys, +/−, and Space to pin the center.</p><button class="primary close-action">Let's explore <span>→</span></button></dialog>
+<dialog id="helpDialog"><button class="close" aria-label="Close instructions">×</button><div class="eyebrow">FIELD GUIDE</div><h2>Find it. Pin it.<br>See how close.</h2><p>Each game draws five different places. Every round is worth up to <strong>100 points</strong>, for a maximum of <strong>500</strong>.</p><ul><li><strong>Cities:</strong> use coastlines, rivers, and lakes to find the named city. Pins within 75 km earn 100 points. Beyond that, the distance penalty is reduced by 20%.</li><li><strong>Rocket:</strong> find the named city, select an impact point, then launch from the orbiting satellite. Uses the same scoring as Cities: 100 points within 75 km.</li><li><strong>Countries:</strong> find the named country. Any point inside its mapped border earns 100 points.</li><li><strong>Flags:</strong> identify the flag, then pin its country. Country borders are visible.</li></ul><p>Misses lose points gradually with distance. Country and flag misses use the closest border, not the capital.</p><p class="small">North always stays up. Drag with one finger or your mouse; pinch or scroll to zoom. Tap or click to move your pin, then lock it in. With the globe focused, use arrow keys, +/−, and Space to pin the center.</p><button class="primary close-action">Let's explore <span>→</span></button></dialog>
 <dialog id="summaryDialog"><button class="close" aria-label="Close results">×</button><div class="eyebrow">SESSION COMPLETE</div><h2 id="summaryTitle">A world of possibilities.</h2><div class="final-score"><span id="finalScore"></span><small>/ 500</small></div><p id="summaryNote"></p><div id="resultsList"></div><button class="primary" id="playAgain">Play again <span>↻</span></button></dialog>
 <dialog id="aboutDialog"><button class="close" aria-label="Close credits">×</button><h2>A little map knowledge.</h2><p>All maps, rivers, lakes, flags, and game code are embedded in this file. No connection or account is needed.</p><p>Boundaries use Natural Earth's 1:50m world map through World Atlas. Borders are approximate and reflect the dataset; disputed areas and tiny islands may differ from other maps.</p><p>Globe: <a href="https://d3js.org/" target="_blank" rel="noreferrer">D3</a> (ISC), <a href="https://github.com/topojson/topojson-client" target="_blank" rel="noreferrer">TopoJSON</a> (ISC), and <a href="https://github.com/Fil/versor" target="_blank" rel="noreferrer">Versor</a> (ISC). Map, Cities-mode rivers, and lakes: <a href="https://www.naturalearthdata.com/" target="_blank" rel="noreferrer">Natural Earth</a> (public domain). Flags: <a href="https://github.com/lipis/flag-icons" target="_blank" rel="noreferrer">flag-icons</a> (MIT).</p><p class="small">Scoring: 100 within 75 km of a city or inside a country; otherwise 99 × exp(−distance / 2,000), rounded. For cities, the first 75 km are subtracted, then the remaining distance is reduced by 20% for scoring. Displayed distances remain the actual distances. Distance is in kilometres.</p></dialog>
 <noscript>This game needs JavaScript enabled to display the globe.</noscript>
@@ -155,24 +158,25 @@ function nearestCountry(point,feature){
 function formatKm(km){return km<1?(km===0?'Inside the country':'Less than 1 km away'):Math.round(km).toLocaleString()+' km away';}
 function coords(p){return Math.abs(p[1]).toFixed(2)+'° '+(p[1]>=0?'N':'S')+' · '+Math.abs(p[0]).toFixed(2)+'° '+(p[0]>=0?'E':'W');}
 function startGame(nextMode=mode){
- if(!['cities','countries','flags'].includes(nextMode))throw new Error('Unknown game mode');
- mode=nextMode;rounds=sample(mode==='cities'?DATA.cities:countries);index=0;results=[];
+ if(!['cities','countries','flags','rocket'].includes(nextMode))throw new Error('Unknown game mode');
+ mode=nextMode;rounds=sample(cityMode()?DATA.cities:countries);index=0;results=[];
  document.querySelectorAll('[data-mode]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.mode===mode)));
- $('poolLabel').textContent=(mode==='cities'?DATA.cities.length:countries.length)+(mode==='cities'?' CITIES':' COUNTRIES');
- $('borderLabel').textContent=mode==='cities'?'RIVERS & LAKES':'COUNTRY BORDERS';
- $('modeHelp').textContent=mode==='cities'?'The closer the pin, the higher the score.':'Anywhere inside the country earns 100.';
+ $('poolLabel').textContent=(cityMode()?DATA.cities.length:countries.length)+(cityMode()?' CITIES':' COUNTRIES');
+ $('borderLabel').textContent=cityMode()?'RIVERS & LAKES':'COUNTRY BORDERS';
+ $('modeHelp').textContent=mode==='rocket'?'Aim for the city. Launch to see how close you land.':cityMode()?'The closer the pin, the higher the score.':'Anywhere inside the country earns 100.';
  $('summaryDialog').close();$('totalScore').textContent='0';newRound();resetView();
 }
 function newRound(){
- locked=false;guess=null;answer=null;reveal=null;const target=rounds[index];
+ locked=false;guess=null;answer=null;reveal=null;resetRocket();const target=rounds[index];
  $('roundLabel').textContent='ROUND '+String(index+1).padStart(2,'0')+' / 05';
  $('progress').innerHTML=Array.from({length:5},(_,i)=>'<i class="'+(i<index?'done':i===index?'current':'')+'"></i>').join('');
- $('prompt').textContent=mode==='flags'?'Find this flag’s country':mode==='cities'?'Drop a pin in':'Find the country';
+ $('prompt').textContent=mode==='flags'?'Find this flag’s country':cityMode()?'Drop a pin in':'Find the country';
  $('targetName').hidden=mode==='flags';$('targetName').textContent=mode==='flags'?'':target.name;
- $('countryHint').hidden=mode!=='cities';$('countryHint').textContent=mode==='cities'?target.country:'';
+ $('countryHint').hidden=!cityMode();$('countryHint').textContent=cityMode()?target.country:'';
  $('flagWrap').hidden=mode!=='flags';if(mode==='flags')$('flag').src=target.flag;else $('flag').removeAttribute('src');
  $('feedback').replaceChildren();$('submit').hidden=false;$('submit').disabled=true;$('next').hidden=true;
- $('selection').textContent='Click the globe to place your pin.';$('answerKey').hidden=true;
+ $('submit').innerHTML=mode==='rocket'?'Launch rocket <span>↗</span>':'Lock in guess <span>↗</span>';
+ $('selection').textContent=mode==='rocket'?'Choose a point, then launch your rocket.':'Click the globe to place your pin.';$('answerKey').hidden=true;
  requestDraw();
 }
 function placeGuess(p){
@@ -180,20 +184,21 @@ function placeGuess(p){
  if(!Array.isArray(p)||p.length!==2||!p.every(Number.isFinite)||Math.abs(p[0])>180||Math.abs(p[1])>90)throw new Error('Invalid coordinates');
  guess=p.slice();$('selection').textContent=coords(guess);$('submit').disabled=false;requestDraw();return true;
 }
-function lockGuess(){
+function lockGuess(){return mode==='rocket'?launchRocket():resolveGuess();}
+function resolveGuess(){
  if(locked||!guess)return false;
  locked=true;const target=rounds[index];
- const near=mode==='cities'?{km:distance(guess,target.point),point:target.point}:nearestCountry(guess,features.get(target.id));
- answer=near.point;const points=score(near.km,mode==='cities');
+ const near=cityMode()?{km:distance(guess,target.point),point:target.point}:nearestCountry(guess,features.get(target.id));
+ answer=near.point;const points=score(near.km,cityMode());
  results.push({name:target.name,country:target.country||'',km:near.km,points,guess:guess.slice(),answer:answer.slice()});
  $('totalScore').textContent=results.reduce((n,r)=>n+r.points,0);
  const heading=document.createElement('div');heading.className='result-heading';
  const title=document.createElement('span');title.textContent=points===100?'Right on the mark!':points>=75?'So close!':points>=40?'Good exploring.':'Keep exploring.';
  const value=document.createElement('span');value.textContent=points+' / 100';heading.append(title,value);
- const detail=document.createElement('p');detail.textContent=(mode==='flags'?target.name+' · ':'')+formatKm(near.km)+(mode!=='cities'&&near.km>0?' from the border':'');
+ const detail=document.createElement('p');detail.textContent=(mode==='flags'?target.name+' · ':'')+formatKm(near.km)+(!cityMode()&&near.km>0?' from the border':'');
  $('feedback').replaceChildren(heading,detail);$('selection').textContent='Your guess is locked in.';
  $('submit').hidden=true;$('next').hidden=false;$('next').innerHTML=index===4?'See final score <span>→</span>':'Next round <span>→</span>';
- $('answerKey').hidden=false;$('answerKey').lastChild.textContent=mode==='cities'?'Correct location':'Correct country';
+ $('answerKey').hidden=false;$('answerKey').lastChild.textContent=cityMode()?'Correct location':'Correct country';
  $('progress').children[index].className='done';
  // Reveal the answer on the front of the globe, with the guess visible when nearby.
  const dest=near.km>100?d3.geoInterpolate(guess,answer)(.5):answer;
@@ -202,11 +207,11 @@ function lockGuess(){
   interpolate:d3.geoInterpolate(guess,answer),progress:reduced?1:0,pulse:reduced?1:0,active:!reduced};
  $('next').focus({preventScroll:true});return true;
 }
-function nextRound(){if(!locked)return;if(index===4){showSummary();return;}index++;newRound();resetView();canvas.focus({preventScroll:true});}
+function nextRound(){if(!locked||rocketShot)return;if(index===4){showSummary();return;}index++;newRound();resetView();canvas.focus({preventScroll:true});}
 function showSummary(){
  const total=results.reduce((n,r)=>n+r.points,0);$('finalScore').textContent=total;
  $('summaryTitle').textContent=total>=450?'You know your world.':total>=300?'A great expedition.':'Every guess is a discovery.';
- $('summaryNote').textContent={cities:'Cities',countries:'Countries',flags:'Flags'}[mode]+' · 5 rounds · '+Math.round(total/5)+' / 100 average';
+ $('summaryNote').textContent={cities:'Cities',countries:'Countries',flags:'Flags',rocket:'Rocket'}[mode]+' · 5 rounds · '+Math.round(total/5)+' / 100 average';
  $('resultsList').replaceChildren();results.forEach((r,i)=>{
   const row=document.createElement('div');row.className='result-row';const num=document.createElement('span');num.textContent=String(i+1).padStart(2,'0');
   const name=document.createElement('div');name.textContent=r.name;const sub=document.createElement('small');sub.textContent=formatKm(r.km);name.append(sub);
@@ -282,11 +287,11 @@ function draw(isMoving){
  ctx.clearRect(0,0,width,height);
  if(key===mapCacheKey)ctx.drawImage(mapCanvas,0,0,width,height);
  else{drawMap(isMoving);mapCtx.clearRect(0,0,mapCanvas.width,mapCanvas.height);mapCtx.drawImage(canvas,0,0);mapCacheKey=key;}
- if(locked&&mode!=='cities'&&reveal?.progress>=1){ctx.save();ctx.globalAlpha=reduced?1:clamp(reveal.pulse*4,0,1);trace(features.get(rounds[index].id),'#e7a271a6','#ffc68e',1.4);ctx.restore();}
+ if(locked&&!cityMode()&&reveal?.progress>=1){ctx.save();ctx.globalAlpha=reduced?1:clamp(reveal.pulse*4,0,1);trace(features.get(rounds[index].id),'#e7a271a6','#ffc68e',1.4);ctx.restore();}
  if(guess&&answer&&reveal){
   if(distance(guess,answer)>1&&reveal.progress>0)drawRevealRoute();
   if(reveal.progress>=1){
-   if(mode==='cities'||distance(guess,answer)>1)marker(answer,'#ffb07c',false);
+   if(cityMode()||distance(guess,answer)>1)marker(answer,'#ffb07c',false);
    if(!reduced&&reveal.pulse<1)arrivalPulse(answer,reveal.pulse);
   }
  }
@@ -294,6 +299,7 @@ function draw(isMoving){
  $('zoomLabel').textContent=zoom.toFixed(1)+'×';
  $('zoomIn').disabled=zoomTarget>=8;$('zoomOut').disabled=zoomTarget<=.8;
  document.querySelector('.compass').style.transform='none';
+ if(mode==='rocket'&&reduced&&!rocketRaf)rocketFrame(performance.now());
 }
 function drawMap(isMoving){
  const radius=base*zoom,cx=width/2,cy=height/2;
@@ -302,7 +308,7 @@ function drawMap(isMoving){
  trace(graticule,null,'#b6ccdf12',.6);
  const coarse=isMoving&&zoom<2.5;
  trace(coarse?landLow:land,'#6f8288','#b9cbd16e',.65);
- if(mode==='cities'){
+ if(cityMode()){
   trace(isMoving||zoom<1.6?majorLakes:cityWater.lakes,'#28495e','#82a8c0',.45);
   trace(isMoving||zoom<1.6?majorRivers:cityWater.rivers,null,'#5285a3',zoom<1.6?.65:1.05);
  }else trace(coarse?bordersLow:borders,null,'#223542bb',.65);
@@ -350,14 +356,151 @@ document.querySelectorAll('[data-mode]').forEach(b=>b.onclick=()=>{if(b.dataset.
 document.querySelector('.brand').onclick=e=>{e.preventDefault();startGame();};
 $('help').onclick=()=>$('helpDialog').showModal();$('about').onclick=()=>$('aboutDialog').showModal();
 document.querySelectorAll('dialog').forEach(dialog=>{dialog.querySelectorAll('.close,.close-action').forEach(b=>b.onclick=()=>dialog.close());dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close();}});});
+// Animate spacecraft on a separate canvas so orbiting never redraws the map.
+const rocketCanvas=$('rocketOverlay'),rocketCtx=rocketCanvas.getContext('2d');
+let rocketRaf=0,rocketShot=null;
+function cityMode(){return mode==='cities'||mode==='rocket';}
+function orbitPoint(phase,rotate){
+ // Inclined circular orbit fixed to Earth, transformed by the globe's camera.
+ const inclination=55*rad;
+ const point=[Math.atan2(Math.sin(phase)*Math.cos(inclination),Math.cos(phase))/rad,Math.asin(Math.sin(phase)*Math.sin(inclination))/rad];
+ const camera=rotate(point),longitude=camera[0]*rad,latitude=camera[1]*rad;
+ const radius=projection.scale()*1.19,center=projection.translate();
+ const x=radius*Math.cos(latitude)*Math.sin(longitude),y=-radius*Math.sin(latitude);
+ const front=Math.cos(latitude)*Math.cos(longitude)>=0;
+ return{x:center[0]+x,y:center[1]+y,front,visible:front||Math.hypot(x,y)>projection.scale()};
+}
+function satellitePosition(now){
+ const phase=reduced?.6:now/6500,rotate=d3.geoRotation(projection.rotate());
+ const point=orbitPoint(phase,rotate),next=orbitPoint(phase+.002,rotate);
+ return{...point,angle:Math.atan2(next.y-point.y,next.x-point.x)};
+}
+function drawSatelliteOrbit(c){
+ const rotate=d3.geoRotation(projection.rotate());
+ c.save();c.strokeStyle='#9bb7cc35';c.lineWidth=1;c.setLineDash([3,7]);c.beginPath();
+ let connected=false;
+ for(let i=0;i<=180;i++){
+  const point=orbitPoint(i*Math.PI*2/180,rotate);
+  if(!point.visible){connected=false;continue;}
+  if(connected)c.lineTo(point.x,point.y);else c.moveTo(point.x,point.y);
+  connected=true;
+ }
+ c.stroke();c.restore();
+}
+function resetRocket(){
+ if(rocketRaf)cancelAnimationFrame(rocketRaf);rocketRaf=0;rocketShot=null;
+ rocketCanvas.hidden=mode!=='rocket';document.querySelector('.globe-stage').classList.remove('rocket-flight');
+ rocketCtx.clearRect(0,0,rocketCanvas.width,rocketCanvas.height);
+ if(mode==='rocket')rocketRaf=requestAnimationFrame(rocketFrame);
+}
+function launchRocket(){
+ if(locked||!guess||rocketShot)return false;
+ // Bring an off-screen selection back into view before firing.
+ stopAnimation();drag=null;pointers.clear();pinch=null;
+ const projected=projection(guess);
+ if(!visiblePoint(guess)||projected[0]<30||projected[0]>width-30||projected[1]<30||projected[1]>height-30){
+  projection.rotate(northUp([-guess[0],-guess[1],0]));
+ }
+ locked=true;const now=performance.now(),sat=satellitePosition(now);
+ rocketShot={start:now,from:[sat.x/width,sat.y/height],flight:reduced?0:1450,burst:reduced?180:1000};
+ $('submit').disabled=true;$('selection').textContent='Rocket launched. Incoming…';
+ document.querySelector('.globe-stage').classList.add('rocket-flight');
+ requestDraw();if(!rocketRaf)rocketRaf=requestAnimationFrame(rocketFrame);return true;
+}
+function drawRocketFlight(c,from,to,progress){
+ const dx=to[0]-from[0],dy=to[1]-from[1],length=Math.hypot(dx,dy);
+ const lift=Math.min(100,Math.max(35,length*.22));
+ const control=[(from[0]+to[0])/2,(from[1]+to[1])/2-lift];
+ // Slow release, then an accelerating descent; orientation follows the curve.
+ const t=progress*progress,at=u=>[(1-u)*(1-u)*from[0]+2*(1-u)*u*control[0]+u*u*to[0],(1-u)*(1-u)*from[1]+2*(1-u)*u*control[1]+u*u*to[1]];
+ const p=at(t),angle=Math.atan2((1-t)*(control[1]-from[1])+t*(to[1]-control[1]),(1-t)*(control[0]-from[0])+t*(to[0]-control[0]));
+ c.save();c.lineCap='round';
+ // A short, fading wake rather than a line across the entire map.
+ for(let i=0;i<22;i++){
+  const u0=Math.max(0,t-(22-i)*.009),u1=Math.max(0,t-(21-i)*.009);
+  if(u0===u1)continue;
+  c.globalAlpha=(i/22)*.42;c.strokeStyle='#a6cee9';c.lineWidth=.5+2*i/22;
+  c.beginPath();c.moveTo(...at(u0));c.lineTo(...at(u1));c.stroke();
+ }
+ c.globalAlpha=1;c.translate(...p);c.rotate(angle);
+ const size=.85+.2*Math.sin(progress*Math.PI);c.scale(size,size);
+ const plume=c.createLinearGradient(-29,0,-7,0);plume.addColorStop(0,'#80baff00');plume.addColorStop(.7,'#9dcaf390');plume.addColorStop(1,'#e8f5ff');
+ c.fillStyle=plume;c.beginPath();c.moveTo(-7,-2.3);c.quadraticCurveTo(-19,-4,-30,0);c.quadraticCurveTo(-19,4,-7,2.3);c.closePath();c.fill();
+ // Swept fins and a rounded, metallic fuselage.
+ c.fillStyle='#71899b';c.strokeStyle='#b6c9d7';c.lineWidth=.6;
+ c.beginPath();c.moveTo(-3,-3);c.lineTo(-9,-8);c.lineTo(-9,-2);c.moveTo(-3,3);c.lineTo(-9,8);c.lineTo(-9,2);c.fill();c.stroke();
+ const body=c.createLinearGradient(0,-4,0,4);body.addColorStop(0,'#f4f7f9');body.addColorStop(.45,'#d8e3ea');body.addColorStop(1,'#8199ab');c.fillStyle=body;
+ c.beginPath();c.moveTo(12,0);c.quadraticCurveTo(7,-4,-5,-3);c.lineTo(-8,-2);c.lineTo(-8,2);c.lineTo(-5,3);c.quadraticCurveTo(7,4,12,0);c.closePath();c.fill();
+ c.fillStyle='#476b89';c.beginPath();c.arc(3,0,1.5,0,Math.PI*2);c.fill();
+ c.strokeStyle='#f1f7fcaa';c.lineWidth=.6;c.beginPath();c.moveTo(-4,-1.8);c.lineTo(6,-1.2);c.stroke();c.restore();
+}
+function drawRocketImpact(c,point,t){
+ c.save();c.translate(...point);
+ if(reduced){c.strokeStyle='#b6d5eb';c.globalAlpha=1-t;c.lineWidth=1.5;c.beginPath();c.arc(0,0,14,0,Math.PI*2);c.stroke();c.restore();return;}
+ const fade=Math.pow(1-t,1.4),spread=1-Math.pow(1-t,3);
+ // Translucent ground shockwaves, offset in time and softly dissipating.
+ for(let i=0;i<3;i++){
+  const u=clamp((t-i*.12)/(1-i*.12),0,1);if(u===0)continue;
+  c.globalAlpha=Math.pow(1-u,2)*(.65-i*.12);c.strokeStyle=i===0?'#c0dced':'#719cb9';c.lineWidth=1.5-i*.3;
+  c.beginPath();c.ellipse(0,0,9+(56-i*10)*(1-Math.pow(1-u,3)),6+(38-i*7)*(1-Math.pow(1-u,3)),0,0,Math.PI*2);c.stroke();
+ }
+ // A compact blue-gray dust cloud; no full-screen flash or camera shake.
+ for(let i=0;i<7;i++){
+  const angle=i*2.39996,r=(12+i*2)*spread,x=Math.cos(angle)*r,y=Math.sin(angle)*r*.65-11*t;
+  const radius=4+14*spread,cloud=c.createRadialGradient(x,y,0,x,y,radius);
+  cloud.addColorStop(0,'#8da6b96b');cloud.addColorStop(1,'#617f9600');c.globalAlpha=fade*.65;c.fillStyle=cloud;c.beginPath();c.arc(x,y,radius,0,Math.PI*2);c.fill();
+ }
+ // Brief warm-white core, surrounded by cool debris that matches the globe.
+ const core=Math.max(0,1-t*3.5);
+ if(core>0){const radius=7+15*(1-core),glow=c.createRadialGradient(0,0,0,0,0,radius);glow.addColorStop(0,'#f5f3e7');glow.addColorStop(.3,'#dce9f0cc');glow.addColorStop(1,'#8cbddd00');c.globalAlpha=core;c.fillStyle=glow;c.beginPath();c.arc(0,0,radius,0,Math.PI*2);c.fill();}
+ c.lineCap='round';
+ for(let i=0;i<14;i++){
+  const a=i*2.39996,r=(23+(i%4)*8)*spread,x=Math.cos(a)*r,y=Math.sin(a)*r*.8;
+  c.globalAlpha=fade*(.45+(i%3)*.15);c.strokeStyle=i%4===0?'#e3d5b5':'#b6d3e8';c.lineWidth=i%3===0?1.5:.8;
+  c.beginPath();c.moveTo(x,y);c.lineTo(x+Math.cos(a)*4*(1-t),y+Math.sin(a)*4*(1-t));c.stroke();
+ }
+ c.globalAlpha=Math.sin(Math.PI*t)*.7;c.strokeStyle='#b6d3e8';c.lineWidth=1;c.beginPath();c.arc(0,0,4,0,Math.PI*2);c.stroke();c.restore();
+}
+
+function rocketFrame(now){
+ rocketRaf=0;if(mode!=='rocket')return;
+ const dpr=Math.min(devicePixelRatio||1,2),w=Math.round(width*dpr),h=Math.round(height*dpr);
+ if(rocketCanvas.width!==w||rocketCanvas.height!==h){rocketCanvas.width=w;rocketCanvas.height=h;}
+ rocketCtx.setTransform(dpr,0,0,dpr,0,0);rocketCtx.clearRect(0,0,width,height);
+ const c=rocketCtx,sat=satellitePosition(now);
+ drawSatelliteOrbit(c);
+ // Far-side spacecraft passes behind the globe.
+ if(sat.visible){
+  c.save();c.translate(sat.x,sat.y);c.rotate(sat.angle);c.shadowColor='#a8c4d52b';c.shadowBlur=4;
+  c.fillStyle='#3d566b';c.strokeStyle='#90a8ba';c.lineWidth=1;
+  for(const x of [-23,9]){c.fillRect(x,-7,14,14);c.strokeRect(x,-7,14,14);c.beginPath();c.moveTo(x+7,-7);c.lineTo(x+7,7);c.moveTo(x,0);c.lineTo(x+14,0);c.stroke();}
+  c.fillStyle='#dce5ea';c.fillRect(-6,-5,12,10);c.strokeStyle='#dce5ea';c.beginPath();c.moveTo(0,-5);c.lineTo(0,-13);c.stroke();c.beginPath();c.arc(0,-13,2,0,Math.PI*2);c.fill();c.restore();
+ }
+ if(rocketShot){
+  const shot=rocketShot,elapsed=now-shot.start,to=projection(guess),from=[shot.from[0]*width,shot.from[1]*height];
+  if(elapsed<shot.flight){
+   drawRocketFlight(c,from,to,clamp(elapsed/shot.flight,0,1));
+  }else{
+   const t=clamp((elapsed-shot.flight)/shot.burst,0,1);
+   drawRocketImpact(c,to,t);
+   if(t>=1){rocketShot=null;locked=false;document.querySelector('.globe-stage').classList.remove('rocket-flight');resolveGuess();}
+  }
+ }
+ if(!reduced||rocketShot)rocketRaf=requestAnimationFrame(rocketFrame);
+}
+// Keep the selected impact point fixed during the short flight.
+for(const event of ['pointerdown','wheel','keydown','click'])document.querySelector('.globe-stage').addEventListener(event,e=>{
+ if(rocketShot){e.preventDefault();e.stopImmediatePropagation();}
+},{capture:true,passive:false});
+
 resize();startGame();
 // Optional progressive enhancement for browsers supporting WebMCP.
 if(document.modelContext?.registerTool){
  const lifecycle=new AbortController();
  const expose=tool=>{try{Promise.resolve(document.modelContext.registerTool(tool,{signal:lifecycle.signal})).catch(()=>{});}catch{}};
- expose({name:'start_geo_game',description:'Start a fresh five-round game in cities, countries, or flags mode.',inputSchema:{type:'object',properties:{mode:{type:'string',enum:['cities','countries','flags']}},required:['mode'],additionalProperties:false},annotations:{readOnlyHint:false},execute:input=>{startGame(input.mode);return{mode,round:1};}});
- expose({name:'submit_geo_guess',description:'Place and lock a longitude/latitude guess in the current round, returning the score.',inputSchema:{type:'object',properties:{longitude:{type:'number',minimum:-180,maximum:180},latitude:{type:'number',minimum:-90,maximum:90}},required:['longitude','latitude'],additionalProperties:false},annotations:{readOnlyHint:false},execute:input=>{if(locked)throw new Error('This round is already scored.');placeGuess([input.longitude,input.latitude]);lockGuess();return results.at(-1);}});
- expose({name:'next_geo_round',description:'Advance after a scored round, or show the final five-round score.',inputSchema:{type:'object',properties:{},additionalProperties:false},annotations:{readOnlyHint:false},execute:()=>{if(!locked)throw new Error('Submit a guess first.');nextRound();return{round:index+1,complete:results.length===5};}});
+ expose({name:'start_geo_game',description:'Start a fresh five-round game in cities, countries, flags, or rocket mode.',inputSchema:{type:'object',properties:{mode:{type:'string',enum:['cities','countries','flags','rocket']}},required:['mode'],additionalProperties:false},annotations:{readOnlyHint:false},execute:input=>{startGame(input.mode);return{mode,round:1};}});
+ expose({name:'submit_geo_guess',description:'Place and lock a longitude/latitude guess in the current round, returning the score.',inputSchema:{type:'object',properties:{longitude:{type:'number',minimum:-180,maximum:180},latitude:{type:'number',minimum:-90,maximum:90}},required:['longitude','latitude'],additionalProperties:false},annotations:{readOnlyHint:false},execute:input=>{if(locked)throw new Error('This round is already scored.');placeGuess([input.longitude,input.latitude]);lockGuess();return rocketShot?{status:"in_flight"}:results.at(-1);}});
+ expose({name:'next_geo_round',description:'Advance after a scored round, or show the final five-round score.',inputSchema:{type:'object',properties:{},additionalProperties:false},annotations:{readOnlyHint:false},execute:()=>{if(!locked||rocketShot)throw new Error('Finish the current guess first.');nextRound();return{round:index+1,complete:results.length===5};}});
  addEventListener('pagehide',()=>lifecycle.abort(),{once:true});
 }
 </script>
